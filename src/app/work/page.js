@@ -2,6 +2,7 @@ import { getProjects } from "@/lib/projects";
 import ProjectGrid from "@/components/work/ProjectGrid";
 import Scribble from "@/components/mixed/Scribble";
 import Reveal from "@/components/mixed/Reveal";
+import Note from "@/components/mixed/Note";
 
 export const metadata = {
   title: "Work — Lau Betancur",
@@ -16,7 +17,7 @@ export default async function WorkPage() {
     <main className="overflow-x-clip px-6 pb-32 pt-36 md:px-12">
       <div className="mx-auto max-w-7xl">
         {/* Encabezado */}
-        <header className="mb-14 md:mb-20">
+        <header className="relative mb-14 md:mb-20">
           <h1 className="font-title text-[clamp(3.5rem,11vw,10rem)] leading-[0.9] tracking-tight text-neutral-900">
             Selected
             <br />
@@ -32,6 +33,9 @@ export default async function WorkPage() {
             Projects where research, design and code meet. Each one started with a real
             problem and a lot of sticky notes.
           </Reveal>
+          <Note arrow="down-left" rotate={-6} className="absolute bottom-0 right-0 hidden md:flex">
+            {'hover the cards,\nsomething happens'}
+          </Note>
         </header>
 
         {/* Grilla */}

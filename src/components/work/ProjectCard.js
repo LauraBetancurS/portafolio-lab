@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+// Colores de la "mancha" que sigue al cursor (uno por tarjeta, en orden)
+const SPLASH_COLORS = ['#F2A2DC', '#C9DB4B', '#A9D6F5', '#E8603C', '#F8D98C'];
+
 // Tarjeta minimalista: la imagen ocupa toda la tarjeta, el título va encima.
 // Si el proyecto no tiene imagen, se usa su card_color de fondo.
 export default function ProjectCard({ project, index }) {
@@ -12,16 +15,25 @@ export default function ProjectCard({ project, index }) {
       className="project-card group relative block aspect-square overflow-hidden rounded-[6px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:aspect-[1/1]"
       style={{ backgroundColor: color }}
     >
-      {/* Imagen de fondo */}
+      {/* Imagen de fondo (más alta que la tarjeta para el efecto parallax) */}
       {hasImage && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={project.cover}
-          alt={project.coverAlt}
-          loading={index < 2 ? 'eager' : 'lazy'}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-        />
+        <div className="project-media absolute inset-x-0 -top-[10%] h-[120%]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.cover}
+            alt={project.coverAlt}
+            loading={index < 2 ? 'eager' : 'lazy'}
+            className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+          />
+        </div>
       )}
+
+      {/* Mancha de color que sigue al cursor (la mueve ProjectGrid) */}
+      <span
+        aria-hidden="true"
+        className="project-splash pointer-events-none absolute left-0 top-0 -ml-40 -mt-40 h-80 w-80 rounded-full opacity-0 mix-blend-multiply blur-2xl"
+        style={{ backgroundColor: SPLASH_COLORS[index % SPLASH_COLORS.length] }}
+      />
 
       {/* Degradado suave arriba y abajo para que el texto se lea sobre cualquier foto */}
       {hasImage && (
@@ -32,7 +44,7 @@ export default function ProjectCard({ project, index }) {
       )}
 
       {/* Título + flecha */}
-      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-6 md:p-8">
+      <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 p-6 md:p-8">
         <h2
           className={`font-body text-2xl font-medium tracking-tight md:text-3xl ${
             hasImage ? 'text-white' : 'text-neutral-900'
@@ -54,7 +66,7 @@ export default function ProjectCard({ project, index }) {
 
       {/* Etiquetas */}
       {project.tags?.length > 0 && (
-        <ul className="absolute bottom-0 left-0 flex flex-wrap gap-1.5 p-6 md:p-8">
+        <ul className="absolute bottom-0 left-0 z-10 flex flex-wrap gap-1.5 p-6 md:p-8">
           {project.tags.map(tag => (
             <li
               key={tag}

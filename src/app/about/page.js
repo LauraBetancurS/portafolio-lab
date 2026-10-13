@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Polaroid from "@/components/about/Polaroid";
+import AboutHero from "@/components/about/AboutHero";
+import Note from "@/components/mixed/Note";
 import GetInfoWindow from "@/components/about/GetInfoWindow";
 import Translator from "@/components/about/Translator";
 import StickyNotes from "@/components/about/StickyNotes";
 import Dock from "@/components/about/Dock";
 import Toolbox from "@/components/about/Toolbox";
 import Reveal from "@/components/mixed/Reveal";
-import Scribble from "@/components/mixed/Scribble";
 
 export const metadata = {
   title: "About — Lau Betancur",
@@ -16,32 +16,30 @@ export const metadata = {
 // Página About. Todo el texto es de ejemplo: cámbialo con tus propias palabras.
 export default function AboutPage() {
   return (
-    <main className="overflow-x-clip px-6 pb-32 pt-32 md:px-12">
-      {/* Presentación: foto + intro */}
-      <section className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[minmax(0,300px)_1fr] md:gap-20">
-        <div className="relative flex justify-center md:justify-start">
-          <Scribble variant="sparkle" color="#E8603C" strokeWidth={3} className="absolute -top-8 right-6 h-14 w-14 md:-right-6" />
-          <Polaroid />
+    <main className="overflow-x-clip px-6 pb-32 pt-28 md:px-12">
+      {/* Presentación: estilo collage con foto de cuerpo completo */}
+      <AboutHero />
+
+      {/* Un poco más sobre mí */}
+      <Reveal as="section" className="mx-auto mt-32 grid max-w-6xl gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-16">
+        <div className="relative">
+          <h2 className="font-title text-4xl leading-tight text-neutral-900">A bit more</h2>
+          <Note arrow="down-right" rotate={-5} className="mt-3">the long version</Note>
         </div>
-        <div>
-          <h1 className="font-title relative inline-block text-5xl leading-[1.05] text-neutral-900 md:text-7xl">
-            hi again, I’m Lau
-          </h1>
-          <div className="font-body mt-8 max-w-[60ch] space-y-5 text-lg leading-[1.7] text-neutral-700">
-            <p>
-              I’m an Interactive Media Design student at Universidad Icesi, in Cali. I design
-              and build digital products, mostly in the space where UX, front-end code and
-              AI meet.
-            </p>
-            <p>
-              I like to think of myself as a computer-to-human translator. Systems are
-              complicated; using them shouldn’t be. My job is to listen to people, find
-              where things get confusing, and turn that into something clear, warm and a
-              little bit fun.
-            </p>
-          </div>
+        <div className="font-body max-w-[60ch] space-y-5 text-lg leading-[1.7] text-neutral-700">
+          <p>
+            I’m an Interactive Media Design student at Universidad Icesi, in Cali. I design
+            and build digital products, mostly in the space where UX, front-end code and
+            AI meet.
+          </p>
+          <p>
+            I like to think of myself as a computer-to-human translator. Systems are
+            complicated; using them shouldn’t be. My job is to listen to people, find
+            where things get confusing, and turn that into something clear, warm and a
+            little bit fun.
+          </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* Ventana Get Info (pieza central) */}
       <Reveal as="section" className="mx-auto mt-32 flex max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:justify-between">

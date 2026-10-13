@@ -3,6 +3,7 @@ import { getFeaturedProjects } from '@/lib/projects';
 import ProjectGrid from '@/components/work/ProjectGrid';
 import SectionTitle from '@/components/mixed/SectionTitle';
 import Scribble from '@/components/mixed/Scribble';
+import Note from '@/components/mixed/Note';
 
 // Proyectos destacados del inicio (featured = true en Supabase)
 export default async function FeaturedWork() {
@@ -12,7 +13,10 @@ export default async function FeaturedWork() {
   return (
     <>
       <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
-        <div>
+        <div className="relative">
+          <Note arrow="down-left" arrowFirst rotate={-7} className="absolute -top-10 left-[clamp(14rem,40vw,30rem)] hidden md:flex">
+            the ones I’m proudest of
+          </Note>
           <SectionTitle>Selected work</SectionTitle>
           <p className="font-body mt-6 max-w-[48ch] text-lg leading-relaxed text-neutral-600">
             A few projects where research, design and code meet.

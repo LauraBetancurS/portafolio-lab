@@ -22,3 +22,8 @@ export const ABOUT_PHOTO_URL = `${STORAGE}/${BUCKET}/PFP_%20BIG_BLUE.svg`;
 export const TOOL_ICON_AWS_URL = null;
 export const TOOL_ICON_PHOTOSHOP_URL = null;
 export const TOOL_ICON_AFTER_EFFECTS_URL = null;
+
+// Foto de cuerpo completo SIN fondo (PNG recortado), para el inicio de About.
+// Súbela a Supabase y cambia null por su URL, por ejemplo:
+// export const FULL_BODY_URL = `${STORAGE}/${BUCKET}/about/lau-full-body.png`;
+export const FULL_BODY_URL = null;

@@ -31,8 +31,16 @@ const neulis = localFont({
     { path: "./fonts/NeulisAlt-Medium.woff2", weight: "500", style: "normal" },
     { path: "./fonts/NeulisAlt-SemiBold.woff2", weight: "600", style: "normal" },
     { path: "./fonts/NeulisAlt-Bold.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/NeulisAlt-Italic.woff2", weight: "400", style: "italic" },
   ],
   variable: "--font-neulis",
+  display: "swap",
+});
+
+// Letra a mano para notas y anotaciones (Caveat, licencia libre OFL)
+const hand = localFont({
+  src: "./fonts/Caveat-Medium.woff2",
+  variable: "--font-caveat",
   display: "swap",
 });
 
@@ -50,7 +58,7 @@ export default function RootLayout({ children }) {
   return (
     <html style={{ scrollBehavior: "smooth" }} data-scroll-behavior="smooth"
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} ${neulis.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} ${neulis.variable} ${hand.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />

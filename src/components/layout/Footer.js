@@ -3,34 +3,8 @@
 import { useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { LOGO_URL } from '@/lib/assets';
+import { CONTACTS } from '@/data/contact';
 
-// ─── Tus datos de contacto ──────────────────────────────────
-// Cambia los valores marcados con ← por los tuyos.
-// copy: el texto que se copia con el botón. href: a dónde lleva la flecha.
-const CONTACTS = [
-  {
-    label: 'Email',
-    value: 'tu-correo@gmail.com', // ← tu correo
-    copy: 'tu-correo@gmail.com', // ← tu correo
-    href: 'mailto:tu-correo@gmail.com', // ← tu correo
-    dot: '#F2A2DC',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'in/tu-usuario', // ← tu usuario de LinkedIn
-    copy: 'https://www.linkedin.com/in/tu-usuario', // ← tu link
-    href: 'https://www.linkedin.com/in/tu-usuario', // ← tu link
-    dot: '#A9D6F5',
-  },
-  {
-    label: 'GitHub',
-    value: '@LauraBetancurS',
-    copy: 'https://github.com/LauraBetancurS',
-    href: 'https://github.com/LauraBetancurS',
-    dot: '#C9DB4B',
-  },
-];
-// ────────────────────────────────────────────────────────────
 
 function CopyButton({ text, label }) {
   const [copied, setCopied] = useState(false);

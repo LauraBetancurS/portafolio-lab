@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import SupabaseStatus from "@/components/SupabaseStatus";
 import HeroTitle from "@/components/home/HeroTitle";
+import StarField from "@/components/home/StarField";
 
 export default function Home() {
   return (
@@ -9,9 +10,12 @@ export default function Home() {
 
       <main>
         {/* Hero (lo construimos en el siguiente paso) */}
-        <section className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
-          <HeroTitle />
-          <SupabaseStatus />
+        <section className="relative flex min-h-screen flex-col items-center justify-center gap-4 overflow-hidden px-6 text-center">
+          <StarField />
+          <div className="relative z-10 flex flex-col items-center gap-4">
+            <HeroTitle />
+            <SupabaseStatus />
+          </div>
         </section>
 
         {/* Secciones temporales para probar el scroll del navbar */}

@@ -11,12 +11,13 @@ const LETTER_STAGGER = 40;   // ms entre letra y letra
 const LETTER_DURATION = 0.8;
 const SUBTITLE_START = 0.7;  // cuándo empieza el subtítulo
 const FLOWER_START = 1.1;    // cuándo aparece la flor
+const FLOWER_SPIN_TIME = 40; // segundos que gira antes de detenerse
 
 export default function HeroTitle() {
   const flowerRef = useRef(null);
 
   // La flor aparece girando y crece con un pequeño rebote,
-  // luego queda girando muy despacio.
+  // gira despacio y al final frena suavemente hasta quedar quieta.
   useGSAP(() => {
     const flower = flowerRef.current;
     if (!flower) return;
@@ -26,7 +27,11 @@ export default function HeroTitle() {
         { opacity: 0, scale: 0, rotate: -180 },
         { opacity: 1, scale: 1, rotate: 0, duration: 1, ease: 'back.out(1.8)' }
       )
-      .to(flower, { rotate: 360, duration: 12, ease: 'none', repeat: -1 });
+      // Giro constante (30°/s)...
+      .to(flower, { rotate: 816, duration: FLOWER_SPIN_TIME - 12.8, ease: 'none' })
+      // ...y frenado suave en los últimos 12.8 s. Termina en 1008°,
+      // múltiplo de 72°, así la flor (5 pétalos) queda en su posición original.
+      .to(flower, { rotate: 1008, duration: 12.8, ease: 'power1.out' });
   });
 
   return (

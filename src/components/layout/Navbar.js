@@ -6,7 +6,7 @@ import { LOGO_URL } from "@/lib/assets";
 
 // "/#..." lleva a la sección del inicio desde cualquier página
 const LINKS = [
-  { label: "Work", href: "/#work" },
+  { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Resume", href: "/#resume" },
 ];

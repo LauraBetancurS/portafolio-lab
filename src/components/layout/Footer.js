@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { LOGO_URL } from '@/lib/assets';
 
@@ -103,8 +103,15 @@ function ContactCard({ contact }) {
   );
 }
 
+// Año actual, calculado en el navegador (Next no permite usar la fecha
+// durante el prerender, porque quedaría congelada).
+const noop = () => () => {};
+function useCurrentYear() {
+  return useSyncExternalStore(noop, () => new Date().getFullYear(), () => null);
+}
+
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const year = useCurrentYear();
 
   return (
     <footer id="contact" className="font-body scroll-mt-20 bg-black text-white">
@@ -133,7 +140,7 @@ export default function Footer() {
           <img src={LOGO_URL} alt="" className="h-7 w-auto invert" />
         </Link>
         <p className="text-neutral-500">
-          Laura Betancur, product designer and front-end developer. Cali, Colombia, {year}.
+          Laura Betancur, product designer and front-end developer. Cali, Colombia{year ? `, ${year}` : ''}.
         </p>
         <button
           type="button"

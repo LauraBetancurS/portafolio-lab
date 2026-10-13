@@ -72,25 +72,25 @@ function CopyButton({ text, label }) {
 function ContactCard({ contact }) {
   const external = contact.href.startsWith('http');
   return (
-    <li className="group relative rounded-2xl bg-white/[0.06] px-6 py-5 transition-colors duration-200 hover:bg-white/[0.1]">
-      <p className="flex items-center gap-2 text-neutral-400">
+    <li className="group relative rounded-xl bg-white/[0.06] px-5 py-2.5 transition-colors duration-200 hover:bg-white/[0.1]">
+      <p className="flex items-center gap-2 text-sm text-neutral-400">
         <span className="h-2 w-2 rounded-full" style={{ backgroundColor: contact.dot }} aria-hidden="true" />
         {contact.label}
       </p>
-      <div className="mt-1.5 flex items-center gap-2">
+      <div className="mt-0.5 flex items-center gap-2">
         {/* El enlace cubre toda la tarjeta; el botón de copiar queda encima */}
         <a
           href={contact.href}
           target={external ? '_blank' : undefined}
           rel={external ? 'noopener noreferrer' : undefined}
-          className="text-lg text-white after:absolute after:inset-0 after:rounded-2xl after:content-[''] md:text-xl"
+          className="text-base text-white after:absolute after:inset-0 after:rounded-xl after:content-[''] md:text-lg"
         >
           {contact.value}
         </a>
         <CopyButton text={contact.copy} label={contact.label} />
       </div>
       <svg
-        className="pointer-events-none absolute right-6 top-1/2 h-6 w-6 -translate-y-1/2 text-neutral-500 transition duration-200 group-hover:-translate-y-[60%] group-hover:translate-x-0.5 group-hover:text-white"
+        className="pointer-events-none absolute right-5 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-500 transition duration-200 group-hover:-translate-y-[60%] group-hover:translate-x-0.5 group-hover:text-white"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -108,31 +108,29 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="font-body scroll-mt-20 bg-black text-white">
-      <div className="mx-auto grid max-w-7xl gap-14 px-6 pb-12 pt-24 md:px-12 lg:grid-cols-2 lg:gap-20">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 pb-6 pt-10 md:px-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h2 className="font-title text-5xl leading-[1.05] md:text-6xl">
-            Thanks for
-            <br />
-            stopping by.
+          <h2 className="font-title text-4xl leading-[1.1] md:text-5xl">
+            Thanks for stopping by.
             <br />
             <span className="text-[#F2A2DC]">Say hi!</span>
           </h2>
-          <p className="mt-6 max-w-[40ch] text-lg leading-relaxed text-neutral-400">
+          <p className="mt-3 max-w-[44ch] leading-relaxed text-neutral-400">
             I’m open to internships, freelance projects and good conversations about design, code and AI.
           </p>
         </div>
 
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-2">
           {CONTACTS.map(contact => (
             <ContactCard key={contact.label} contact={contact} />
           ))}
         </ul>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 pb-10 pt-6 md:flex-row md:items-center md:justify-between md:px-12">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 border-t border-white/10 px-6 py-4 text-sm md:flex-row md:items-center md:justify-between md:px-12">
         <Link href="/" aria-label="Inicio" className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={LOGO_URL} alt="" className="h-9 w-auto invert" />
+          <img src={LOGO_URL} alt="" className="h-7 w-auto invert" />
         </Link>
         <p className="text-neutral-500">
           Laura Betancur, product designer and front-end developer. Cali, Colombia, {year}.
@@ -140,7 +138,7 @@ export default function Footer() {
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-nav self-start text-lg text-neutral-400 transition-colors hover:text-white md:self-auto"
+          className="font-nav self-start text-base text-neutral-400 transition-colors hover:text-white md:self-auto"
         >
           Back to top
         </button>

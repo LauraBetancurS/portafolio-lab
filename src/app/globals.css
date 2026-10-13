@@ -89,11 +89,7 @@ body {
   .animate-sticker-bump { animation: none; }
 }
 
-/* Cursor estilo Figma (components/layout/FigmaCursor.js) */
-html.has-figma-cursor,
-html.has-figma-cursor * {
-  cursor: none !important;
-}
+/* Burbuja estilo Figma que sigue al cursor (components/layout/FigmaCursor.js) */
 .figma-cursor {
   will-change: transform;
   transition: opacity 0.15s ease;
@@ -102,7 +98,7 @@ html.has-figma-cursor * {
   opacity: 0;
 }
 .figma-cursor-inner {
-  transform-origin: 2px 2px;
+  transform-origin: 0 0;
   transition: transform 0.15s ease;
 }
 .figma-cursor[data-active='true'] .figma-cursor-inner {

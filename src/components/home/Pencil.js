@@ -18,7 +18,7 @@ export default function Pencil({ className = '' }) {
   return (
     <button
       type="button"
-      aria-label="Lápiz"
+      aria-label="Pencil (click to switch)"
       aria-pressed={active}
       onClick={handleClick}
       className={`relative block cursor-pointer ${className}`}

@@ -57,12 +57,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html style={{ scrollBehavior: "smooth" }} data-scroll-behavior="smooth"
-      lang="es"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} ${neulis.variable} ${hand.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <a
+          href="#content"
+          className="font-body sr-only z-[100] rounded-full bg-black px-5 py-3 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <div className="flex-1">{children}</div>
+        <div id="content" tabIndex={-1} className="flex-1 outline-none">{children}</div>
         <Footer />
         <FigmaCursor />
       </body>

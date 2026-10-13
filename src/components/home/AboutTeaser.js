@@ -28,7 +28,7 @@ export default function AboutTeaser() {
         <div className="mt-8 flex items-center gap-4">
           <Link
             href="/about"
-            className="font-nav rounded-full bg-black px-7 py-3 text-lg text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-neutral-800"
+            className="press font-nav rounded-full bg-black px-7 py-3 text-lg text-white hover:-translate-y-0.5 hover:bg-neutral-800"
           >
             More about me
           </Link>

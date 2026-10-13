@@ -39,7 +39,7 @@ export default function SelectionWord({ className = '' }) {
   return (
     <button
       type="button"
-      aria-label={`${word}. Pasa el mouse para ver más palabras`}
+      aria-label={`${word}. Hover to see more words`}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       onClick={() => setIndex(i => (i + 1) % WORDS.length)}

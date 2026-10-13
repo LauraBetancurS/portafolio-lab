@@ -46,7 +46,7 @@ function CopyButton({ text, label }) {
 function ContactCard({ contact }) {
   const external = contact.href.startsWith('http');
   return (
-    <li className="group relative rounded-xl bg-white/[0.06] px-5 py-2.5 transition-colors duration-200 hover:bg-white/[0.1]">
+    <li className="press group relative rounded-xl bg-white/[0.06] px-5 py-2.5 hover:bg-white/[0.1]">
       <p className="flex items-center gap-2 text-sm text-neutral-400">
         <span className="h-2 w-2 rounded-full" style={{ backgroundColor: contact.dot }} aria-hidden="true" />
         {contact.label}
@@ -109,7 +109,7 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto flex max-w-7xl flex-col gap-3 border-t border-white/10 px-6 py-4 text-sm md:flex-row md:items-center md:justify-between md:px-12">
-        <Link href="/" aria-label="Inicio" className="flex items-center gap-3">
+        <Link href="/" aria-label="Home" className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={LOGO_URL} alt="" className="h-7 w-auto invert" />
         </Link>

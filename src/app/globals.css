@@ -6,6 +6,10 @@
   --dot-color: rgb(196 196 196 / 0.3);   /* #C4C4C4 al 30% de opacidad */
   --dot-size: 0.8px;      /* radio de cada punto */
   --dot-gap: 20px;        /* separación entre puntos */
+
+  /* Curvas de animación (más decididas que las de CSS por defecto) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @theme inline {
@@ -122,4 +126,47 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+}
+
+
+/* ─── Detalles de interacción ─────────────────────────────── */
+
+/* Botones y links que se 'hunden' un poquito al hacer clic.
+   Úsalo con la clase press. */
+.press {
+  transition-property: transform, translate, scale, rotate, background-color, color, box-shadow;
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-out);
+}
+.press:active {
+  scale: 0.97;
+}
+
+/* Foco visible solo al navegar con teclado (Tab) */
+:where(a, button, [role='button'], summary, input, textarea, select):focus-visible {
+  outline: 2px solid #1e1e1e;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+footer :where(a, button):focus-visible,
+header.bg-black :where(a, button):focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Color de selección de texto de la marca */
+::selection {
+  background: #f2a2dc;
+  color: #1e1e1e;
+}
+
+/* Subrayado tipo marcador para el link de la página actual en el navbar */
+.nav-current {
+  background-image: linear-gradient(transparent 62%, rgba(242, 162, 220, 0.85) 62%, rgba(242, 162, 220, 0.85) 92%, transparent 92%);
+}
+header.bg-black .nav-current {
+  background-image: linear-gradient(transparent 62%, rgba(242, 162, 220, 0.55) 62%, rgba(242, 162, 220, 0.55) 92%, transparent 92%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press:active { scale: 1; }
 }

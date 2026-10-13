@@ -80,7 +80,7 @@ export default function AboutHero() {
             {email && (
               <a
                 href={email.href}
-                className="font-body group flex items-center justify-between rounded-lg bg-black px-6 py-4 text-lg text-white transition-transform duration-200 hover:-translate-y-0.5 sm:w-fit sm:gap-16"
+                className="press font-body group flex items-center justify-between rounded-lg bg-black px-6 py-4 text-lg text-white hover:-translate-y-0.5 sm:w-fit sm:gap-16"
               >
                 {email.value}
                 <span className="transition-transform duration-200 group-hover:rotate-45">↗</span>
@@ -93,7 +93,7 @@ export default function AboutHero() {
                   href={c.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body group flex items-center gap-10 rounded-lg px-6 py-3.5 text-lg text-neutral-900 ring-1 ring-black/25 transition-colors duration-200 hover:bg-white"
+                  className="press font-body group flex items-center gap-10 rounded-lg px-6 py-3.5 text-lg text-neutral-900 ring-1 ring-black/25 hover:bg-white"
                 >
                   {c.label.toLowerCase()}
                   <span className="transition-transform duration-200 group-hover:rotate-45">↗</span>

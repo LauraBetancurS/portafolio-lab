@@ -166,7 +166,7 @@ async function ProjectDetail({ params }) {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`font-nav group inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg transition-transform duration-200 hover:-translate-y-0.5 ${
+              className={`press font-nav group inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg hover:-translate-y-0.5 ${
                 i === 0 ? "bg-black text-white" : "bg-white text-neutral-900 ring-1 ring-black/15"
               }`}
             >

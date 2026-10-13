@@ -57,7 +57,7 @@ export default function ResumePage() {
               href={RESUME_PDF_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-nav group inline-flex items-center gap-3 self-start rounded-full bg-black px-7 py-3 text-lg text-white transition-transform duration-200 hover:-translate-y-0.5 md:self-auto"
+              className="press font-nav group inline-flex items-center gap-3 self-start rounded-full bg-black px-7 py-3 text-lg text-white hover:-translate-y-0.5 md:self-auto"
             >
               Download CV
               <span className="transition-transform duration-200 group-hover:translate-y-0.5">↓</span>

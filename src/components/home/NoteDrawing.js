@@ -12,7 +12,7 @@ export default function NoteDrawing({ className = '' }) {
   return (
     <button
       type="button"
-      aria-label="Dibujo de Laura en una nota adhesiva"
+      aria-label="Drawing of Laura on a sticky note"
       onClick={() => setTapped(t => !t)}
       className={`group relative block cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-1 hover:rotate-1 ${className}`}
     >

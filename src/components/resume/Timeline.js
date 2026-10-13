@@ -28,7 +28,8 @@ export default function Timeline({ items }) {
       );
       gsap.utils.toArray('.timeline-dot').forEach(dot => {
         gsap.from(dot, {
-          scale: 0,
+          scale: 0.4,
+          opacity: 0,
           duration: 0.4,
           ease: 'back.out(3)',
           scrollTrigger: { trigger: dot, start: 'top 72%', once: true },

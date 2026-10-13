@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LOGO_URL } from "@/lib/assets";
 
 // "/#..." lleva a la sección del inicio desde cualquier página
@@ -33,6 +34,9 @@ export default function Navbar() {
   }, []);
 
   const dark = scrolled || menuOpen;
+  const pathname = usePathname();
+  // ¿Este link es la página actual? (/work también cuenta en /work/un-proyecto)
+  const isCurrent = (href) => !href.includes("#") && (pathname === href || pathname.startsWith(href + "/"));
 
   return (
     <header
@@ -42,7 +46,7 @@ export default function Navbar() {
     >
       <nav className="font-nav flex items-center justify-between px-6 py-4 md:px-12">
         {/* Logo */}
-        <Link href="/" aria-label="Inicio" className="flex items-center">
+        <Link href="/" aria-label="Home" className="flex items-center">
           {logoFailed ? (
             <span className="text-xl font-bold tracking-tight">LAB</span>
           ) : (
@@ -50,7 +54,7 @@ export default function Navbar() {
             <img
               ref={logoRef}
               src={LOGO_URL}
-              alt="Logo de Laura Betancur"
+              alt="Laura Betancur logo"
               className={`h-10 w-auto transition duration-300 ${dark ? "invert" : ""}`}
               onError={() => setLogoFailed(true)}
             />
@@ -63,7 +67,8 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-2xl lg:text-3xl tracking-tight transition-opacity hover:opacity-60"
+              aria-current={isCurrent(link.href) ? "page" : undefined}
+              className={`text-2xl lg:text-3xl tracking-tight transition-opacity hover:opacity-60 ${isCurrent(link.href) ? "nav-current" : ""}`}
             >
               {link.label}
             </Link>
@@ -75,7 +80,7 @@ export default function Navbar() {
         <button
           type="button"
           className="md:hidden p-2"
-          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -93,7 +98,8 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-3xl tracking-tight"
+              aria-current={isCurrent(link.href) ? "page" : undefined}
+              className={`text-3xl tracking-tight ${isCurrent(link.href) ? "nav-current" : ""}`}
             >
               {link.label}
             </Link>
@@ -110,7 +116,7 @@ function ContactButton({ dark, onClick }) {
     <Link
       href="/#contact"
       onClick={onClick}
-      className={`rounded-full px-6 py-2.5 text-lg transition-colors duration-300 self-start ${
+      className={`press rounded-full px-6 py-2.5 text-lg self-start ${
         dark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"
       }`}
     >

@@ -9,7 +9,7 @@ export default function ProjectCard({ project, index }) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="project-card group relative block aspect-square overflow-hidden rounded-[6px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:aspect-[1/1]"
+      className="project-card press group relative block aspect-square overflow-hidden rounded-[6px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:aspect-[1/1]"
       style={{ backgroundColor: color }}
     >
       {/* Imagen de fondo (más alta que la tarjeta para el efecto parallax) */}
@@ -20,7 +20,7 @@ export default function ProjectCard({ project, index }) {
             src={project.cover}
             alt={project.coverAlt}
             loading={index < 2 ? 'eager' : 'lazy'}
-            className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+            className="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.04]"
           />
         </div>
       )}

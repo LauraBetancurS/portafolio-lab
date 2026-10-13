@@ -21,7 +21,7 @@ export default function LeftStickers() {
       <div data-star-avoid className="absolute left-[-48%] top-[14%] z-10 w-[106%]">
         <HeroSticker
           src={AIRDROP_URL}
-          alt="Notificación de AirDrop: Am I testing my code or is it testing me"
+          alt="AirDrop notification: Am I testing my code or is it testing me"
           effect="lift"
           onActivate={playAirdropSound}
         />
@@ -31,7 +31,7 @@ export default function LeftStickers() {
       <div data-star-avoid className="absolute left-[36%] top-[69%] z-20 w-[64%]">
         <HeroSticker
           src={CTRL_Z_URL}
-          alt="Teclas ctrl + Z"
+          alt="ctrl + Z keys"
           effect="tilt"
           onActivate={playTypingSound}
         />
@@ -39,7 +39,7 @@ export default function LeftStickers() {
 
       {/* Micrófono (al frente) */}
       <div data-star-avoid className="absolute left-[-40%] top-[76%] z-30 w-[35%]">
-        <HeroSticker src={MICROPHONE_URL} alt="Micrófono" effect="wiggle" />
+        <HeroSticker src={MICROPHONE_URL} alt="Microphone" effect="wiggle" />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function NextProject({ project }) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative block overflow-hidden rounded-[6px] px-6 py-12 md:px-12 md:py-16"
+      className="press group relative block overflow-hidden rounded-[6px] px-6 py-12 md:px-12 md:py-16"
       style={{ backgroundColor: color }}
     >
       {project.cover && (

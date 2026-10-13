@@ -12,7 +12,7 @@ export default function NotFound() {
       <p className="font-body mt-8 max-w-[40ch] text-lg text-neutral-600">
         This page got lost between the sticky notes. It may have moved or never existed.
       </p>
-      <Link href="/" className="font-nav mt-10 rounded-full bg-black px-7 py-3 text-lg text-white hover:bg-neutral-800">
+      <Link href="/" className="press font-nav mt-10 rounded-full bg-black px-7 py-3 text-lg text-white hover:bg-neutral-800">
         Back to home
       </Link>
     </main>

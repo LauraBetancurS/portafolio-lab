@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 // ─── Ajustes ────────────────────────────────────────────────
+// Estrellas quietas que se apartan cuando el mouse se acerca.
 // Colores de las estrellas (tomados del mockup)
 const COLORS = ['#C9DB4B', '#E8603C', '#F2A2DC', '#A9D6F5', '#DB6A8C'];
 const STAR_COUNT_DESKTOP = 16;
@@ -66,8 +67,6 @@ function createStars(width, height, avoidRects) {
       rotation: Math.random() * Math.PI,
       spin: 0,
       color: COLORS[stars.length % COLORS.length],
-      floatPhase: Math.random() * Math.PI * 2,
-      floatSpeed: 0.6 + Math.random() * 0.6,
       scale: 0, // para la animación de entrada
     });
   }
@@ -131,11 +130,9 @@ export default function StarField() {
         // Entrada: aparecen una por una
         if (s.scale < 1) s.scale = Math.min(1, s.scale + 0.04 * (time > i * 0.05 ? 1 : 0));
 
-        // Flotar suavecito alrededor de su casa
-        const floatX = Math.sin(time * s.floatSpeed + s.floatPhase) * 4;
-        const floatY = Math.cos(time * s.floatSpeed * 0.8 + s.floatPhase) * 6;
-        const targetX = s.homeX + floatX;
-        const targetY = s.homeY + floatY;
+        // Quietas en su lugar (solo se mueven si el mouse las empuja)
+        const targetX = s.homeX;
+        const targetY = s.homeY;
 
         // Repulsión del mouse
         const dx = s.x - mouse.x;
@@ -157,7 +154,7 @@ export default function StarField() {
         s.y += s.vy;
 
         s.spin *= 0.95;
-        s.rotation += s.spin + 0.002;
+        s.rotation += s.spin;
 
         drawStar(ctx, s.x, s.y, s.r * s.scale, s.rotation, s.color);
       });

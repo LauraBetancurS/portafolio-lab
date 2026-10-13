@@ -19,7 +19,7 @@ export default function Home() {
           </div>
 
           {/* Sticky note: a la derecha en pantallas anchas, debajo del título en las demás */}
-          <div data-star-avoid className="relative z-10 mt-8 w-48 xl:absolute xl:right-[3%] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
+          <div data-star-avoid className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
             <NoteDrawing className="w-full" />
           </div>
         </section>

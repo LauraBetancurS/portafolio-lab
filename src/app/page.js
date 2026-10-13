@@ -34,8 +34,11 @@ export default function Home() {
             <div data-star-avoid className="absolute left-[58%] top-[91%] z-30">
               <SelectionWord className="text-base xl:text-lg" />
             </div>
-            {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina */}
-            <div data-star-avoid className="absolute left-[-36%] top-[82%] z-20">
+            {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina.
+                left = horizontal (más alto → más a la derecha)
+                top  = vertical (más alto → más abajo)
+                Los % son relativos al ancho de la sticky note. */}
+            <div data-star-avoid className="absolute left-[-26%] top-[82%] z-20">
               <FinalFolder />
             </div>
           </div>

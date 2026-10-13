@@ -46,7 +46,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html style={{ scrollBehavior: "smooth" }}
+    <html style={{ scrollBehavior: "smooth" }} data-scroll-behavior="smooth"
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} ${neulis.variable} h-full antialiased`}
     >

@@ -4,6 +4,7 @@
 // Cambios propios:
 //  - startDelay: segundos de espera antes de empezar la animación
 //  - el texto queda oculto hasta que se divide en letras (evita un parpadeo)
+//  - se repite al volver a la página (Next guarda las páginas en memoria)
 
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
@@ -52,8 +53,12 @@ const SplitText = ({
   useGSAP(
     () => {
       if (!ref.current || !text || !fontsLoaded) return;
-      if (animationCompletedRef.current) return;
       const el = ref.current;
+      // Si ya se animó, que el texto quede visible (nunca escondido)
+      if (animationCompletedRef.current) {
+        gsap.set(el, { visibility: 'visible' });
+        return;
+      }
 
       if (el._rbsplitInstance) {
         try {
@@ -123,6 +128,10 @@ const SplitText = ({
       el._rbsplitInstance = splitInstance;
 
       return () => {
+        // Next guarda la página en memoria al navegar a otra; al volver,
+        // vuelve a correr este efecto. Reiniciamos para que la animación
+        // se repita y el texto no quede escondido.
+        animationCompletedRef.current = false;
         ScrollTrigger.getAll().forEach(st => {
           if (st.trigger === el) st.kill();
         });

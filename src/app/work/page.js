@@ -14,7 +14,7 @@ export default async function WorkPage() {
     <main className="overflow-x-clip px-6 pb-32 pt-36 md:px-12">
       <div className="mx-auto max-w-7xl">
         {/* Encabezado */}
-        <header className="mb-20 md:mb-28">
+        <header className="mb-14 md:mb-20">
           <h1 className="font-title text-[clamp(3.5rem,11vw,10rem)] leading-[0.9] tracking-tight text-neutral-900">
             Selected
             <br />

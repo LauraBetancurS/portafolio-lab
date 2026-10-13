@@ -21,22 +21,21 @@ export default function Home() {
             <SupabaseStatus />
           </div>
 
-          {/* Sticky note + lápiz + carpeta + Create. En pantallas anchas todo se mide en vw
-              (como un frame de Figma) para mantener las proporciones del mockup. */}
-          <div className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+27vw)] xl:top-1/2 xl:mt-0 xl:w-[15.6vw] xl:-translate-y-[55%]">
+          {/* Sticky note + carpeta: a la derecha en pantallas anchas, debajo del título en las demás */}
+          <div className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
             <div data-star-avoid>
               <NoteDrawing className="w-full" />
             </div>
             {/* Lápiz arriba a la derecha de la nota, cruzando su borde */}
-            <div data-star-avoid className="absolute left-[75%] top-[15%] z-20 w-[56%]">
+            <div data-star-avoid className="absolute left-[72%] top-[10%] z-20 w-[52%]">
               <Pencil className="w-full" />
             </div>
             {/* Palabra con selección estilo iOS, sobre el borde inferior de la nota */}
-            <div data-star-avoid className="absolute left-[58%] top-[99%] z-30">
+            <div data-star-avoid className="absolute left-[58%] top-[91%] z-30">
               <SelectionWord className="text-base xl:text-lg" />
             </div>
             {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina */}
-            <div data-star-avoid className="absolute left-[-36%] top-[82%] z-20">
+            <div data-star-avoid className="absolute left-[-32%] top-[80%] z-20">
               <FinalFolder />
             </div>
           </div>

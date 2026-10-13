@@ -10,11 +10,11 @@ const Folder = dynamic(() => import('@/components/ui/Folder/Folder'), {
   loading: () => <div style={{ width: 224 * 0.6, height: 196 * 0.6 }} />,
 });
 
-// Archivos de broma que salen de la carpeta al hacer hover
+// Archivos que salen de la carpeta al hacer hover
 const FILES = [
-  { title: 'final.fig' },
-  { title: 'final_v2.fig' },
-  { title: 'final_REAL.fig' },
+  { title: 'UX Research' },
+  { title: 'UI Design' },
+  { title: 'AI Product' },
 ];
 
 // Carpeta azul estilo macOS con el nombre "Final_Final_Final" debajo.
@@ -34,6 +34,7 @@ export default function FinalFolder({ size = 0.6, className = '' }) {
         bounce={0.4}
         draggable={false}
         zoomOnClick={false}
+        intro={false}
       />
       <span className="mt-1 text-xs tracking-wide text-neutral-800 select-none">
         Final_Final_Final

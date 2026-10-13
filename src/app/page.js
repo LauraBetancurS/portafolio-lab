@@ -1,9 +1,7 @@
 import HeroTitle from "@/components/home/HeroTitle";
 import Marquee from "@/components/home/Marquee";
 import FeaturedWork from "@/components/home/FeaturedWork";
-import HowIWork from "@/components/home/HowIWork";
 import AboutTeaser from "@/components/home/AboutTeaser";
-import SectionTitle from "@/components/mixed/SectionTitle";
 import StarField from "@/components/home/StarField";
 import NoteDrawing from "@/components/home/NoteDrawing";
 import FinalFolder from "@/components/home/FinalFolder";
@@ -59,15 +57,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Cómo trabajo */}
-        <section className="px-6 py-24 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-16">
-              <SectionTitle scribbleColor="#A9D6F5">How I work</SectionTitle>
-            </div>
-            <HowIWork />
-          </div>
-        </section>
 
         {/* Sobre mí (resumen) */}
         <section className="px-6 pb-32 pt-16 md:px-12">

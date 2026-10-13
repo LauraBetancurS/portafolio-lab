@@ -4,3 +4,4 @@ const STORAGE = "https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/publ
 const BUCKET = "HOMEPAGE";
 
 export const LOGO_URL = `${STORAGE}/${BUCKET}/icon.svg`;
+export const FLOWER_DIVIDER_URL = `${STORAGE}/${BUCKET}/flor_separador%20titulo.svg`;

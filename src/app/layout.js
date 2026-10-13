@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { LOGO_URL } from "@/lib/assets";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,11 @@ const neulis = localFont({
 export const metadata = {
   title: "Lau Betancur — Portafolio",
   description: "Diseño de Medios Interactivos · UX/UI · Front-end",
+  // Ícono de la pestaña del navegador: el mismo conejo del navbar
+  icons: {
+    icon: [{ url: LOGO_URL, type: "image/svg+xml" }],
+    apple: [{ url: LOGO_URL }],
+  },
 };
 
 export default function RootLayout({ children }) {

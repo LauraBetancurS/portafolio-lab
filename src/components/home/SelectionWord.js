@@ -48,7 +48,7 @@ export default function SelectionWord({ className = '' }) {
       {/* Caja de selección (fondo + manijas) */}
       <span
         ref={boxRef}
-        className="relative block h-[1.75em] bg-[#007AFF]/15 transition-[width] duration-300 ease-out"
+        className="relative block h-[2.3em] bg-[#007AFF]/15 transition-[width] duration-300 ease-out"
       >
         {/* Manija izquierda: barra + punto arriba */}
         <span className="absolute -left-[1px] top-0 h-full w-[2px] bg-[#007AFF]">
@@ -65,7 +65,7 @@ export default function SelectionWord({ className = '' }) {
         ref={textRef}
         key={word}
         aria-hidden="true"
-        className="animate-word-in absolute left-0 top-0 flex h-[1.75em] items-center whitespace-nowrap px-[0.6em] font-semibold text-neutral-900"
+        className="animate-word-in absolute left-0 top-0 flex h-[2.3em] items-center whitespace-nowrap px-[1.1em] font-semibold text-neutral-900"
       >
         {word}
       </span>

@@ -39,7 +39,7 @@ export default function HeroTitle() {
       <SplitText
         tag="h1"
         text="hi, I’m Laura Betancur"
-        className="font-title text-5xl font-normal md:text-7xl"
+        className="font-title text-5xl font-normal md:text-7xl xl:text-[4vw]"
         delay={LETTER_STAGGER}
         duration={LETTER_DURATION}
         ease="power3.out"
@@ -50,7 +50,7 @@ export default function HeroTitle() {
         rootMargin="-100px"
       />
 
-      <div className="font-title flex flex-wrap items-center justify-center gap-x-4 text-2xl md:text-4xl">
+      <div className="font-title flex flex-wrap items-center justify-center gap-x-4 text-2xl md:text-4xl xl:text-[3vw]">
         <SplitText
           tag="span"
           text="Product designer"

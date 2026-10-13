@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { LOGO_URL } from "@/lib/assets";
 
+// "/#..." lleva a la sección del inicio desde cualquier página
 const LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Resume", href: "#resume" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/about" },
+  { label: "Resume", href: "/#resume" },
 ];
 
 export default function Navbar() {
@@ -107,7 +108,7 @@ export default function Navbar() {
 function ContactButton({ dark, onClick }) {
   return (
     <Link
-      href="#contact"
+      href="/#contact"
       onClick={onClick}
       className={`rounded-full px-6 py-2.5 text-lg transition-colors duration-300 self-start ${
         dark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"

@@ -15,6 +15,8 @@
   --font-mono: var(--font-geist-mono);
   --font-nav: var(--font-bootzy);  /* clase de Tailwind: font-nav */
   --font-title: var(--font-neulis);  /* clase de Tailwind: font-title */
+  /* Textos largos: SF Pro en Mac/iPhone, fuente del sistema en los demás. Clase: font-body */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Fondo de puntos estilo FigJam en toda la página.

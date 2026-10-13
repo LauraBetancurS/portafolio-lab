@@ -1,4 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
 import SupabaseStatus from "@/components/SupabaseStatus";
 import HeroTitle from "@/components/home/HeroTitle";
 import StarField from "@/components/home/StarField";
@@ -11,7 +10,6 @@ import LeftStickers from "@/components/home/LeftStickers";
 export default function Home() {
   return (
     <>
-      <Navbar />
 
       <main>
         {/* Hero (lo construimos en el siguiente paso) */}

@@ -15,4 +15,10 @@ export const CTRL_Z_URL = `${STORAGE}/${BUCKET}/ctrlZ.svg`;
 
 // Foto de la página About. Cuando la subas a Supabase, cambia null por la URL:
 // export const ABOUT_PHOTO_URL = `${STORAGE}/${BUCKET}/about/foto.jpg`;
-export const ABOUT_PHOTO_URL = null;
+export const ABOUT_PHOTO_URL = `${STORAGE}/${BUCKET}/PFP_%20BIG_BLUE.svg`;
+
+// Íconos de herramientas que no vienen en la librería (súbelos a Supabase y pega la URL).
+// Mientras sean null, se muestra un ícono genérico con el nombre.
+export const TOOL_ICON_AWS_URL = null;
+export const TOOL_ICON_PHOTOSHOP_URL = null;
+export const TOOL_ICON_AFTER_EFFECTS_URL = null;

@@ -4,6 +4,7 @@ import GetInfoWindow from "@/components/about/GetInfoWindow";
 import Translator from "@/components/about/Translator";
 import StickyNotes from "@/components/about/StickyNotes";
 import Dock from "@/components/about/Dock";
+import Toolbox from "@/components/about/Toolbox";
 
 export const metadata = {
   title: "About — Lau Betancur",
@@ -59,6 +60,17 @@ export default function AboutPage() {
         </p>
         <div className="mt-10 w-full flex justify-center">
           <Translator />
+        </div>
+      </section>
+
+      {/* Herramientas */}
+      <section className="mx-auto mt-32 flex max-w-6xl flex-col items-center text-center">
+        <h2 className="font-title text-4xl leading-tight text-neutral-900">My toolbox</h2>
+        <p className="font-body mt-4 max-w-[52ch] text-lg leading-[1.7] text-neutral-700">
+          The apps I open every day, from the first sketch to the deployed product.
+        </p>
+        <div className="mt-10 flex w-full justify-center">
+          <Toolbox />
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import StarField from "@/components/home/StarField";
 import NoteDrawing from "@/components/home/NoteDrawing";
 import FinalFolder from "@/components/home/FinalFolder";
 import Pencil from "@/components/home/Pencil";
+import SelectionWord from "@/components/home/SelectionWord";
 
 export default function Home() {
   return (
@@ -28,6 +29,10 @@ export default function Home() {
             {/* Lápiz arriba a la derecha de la nota, cruzando su borde */}
             <div data-star-avoid className="absolute left-[72%] top-[10%] z-20 w-[52%]">
               <Pencil className="w-full" />
+            </div>
+            {/* Palabra con selección estilo iOS, sobre el borde inferior de la nota */}
+            <div data-star-avoid className="absolute left-[58%] top-[91%] z-30">
+              <SelectionWord className="text-base xl:text-lg" />
             </div>
             {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina */}
             <div data-star-avoid className="absolute left-[-32%] top-[80%] z-20">

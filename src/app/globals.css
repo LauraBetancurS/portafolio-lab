@@ -46,3 +46,15 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-pencil-wiggle { animation: none; }
 }
+
+/* Entrada de cada palabra en la selección estilo iOS */
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(35%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@theme {
+  --animate-word-in: word-in 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-word-in { animation: none; }
+}

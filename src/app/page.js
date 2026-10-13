@@ -1,4 +1,9 @@
 import HeroTitle from "@/components/home/HeroTitle";
+import Marquee from "@/components/home/Marquee";
+import FeaturedWork from "@/components/home/FeaturedWork";
+import HowIWork from "@/components/home/HowIWork";
+import AboutTeaser from "@/components/home/AboutTeaser";
+import SectionTitle from "@/components/mixed/SectionTitle";
 import StarField from "@/components/home/StarField";
 import NoteDrawing from "@/components/home/NoteDrawing";
 import FinalFolder from "@/components/home/FinalFolder";
@@ -10,8 +15,8 @@ export default function Home() {
   return (
     <>
 
-      <main>
-        {/* Hero (lo construimos en el siguiente paso) */}
+      <main className="overflow-x-clip">
+        {/* Hero */}
         <section className="relative flex min-h-screen flex-col items-center justify-center gap-4 overflow-hidden px-6 text-center">
           <StarField />
           <div data-star-avoid className="relative z-10 flex flex-col items-center gap-4">
@@ -45,10 +50,31 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Secciones temporales para probar el scroll del navbar */}
-        <section id="work" className="flex min-h-screen items-center justify-center text-3xl font-bold">Work</section>
-        <section id="about" className="flex min-h-screen items-center justify-center text-3xl font-bold">About</section>
-        <section id="resume" className="flex min-h-[50vh] items-center justify-center text-3xl font-bold">Resume</section>
+        <Marquee />
+
+        {/* Proyectos destacados */}
+        <section id="work" className="scroll-mt-24 px-6 pb-12 pt-32 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <FeaturedWork />
+          </div>
+        </section>
+
+        {/* Cómo trabajo */}
+        <section className="px-6 py-24 md:px-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16">
+              <SectionTitle scribbleColor="#A9D6F5">How I work</SectionTitle>
+            </div>
+            <HowIWork />
+          </div>
+        </section>
+
+        {/* Sobre mí (resumen) */}
+        <section className="px-6 pb-32 pt-16 md:px-12">
+          <div className="mx-auto max-w-6xl">
+            <AboutTeaser />
+          </div>
+        </section>
       </main>
     </>
   );

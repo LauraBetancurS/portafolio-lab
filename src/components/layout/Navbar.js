@@ -8,7 +8,7 @@ import { LOGO_URL } from "@/lib/assets";
 const LINKS = [
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
-  { label: "Resume", href: "/#resume" },
+  { label: "Resume", href: "/resume" },
 ];
 
 export default function Navbar() {

@@ -26,6 +26,11 @@ export default function HeroTitle() {
   useGSAP(() => {
     const flower = flowerRef.current;
     if (!flower) return;
+    // Con 'reducir movimiento' activado, todo aparece quieto de una vez
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set([flower, taglineRef.current], { opacity: 1 });
+      return;
+    }
     gsap.timeline({ delay: FLOWER_START })
       .fromTo(
         flower,

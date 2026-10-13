@@ -1,0 +1,39 @@
+import Link from 'next/link';
+import { getFeaturedProjects } from '@/lib/projects';
+import ProjectGrid from '@/components/work/ProjectGrid';
+import SectionTitle from '@/components/mixed/SectionTitle';
+import Scribble from '@/components/mixed/Scribble';
+
+// Proyectos destacados del inicio (featured = true en Supabase)
+export default async function FeaturedWork() {
+  const { projects } = await getFeaturedProjects(4);
+  if (projects.length === 0) return null;
+
+  return (
+    <>
+      <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
+        <div>
+          <SectionTitle>Selected work</SectionTitle>
+          <p className="font-body mt-6 max-w-[48ch] text-lg leading-relaxed text-neutral-600">
+            A few projects where research, design and code meet.
+          </p>
+        </div>
+        <Link
+          href="/work"
+          className="group font-nav flex items-center gap-3 self-start text-xl text-neutral-900 md:self-auto"
+        >
+          <span className="border-b-2 border-transparent transition-colors group-hover:border-neutral-900">
+            See all projects
+          </span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform duration-300 group-hover:rotate-45">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+              <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </Link>
+      </div>
+      <ProjectGrid projects={projects} />
+      <Scribble variant="arrow-down" color="#C9DB4B" strokeWidth={3} className="mx-auto mt-16 h-24 w-14" />
+    </>
+  );
+}

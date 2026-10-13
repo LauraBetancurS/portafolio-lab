@@ -54,6 +54,11 @@ const SplitText = ({
     () => {
       if (!ref.current || !text || !fontsLoaded) return;
       const el = ref.current;
+      // Con 'reducir movimiento' activado, el texto aparece de una vez
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set(el, { visibility: 'visible' });
+        return;
+      }
       // Si ya se animó, que el texto quede visible (nunca escondido)
       if (animationCompletedRef.current) {
         gsap.set(el, { visibility: 'visible' });

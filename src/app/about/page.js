@@ -5,6 +5,8 @@ import Translator from "@/components/about/Translator";
 import StickyNotes from "@/components/about/StickyNotes";
 import Dock from "@/components/about/Dock";
 import Toolbox from "@/components/about/Toolbox";
+import Reveal from "@/components/mixed/Reveal";
+import Scribble from "@/components/mixed/Scribble";
 
 export const metadata = {
   title: "About — Lau Betancur",
@@ -17,11 +19,12 @@ export default function AboutPage() {
     <main className="overflow-x-clip px-6 pb-32 pt-32 md:px-12">
       {/* Presentación: foto + intro */}
       <section className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[minmax(0,300px)_1fr] md:gap-20">
-        <div className="flex justify-center md:justify-start">
+        <div className="relative flex justify-center md:justify-start">
+          <Scribble variant="sparkle" color="#E8603C" strokeWidth={3} className="absolute -top-8 right-6 h-14 w-14 md:-right-6" />
           <Polaroid />
         </div>
         <div>
-          <h1 className="font-title text-5xl leading-[1.05] text-neutral-900 md:text-7xl">
+          <h1 className="font-title relative inline-block text-5xl leading-[1.05] text-neutral-900 md:text-7xl">
             hi again, I’m Lau
           </h1>
           <div className="font-body mt-8 max-w-[60ch] space-y-5 text-lg leading-[1.7] text-neutral-700">
@@ -41,7 +44,7 @@ export default function AboutPage() {
       </section>
 
       {/* Ventana Get Info (pieza central) */}
-      <section className="mx-auto mt-32 flex max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:justify-between">
+      <Reveal as="section" className="mx-auto mt-32 flex max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm md:pt-10">
           <h2 className="font-title text-4xl leading-tight text-neutral-900">The specs</h2>
           <p className="font-body mt-4 text-lg leading-[1.7] text-neutral-700">
@@ -50,10 +53,10 @@ export default function AboutPage() {
           </p>
         </div>
         <GetInfoWindow />
-      </section>
+      </Reveal>
 
       {/* Traductor */}
-      <section className="mx-auto mt-32 flex max-w-6xl flex-col items-center text-center">
+      <Reveal as="section" className="mx-auto mt-32 flex max-w-6xl flex-col items-center text-center">
         <h2 className="font-title text-4xl leading-tight text-neutral-900">What I actually do</h2>
         <p className="font-body mt-4 max-w-[52ch] text-lg leading-[1.7] text-neutral-700">
           Teams hand me something written for computers. I hand back something written for people.
@@ -61,10 +64,10 @@ export default function AboutPage() {
         <div className="mt-10 w-full flex justify-center">
           <Translator />
         </div>
-      </section>
+      </Reveal>
 
       {/* Herramientas */}
-      <section className="mx-auto mt-32 flex max-w-6xl flex-col items-center text-center">
+      <Reveal as="section" className="mx-auto mt-32 flex max-w-6xl flex-col items-center text-center">
         <h2 className="font-title text-4xl leading-tight text-neutral-900">My toolbox</h2>
         <p className="font-body mt-4 max-w-[52ch] text-lg leading-[1.7] text-neutral-700">
           The apps I open every day, from the first sketch to the deployed product.
@@ -72,20 +75,20 @@ export default function AboutPage() {
         <div className="mt-10 flex w-full justify-center">
           <Toolbox />
         </div>
-      </section>
+      </Reveal>
 
       {/* Dónde ha trabajado */}
-      <section className="mx-auto mt-32 max-w-6xl">
+      <Reveal as="section" className="mx-auto mt-32 max-w-6xl">
         <h2 className="font-title text-center text-4xl leading-tight text-neutral-900">
           Where I’ve been building
         </h2>
         <div className="mt-12">
           <StickyNotes />
         </div>
-      </section>
+      </Reveal>
 
       {/* Fuera del diseño */}
-      <section className="mx-auto mt-32 max-w-6xl text-center">
+      <Reveal as="section" className="mx-auto mt-32 max-w-6xl text-center">
         <h2 className="font-title text-4xl leading-tight text-neutral-900">When I’m offline</h2>
         <p className="font-body mx-auto mt-4 max-w-[52ch] text-lg leading-[1.7] text-neutral-700">
           I sing, I’m part of the musical theater program, and fiction has shaped me since I
@@ -94,10 +97,10 @@ export default function AboutPage() {
         <div className="mt-20">
           <Dock />
         </div>
-      </section>
+      </Reveal>
 
       {/* Cierre */}
-      <section className="mx-auto mt-36 flex max-w-3xl flex-col items-center text-center">
+      <Reveal as="section" className="mx-auto mt-36 flex max-w-3xl flex-col items-center text-center">
         <h2 className="font-title text-4xl leading-tight text-neutral-900 md:text-5xl">
           Let’s make something that feels human
         </h2>
@@ -115,7 +118,7 @@ export default function AboutPage() {
             See my work
           </Link>
         </div>
-      </section>
+      </Reveal>
     </main>
   );
 }

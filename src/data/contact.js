@@ -1,18 +1,32 @@
 // ─── Tus datos de contacto (se usan en el footer y en About) ─
-// Cambia los valores marcados con ← por los tuyos.
+
+const EMAIL = 'lau1betancur1@gmail.com';
+
+// Al hacer clic en el correo se abre la app de email con este asunto y mensaje
+// ya escritos (la persona solo tiene que completarlo y enviarlo).
+const EMAIL_SUBJECT = "Hi Lau! Let's work together";
+const EMAIL_BODY = `Hi Lau,
+
+I just saw your portfolio and I'd love to talk about...
+
+Best,
+`;
+
+const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+
 export const CONTACTS = [
   {
     label: 'Email',
-    value: 'tu-correo@gmail.com', // ← tu correo
-    copy: 'tu-correo@gmail.com', // ← tu correo
-    href: 'mailto:tu-correo@gmail.com', // ← tu correo
+    value: EMAIL,
+    copy: EMAIL,
+    href: mailto,
     dot: '#F2A2DC',
   },
   {
     label: 'LinkedIn',
-    value: 'in/tu-usuario', // ← tu usuario de LinkedIn
-    copy: 'https://www.linkedin.com/in/tu-usuario', // ← tu link
-    href: 'https://www.linkedin.com/in/tu-usuario', // ← tu link
+    value: 'in/laura-betancur',
+    copy: 'https://www.linkedin.com/in/laura-betancur-0b6a4926a/',
+    href: 'https://www.linkedin.com/in/laura-betancur-0b6a4926a/',
     dot: '#A9D6F5',
   },
   {

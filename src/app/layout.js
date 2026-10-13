@@ -19,6 +19,19 @@ const bootzy = localFont({
   display: "swap",
 });
 
+// Fuente de títulos (Neulis Alt, archivos locales en src/app/fonts)
+const neulis = localFont({
+  src: [
+    { path: "./fonts/NeulisAlt-Light.woff2", weight: "300", style: "normal" },
+    { path: "./fonts/NeulisAlt-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/NeulisAlt-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/NeulisAlt-SemiBold.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/NeulisAlt-Bold.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-neulis",
+  display: "swap",
+});
+
 export const metadata = {
   title: "Lau Betancur — Portafolio",
   description: "Diseño de Medios Interactivos · UX/UI · Front-end",
@@ -28,7 +41,7 @@ export default function RootLayout({ children }) {
   return (
     <html style={{ scrollBehavior: "smooth" }}
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} ${neulis.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

@@ -9,10 +9,10 @@ export default function Home() {
       <main>
         {/* Hero (lo construimos en el siguiente paso) */}
         <section className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
-          <h1 className="text-5xl font-medium tracking-tight md:text-7xl">
-            hi, I&apos;m Laura Betancur
+          <h1 className="font-title text-5xl font-normal md:text-7xl">
+            hi, I’m Laura Betancur
           </h1>
-          <p className="text-2xl md:text-4xl">Product designer ✿ front-end dev</p>
+          <p className="font-title text-2xl md:text-4xl">Product designer ✿ front-end dev</p>
           <SupabaseStatus />
         </section>
 

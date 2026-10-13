@@ -1,11 +1,9 @@
 import Navbar from "@/components/layout/Navbar";
-import DotBackground from "@/components/layout/DotBackground";
 import SupabaseStatus from "@/components/SupabaseStatus";
 
 export default function Home() {
   return (
     <>
-      <DotBackground />
       <Navbar />
 
       <main>

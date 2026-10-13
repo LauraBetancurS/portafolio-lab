@@ -3,9 +3,9 @@
 :root {
   --background: #f5f5f5;   /* gris claro tipo FigJam */
   --foreground: #1e1e1e;
-  --dot-color: #c9c9c9;
-  --dot-size: 1.5px;
-  --dot-gap: 24px;
+  --dot-color: #b4b4b4;   /* color de los puntos */
+  --dot-size: 1.2px;      /* radio de cada punto */
+  --dot-gap: 20px;        /* separación entre puntos */
 }
 
 @theme inline {
@@ -15,8 +15,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Fondo de puntos estilo FigJam en toda la página.
+   Queda fijo mientras haces scroll, como un lienzo. */
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color) var(--dot-size),
+    transparent calc(var(--dot-size) + 0.5px)
+  );
+  background-size: var(--dot-gap) var(--dot-gap);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

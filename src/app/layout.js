@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FigmaCursor from "@/components/layout/FigmaCursor";
 import { LOGO_URL } from "@/lib/assets";
 
 const geistSans = Geist({
@@ -55,6 +56,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
+        <FigmaCursor />
       </body>
     </html>
   );

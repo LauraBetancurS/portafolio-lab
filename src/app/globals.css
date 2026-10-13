@@ -66,6 +66,11 @@ body {
   45% { transform: rotate(6deg); }
   70% { transform: rotate(-3deg); }
 }
+@keyframes sticker-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
 @keyframes sticker-bump {
   0% { transform: scale(1); }
   35% { transform: scale(1.06); }
@@ -74,8 +79,10 @@ body {
 @theme {
   --animate-sticker-wiggle: sticker-wiggle 0.6s ease-in-out;
   --animate-sticker-bump: sticker-bump 0.35s ease-out;
+  --animate-sticker-tilt: sticker-tilt 1.2s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .hover\:animate-sticker-wiggle:hover,
+  .hover\:animate-sticker-tilt:hover,
   .animate-sticker-bump { animation: none; }
 }

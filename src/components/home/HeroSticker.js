@@ -6,11 +6,13 @@ import { useState } from 'react';
 // effect: 'lift'   → se levanta y gira un poquito
 //         'wiggle' → se sacude (como al tocar el micrófono)
 //         'press'  → se hunde, como teclas presionadas
+//         'tilt'   → se mece de lado a lado mientras el mouse está encima
 // onActivate: función opcional que se ejecuta al hacer clic (ej. un sonido)
 const EFFECTS = {
   lift: 'hover:-translate-y-2 hover:-rotate-2 hover:scale-[1.03] hover:drop-shadow-xl',
   wiggle: 'hover:animate-sticker-wiggle',
   press: 'hover:translate-y-1 hover:scale-[0.97] active:translate-y-2 active:scale-95',
+  tilt: 'hover:animate-sticker-tilt active:scale-95',
 };
 
 export default function HeroSticker({ src, alt, effect = 'lift', onActivate, className = '' }) {

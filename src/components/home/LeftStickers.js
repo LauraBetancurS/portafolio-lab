@@ -3,6 +3,7 @@
 import HeroSticker from './HeroSticker';
 import { AIRDROP_URL, MICROPHONE_URL, CTRL_Z_URL } from '@/lib/assets';
 import { playAirdropSound } from '@/lib/airdropSound';
+import { playTypingSound } from '@/lib/typingSound';
 
 // Grupo izquierdo del hero: tarjeta de AirDrop, micrófono y teclas ctrl + Z.
 //
@@ -28,7 +29,12 @@ export default function LeftStickers() {
 
       {/* ctrl + Z (encima del AirDrop) */}
       <div data-star-avoid className="absolute left-[36%] top-[69%] z-20 w-[64%]">
-        <HeroSticker src={CTRL_Z_URL} alt="Teclas ctrl + Z" effect="press" />
+        <HeroSticker
+          src={CTRL_Z_URL}
+          alt="Teclas ctrl + Z"
+          effect="tilt"
+          onActivate={playTypingSound}
+        />
       </div>
 
       {/* Micrófono (al frente) */}

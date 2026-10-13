@@ -13,8 +13,9 @@ const REPEL_RADIUS = 160;     // qué tan cerca debe estar el mouse para empujar
 const REPEL_FORCE = 9;        // fuerza del empujón
 const SPRING = 0.035;         // qué tan rápido vuelven a su lugar
 const FRICTION = 0.88;        // freno (más cerca de 1 = se deslizan más)
-// Zona central sin estrellas, para no tapar el título (porcentajes)
-const SAFE_ZONE = { x1: 0.27, x2: 0.73, y1: 0.36, y2: 0.62 };
+const AVOID_PADDING = 24;      // espacio libre alrededor del contenido
+// Las estrellas no aparecen encima de los elementos marcados con
+// el atributo data-star-avoid (título, sticky note, etc.)
 // ────────────────────────────────────────────────────────────
 
 function drawStar(ctx, x, y, r, rotation, color) {
@@ -38,7 +39,7 @@ function drawStar(ctx, x, y, r, rotation, color) {
   ctx.restore();
 }
 
-function createStars(width, height) {
+function createStars(width, height, avoidRects) {
   const count = width < 768 ? STAR_COUNT_MOBILE : STAR_COUNT_DESKTOP;
   const stars = [];
   let tries = 0;
@@ -46,10 +47,12 @@ function createStars(width, height) {
     tries++;
     const x = 40 + Math.random() * (width - 80);          // sin cortarse en los bordes
     const y = 130 + Math.random() * (height - 180);       // debajo del navbar
-    const inSafeZone =
-      x > width * SAFE_ZONE.x1 && x < width * SAFE_ZONE.x2 &&
-      y > height * SAFE_ZONE.y1 && y < height * SAFE_ZONE.y2;
-    if (inSafeZone) continue;
+    const overContent = avoidRects.some(
+      r =>
+        x > r.left - AVOID_PADDING && x < r.right + AVOID_PADDING &&
+        y > r.top - AVOID_PADDING && y < r.bottom + AVOID_PADDING
+    );
+    if (overContent) continue;
     // que no queden pegadas unas a otras
     if (stars.some(s => Math.hypot(s.homeX - x, s.homeY - y) < 90)) continue;
     stars.push({
@@ -95,7 +98,17 @@ export default function StarField() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      stars = createStars(width, height);
+      // Zonas a evitar, relativas al canvas
+      const avoidRects = [...canvas.parentElement.querySelectorAll('[data-star-avoid]')].map(el => {
+        const r = el.getBoundingClientRect();
+        return {
+          left: r.left - rect.left,
+          right: r.right - rect.left,
+          top: r.top - rect.top,
+          bottom: r.bottom - rect.top,
+        };
+      });
+      stars = createStars(width, height, avoidRects);
       if (reduceMotion) stars.forEach(s => (s.scale = 1));
     };
 
@@ -171,8 +184,14 @@ export default function StarField() {
       if (reduceMotion) drawStatic();
     };
     window.addEventListener('resize', onResize);
+    // Cuando terminan de cargar las imágenes (ej. la sticky note), recalcula
+    // las zonas a evitar con el tamaño real
+    if (document.readyState !== 'complete') {
+      window.addEventListener('load', onResize, { once: true });
+    }
 
     return () => {
+      window.removeEventListener('load', onResize);
       cancelAnimationFrame(frame);
       window.removeEventListener('pointermove', onPointerMove);
       document.removeEventListener('pointerleave', onPointerLeave);

@@ -2,16 +2,11 @@
 // Simula 3 trazos cortos de grafito sobre papel: ruido filtrado
 // con una envolvente rápida en cada trazo.
 
-let audioCtx = null;
+import { getAudioContext } from './audio';
 
 export function playPencilSound() {
-  if (typeof window === 'undefined') return;
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  if (!AudioCtx) return;
-  audioCtx ??= new AudioCtx();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-
-  const ctx = audioCtx;
+  const ctx = getAudioContext();
+  if (!ctx) return;
   const now = ctx.currentTime;
 
   // Buffer de ruido blanco (0.6 s)

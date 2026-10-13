@@ -6,6 +6,7 @@ import NoteDrawing from "@/components/home/NoteDrawing";
 import FinalFolder from "@/components/home/FinalFolder";
 import Pencil from "@/components/home/Pencil";
 import SelectionWord from "@/components/home/SelectionWord";
+import LeftStickers from "@/components/home/LeftStickers";
 
 export default function Home() {
   return (
@@ -20,6 +21,10 @@ export default function Home() {
             <HeroTitle />
             <SupabaseStatus />
           </div>
+
+          {/* AirDrop + micrófono + ctrl Z: a la izquierda del título en pantallas anchas
+              (en espejo con la sticky note), debajo del título en las demás */}
+          <LeftStickers />
 
           {/* Sticky note + carpeta: a la derecha en pantallas anchas, debajo del título en las demás */}
           <div className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">

@@ -3,6 +3,7 @@ import SupabaseStatus from "@/components/SupabaseStatus";
 import HeroTitle from "@/components/home/HeroTitle";
 import StarField from "@/components/home/StarField";
 import NoteDrawing from "@/components/home/NoteDrawing";
+import FinalFolder from "@/components/home/FinalFolder";
 
 export default function Home() {
   return (
@@ -18,9 +19,15 @@ export default function Home() {
             <SupabaseStatus />
           </div>
 
-          {/* Sticky note: a la derecha en pantallas anchas, debajo del título en las demás */}
-          <div data-star-avoid className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
-            <NoteDrawing className="w-full" />
+          {/* Sticky note + carpeta: a la derecha en pantallas anchas, debajo del título en las demás */}
+          <div className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
+            <div data-star-avoid>
+              <NoteDrawing className="w-full" />
+            </div>
+            {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina */}
+            <div data-star-avoid className="absolute left-[-32%] top-[80%] z-20">
+              <FinalFolder />
+            </div>
           </div>
         </section>
 

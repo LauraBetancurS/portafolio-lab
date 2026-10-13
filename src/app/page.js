@@ -4,6 +4,7 @@ import HeroTitle from "@/components/home/HeroTitle";
 import StarField from "@/components/home/StarField";
 import NoteDrawing from "@/components/home/NoteDrawing";
 import FinalFolder from "@/components/home/FinalFolder";
+import Pencil from "@/components/home/Pencil";
 
 export default function Home() {
   return (
@@ -23,6 +24,10 @@ export default function Home() {
           <div className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
             <div data-star-avoid>
               <NoteDrawing className="w-full" />
+            </div>
+            {/* Lápiz arriba a la derecha de la nota, cruzando su borde */}
+            <div data-star-avoid className="absolute left-[72%] top-[10%] z-20 w-[52%]">
+              <Pencil className="w-full" />
             </div>
             {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina */}
             <div data-star-avoid className="absolute left-[-32%] top-[80%] z-20">

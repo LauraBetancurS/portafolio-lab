@@ -31,3 +31,18 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Sacudida corta del lápiz al hacer clic */
+@keyframes pencil-wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg) translateY(-2px); }
+  55% { transform: rotate(4deg); }
+  80% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+@theme {
+  --animate-pencil-wiggle: pencil-wiggle 0.4s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-pencil-wiggle { animation: none; }
+}

@@ -7,3 +7,5 @@ export const LOGO_URL = `${STORAGE}/${BUCKET}/icon.svg`;
 export const FLOWER_DIVIDER_URL = `${STORAGE}/${BUCKET}/flor_separador%20titulo.svg`;
 export const NOTE_DRAWING_1_URL = `${STORAGE}/${BUCKET}/notedrawing/Note_drawing_1.svg`;
 export const NOTE_DRAWING_2_URL = `${STORAGE}/${BUCKET}/notedrawing/Note_drawing_2.svg`;
+export const PENCIL_1_URL = `${STORAGE}/${BUCKET}/pencil/pencil_1.svg`;
+export const PENCIL_2_URL = `${STORAGE}/${BUCKET}/pencil/pencil_2.svg`;

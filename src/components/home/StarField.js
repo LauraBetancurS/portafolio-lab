@@ -7,8 +7,8 @@ import { useEffect, useRef } from 'react';
 const COLORS = ['#C9DB4B', '#E8603C', '#F2A2DC', '#A9D6F5', '#DB6A8C'];
 const STAR_COUNT_DESKTOP = 16;
 const STAR_COUNT_MOBILE = 9;
-const MIN_SIZE = 14;          // radio exterior mínimo (px)
-const MAX_SIZE = 26;          // radio exterior máximo (px)
+const MIN_SIZE = 10;          // radio exterior mínimo (px)
+const MAX_SIZE = 19;          // radio exterior máximo (px)
 const REPEL_RADIUS = 160;     // qué tan cerca debe estar el mouse para empujar
 const REPEL_FORCE = 9;        // fuerza del empujón
 const SPRING = 0.035;         // qué tan rápido vuelven a su lugar

@@ -12,9 +12,14 @@ const LETTER_DURATION = 0.8;
 const SUBTITLE_START = 0.7;  // cuándo empieza el subtítulo
 const FLOWER_START = 1.1;    // cuándo aparece la flor
 const FLOWER_SPIN_TIME = 40; // segundos que gira antes de detenerse
+const TAGLINE_START = 2.0;   // cuándo aparece la frase de abajo
+
+// Frase corta debajo del subtítulo. Cámbiala aquí.
+const TAGLINE = 'I turn complex problems into digital products people actually enjoy using.';
 
 export default function HeroTitle() {
   const flowerRef = useRef(null);
+  const taglineRef = useRef(null);
 
   // La flor aparece girando y crece con un pequeño rebote,
   // gira despacio y al final frena suavemente hasta quedar quieta.
@@ -32,6 +37,15 @@ export default function HeroTitle() {
       // ...y frenado suave en los últimos 12.8 s. Termina en 1008°,
       // múltiplo de 72°, así la flor (5 pétalos) queda en su posición original.
       .to(flower, { rotate: 1008, duration: 12.8, ease: 'power1.out' });
+
+    // La frase aparece suave cuando termina el subtítulo
+    if (taglineRef.current) {
+      gsap.fromTo(
+        taglineRef.current,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: TAGLINE_START }
+      );
+    }
   });
 
   return (
@@ -80,6 +94,13 @@ export default function HeroTitle() {
           rootMargin="0px"
         />
       </div>
+
+      <p
+        ref={taglineRef}
+        className="font-body mt-4 max-w-[66ch] text-balance text-base leading-relaxed text-neutral-600 opacity-0 md:text-lg"
+      >
+        {TAGLINE}
+      </p>
     </div>
   );
 }

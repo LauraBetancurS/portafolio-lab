@@ -1,4 +1,3 @@
-import SupabaseStatus from "@/components/SupabaseStatus";
 import HeroTitle from "@/components/home/HeroTitle";
 import StarField from "@/components/home/StarField";
 import NoteDrawing from "@/components/home/NoteDrawing";
@@ -17,7 +16,6 @@ export default function Home() {
           <StarField />
           <div data-star-avoid className="relative z-10 flex flex-col items-center gap-4">
             <HeroTitle />
-            <SupabaseStatus />
           </div>
 
           {/* AirDrop + micrófono + ctrl Z: a la izquierda del título en pantallas anchas

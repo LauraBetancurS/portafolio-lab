@@ -39,7 +39,7 @@ export default function Navbar() {
         dark ? "bg-black text-white shadow-lg" : "bg-transparent text-black"
       }`}
     >
-      <nav className="flex items-center justify-between px-6 py-4 md:px-12">
+      <nav className="font-nav flex items-center justify-between px-6 py-4 md:px-12">
         {/* Logo */}
         <Link href="/" aria-label="Inicio" className="flex items-center">
           {logoFailed ? (
@@ -62,7 +62,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-xl font-bold tracking-tight transition-opacity hover:opacity-60"
+              className="text-2xl lg:text-3xl tracking-tight transition-opacity hover:opacity-60"
             >
               {link.label}
             </Link>
@@ -86,13 +86,13 @@ export default function Navbar() {
 
       {/* Menú desplegable (móvil) */}
       {menuOpen && (
-        <div className="flex flex-col gap-6 px-6 pb-8 md:hidden">
+        <div className="font-nav flex flex-col gap-6 px-6 pb-8 md:hidden">
           {LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-2xl font-bold tracking-tight"
+              className="text-3xl tracking-tight"
             >
               {link.label}
             </Link>
@@ -109,7 +109,7 @@ function ContactButton({ dark, onClick }) {
     <Link
       href="#contact"
       onClick={onClick}
-      className={`rounded-full px-6 py-2.5 text-base font-semibold transition-colors duration-300 self-start ${
+      className={`rounded-full px-6 py-2.5 text-lg transition-colors duration-300 self-start ${
         dark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"
       }`}
     >

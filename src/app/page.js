@@ -49,7 +49,6 @@ export default function Home() {
         <section id="work" className="flex min-h-screen items-center justify-center text-3xl font-bold">Work</section>
         <section id="about" className="flex min-h-screen items-center justify-center text-3xl font-bold">About</section>
         <section id="resume" className="flex min-h-[50vh] items-center justify-center text-3xl font-bold">Resume</section>
-        <section id="contact" className="flex min-h-[50vh] items-center justify-center text-3xl font-bold">Contact</section>
       </main>
     </>
   );

@@ -1,8 +1,5 @@
 import Link from 'next/link';
 
-// Colores de la "mancha" que sigue al cursor (uno por tarjeta, en orden)
-const SPLASH_COLORS = ['#F2A2DC', '#C9DB4B', '#A9D6F5', '#E8603C', '#F8D98C'];
-
 // Tarjeta minimalista: la imagen ocupa toda la tarjeta, el título va encima.
 // Si el proyecto no tiene imagen, se usa su card_color de fondo.
 export default function ProjectCard({ project, index }) {
@@ -28,12 +25,8 @@ export default function ProjectCard({ project, index }) {
         </div>
       )}
 
-      {/* Mancha de color que sigue al cursor (la mueve ProjectGrid) */}
-      <span
-        aria-hidden="true"
-        className="project-splash pointer-events-none absolute left-0 top-0 -ml-40 -mt-40 h-80 w-80 rounded-full opacity-0 mix-blend-multiply blur-2xl"
-        style={{ backgroundColor: SPLASH_COLORS[index % SPLASH_COLORS.length] }}
-      />
+      {/* Capa donde aparecen las estrellas que siguen al cursor (las crea ProjectGrid) */}
+      <span aria-hidden="true" className="project-stars pointer-events-none absolute inset-0 z-[5]" />
 
       {/* Degradado suave arriba y abajo para que el texto se lea sobre cualquier foto */}
       {hasImage && (

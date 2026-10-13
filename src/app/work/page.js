@@ -34,7 +34,7 @@ export default async function WorkPage() {
             problem and a lot of sticky notes.
           </Reveal>
           <Note arrow="down-left" rotate={-6} className="absolute bottom-0 right-0 hidden md:flex">
-            {'hover the cards,\nsomething happens'}
+            {'hover the cards,\nleave a trail of stars'}
           </Note>
         </header>
 

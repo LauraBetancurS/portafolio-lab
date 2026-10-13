@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 // Mientras carga, se reserva el mismo espacio para que nada salte.
 const Folder = dynamic(() => import('@/components/ui/Folder/Folder'), {
   ssr: false,
-  loading: () => <div style={{ width: 224 * 0.6, height: 196 * 0.6 }} />,
+  loading: () => <div style={{ width: 224 * 0.48, height: 196 * 0.48 }} />,
 });
 
 // Archivos que salen de la carpeta al hacer hover
@@ -19,7 +19,7 @@ const FILES = [
 
 // Carpeta azul estilo macOS con el nombre "Final_Final_Final" debajo.
 // Cerrada por defecto; se abre al pasar el mouse.
-export default function FinalFolder({ size = 0.6, className = '' }) {
+export default function FinalFolder({ size = 0.48, className = '' }) {
   return (
     <div className={`flex -rotate-[8deg] flex-col items-center ${className}`}>
       <Folder
@@ -36,7 +36,7 @@ export default function FinalFolder({ size = 0.6, className = '' }) {
         zoomOnClick={false}
         intro={false}
       />
-      <span className="mt-1 text-xs tracking-wide text-neutral-800 select-none">
+      <span className="mt-0.5 text-[10px] tracking-wide text-neutral-800 select-none">
         Final_Final_Final
       </span>
     </div>

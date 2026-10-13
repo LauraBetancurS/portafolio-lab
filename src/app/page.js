@@ -35,7 +35,7 @@ export default function Home() {
               <SelectionWord className="text-base xl:text-lg" />
             </div>
             {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina */}
-            <div data-star-avoid className="absolute left-[-32%] top-[80%] z-20">
+            <div data-star-avoid className="absolute left-[-36%] top-[82%] z-20">
               <FinalFolder />
             </div>
           </div>

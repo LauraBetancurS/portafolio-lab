@@ -46,7 +46,7 @@ function CopyButton({ text, label }) {
 function ContactCard({ contact }) {
   const external = contact.href.startsWith('http');
   return (
-    <li className="press group relative rounded-xl bg-white/[0.06] px-5 py-2.5 hover:bg-white/[0.1]">
+    <li className="contact-card press group relative rounded-xl bg-white/[0.06] px-5 py-2.5 hover:bg-white/[0.1]">
       <p className="flex items-center gap-2 text-sm text-neutral-400">
         <span className="h-2 w-2 rounded-full" style={{ backgroundColor: contact.dot }} aria-hidden="true" />
         {contact.label}
@@ -88,7 +88,7 @@ export default function Footer() {
   const year = useCurrentYear();
 
   return (
-    <footer id="contact" className="font-body scroll-mt-20 bg-black text-white">
+    <footer id="contact" tabIndex={-1} className="font-body scroll-mt-20 bg-black text-white outline-none">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 pb-6 pt-10 md:px-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <h2 className="font-title text-4xl leading-[1.1] md:text-5xl">

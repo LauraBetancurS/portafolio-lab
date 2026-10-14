@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ContactLink from "@/components/layout/ContactLink";
 import AboutHero from "@/components/about/AboutHero";
 import Note from "@/components/mixed/Note";
 import GetInfoWindow from "@/components/about/GetInfoWindow";
@@ -103,12 +104,9 @@ export default function AboutPage() {
           Let’s make something that feels human
         </h2>
         <div className="font-nav mt-10 flex flex-wrap justify-center gap-4 text-lg">
-          <Link
-            href="/#contact"
-            className="rounded-full bg-black px-7 py-3 text-white transition-colors hover:bg-neutral-800"
-          >
+          <ContactLink className="press rounded-full bg-black px-7 py-3 text-white hover:bg-neutral-800">
             Contact me
-          </Link>
+          </ContactLink>
           <Link
             href="/#work"
             className="rounded-full border-2 border-black px-7 py-3 text-black transition-colors hover:bg-black hover:text-white"

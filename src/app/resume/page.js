@@ -4,7 +4,7 @@ import Scribble from "@/components/mixed/Scribble";
 import FigjamComment from "@/components/mixed/FigjamComment";
 import Timeline from "@/components/resume/Timeline";
 import {
-  RESUME_PDF_URL, INTRO, EXPERIENCE, EDUCATION, CERTIFICATIONS, RECOGNITION, SKILLS, LANGUAGES,
+  RESUME_PDF_URL, INTRO, EXPERIENCE, EDUCATION, CERTIFICATIONS, RECOGNITION, SKILLS, LANGUAGES, OFF_SCREEN,
 } from "@/data/resume";
 
 export const metadata = {
@@ -116,6 +116,12 @@ export default function ResumePage() {
 
           <Block title="Languages">
             <p className="font-body text-lg text-neutral-800">{LANGUAGES.join(", ")}</p>
+          </Block>
+
+          <Block title="Off screen">
+            <p className="font-body text-lg text-neutral-800">
+              {OFF_SCREEN} <span aria-hidden="true">🎭</span>
+            </p>
           </Block>
         </Reveal>
       </div>

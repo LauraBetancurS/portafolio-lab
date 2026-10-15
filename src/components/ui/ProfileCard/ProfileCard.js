@@ -1,9 +1,11 @@
 'use client';
 /* eslint-disable */
 // ProfileCard de React Bits (https://reactbits.dev), versión JS + CSS.
-// Cambio propio: el ícono del sobre es un SVG en línea (sin instalar @hugeicons).
+// Cambios propios: el ícono del sobre es un SVG en línea (sin instalar @hugeicons);
+// frameColor para el color del marco; el recuadro de la foto toma la proporción
+// real de la imagen para que la llene completa.
 
-import { memo, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 const MailIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -88,6 +90,7 @@ const ProfileCard = ({
   onContactClick,
   theme = 'dark',
   backdropColor,
+  frameColor,
   radius = 16,
   holo = 0.8,
   glare = 0.5,
@@ -100,6 +103,7 @@ const ProfileCard = ({
   className = ''
 }) => {
   const rootRef = useRef(null);
+  const [photoRatio, setPhotoRatio] = useState(null);
   const engineRef = useRef(null);
   const settings = { enableTilt, tiltStrength, parallax, mobileTiltSensitivity, intro };
   const settingsRef = useRef(settings);
@@ -307,6 +311,7 @@ const ProfileCard = ({
       style={{
         ...THEMES[palette],
         ...FOILS[foil],
+        ...(frameColor ? { '--pc-frame': frameColor } : {}),
         '--pc-radius': `${Math.max(0, radius)}px`,
         '--pc-backdrop': backdrop,
         '--pc-holo': clamp(holo, 0, 1),
@@ -321,14 +326,28 @@ const ProfileCard = ({
       }}
     >
       <div className="profile-card__body">
-        <div className="profile-card__tile">
+        <div className="profile-card__tile" style={photoRatio ? { aspectRatio: photoRatio } : undefined}>
           <span className="profile-card__sheen" />
           <span className="profile-card__holo">
             <span className="profile-card__holo-glow" />
             <span className="profile-card__holo-shift" />
           </span>
           {avatarUrl && (
-            <img className="profile-card__photo" src={avatarUrl} alt={name || ''} loading="lazy" draggable={false} />
+            <img
+              className="profile-card__photo"
+              src={avatarUrl}
+              alt={name || ''}
+              loading="lazy"
+              draggable={false}
+              ref={img => {
+                // si la imagen ya estaba cargada (caché), medirla de una vez
+                if (img && img.complete && img.naturalWidth && !photoRatio) setPhotoRatio(img.naturalWidth / img.naturalHeight);
+              }}
+              onLoad={e => {
+                const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+                if (w && h) setPhotoRatio(w / h);
+              }}
+            />
           )}
           {(name || title) && (
             <>

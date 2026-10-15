@@ -67,11 +67,22 @@ function Section({ n, label, text }) {
       <div className="max-w-[62ch]">
         <p className="font-title text-[clamp(1.5rem,2.6vw,2.15rem)] leading-[1.2] tracking-tight text-neutral-900">{lead}</p>
         {rest.length > 0 && (
-          <div className="font-body mt-6 space-y-5 text-lg leading-[1.75] text-neutral-700">
-            {rest.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
+          <p className="font-body mt-5 text-lg leading-[1.7] text-neutral-600">{rest[0]}</p>
+        )}
+        {/* Menos texto a la vista: lo demás queda detrás de "Keep reading" */}
+        {rest.length > 1 && (
+          <details className="group/more mt-4">
+            <summary className="font-body inline-flex cursor-pointer list-none items-center gap-2 rounded-full py-1 text-[15px] font-medium text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition-colors hover:decoration-neutral-900 [&::-webkit-details-marker]:hidden">
+              <span className="group-open/more:hidden">Keep reading</span>
+              <span className="hidden group-open/more:inline">Show less</span>
+              <span aria-hidden="true" className="transition-transform duration-200 group-open/more:rotate-180">↓</span>
+            </summary>
+            <div className="font-body mt-4 space-y-5 text-lg leading-[1.7] text-neutral-600">
+              {rest.slice(1).map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </details>
         )}
       </div>
     </Reveal>

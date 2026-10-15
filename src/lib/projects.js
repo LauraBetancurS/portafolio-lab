@@ -38,14 +38,38 @@ export function toImageUrl(value) {
   return raw;
 }
 
+// Imágenes de la carpeta del proyecto en el bucket "proyects".
+// Carpeta = columna "folder" o, si está vacía, el slug (ej. proyects/solar-fit/).
+// Así basta con subir las imágenes a la carpeta: aparecen solas, en orden por nombre
+// (llámalas 01.png, 02.png… para elegir el orden).
+const IMAGE_FILE = /\.(png|jpe?g|webp|gif|avif|svg)$/i;
+async function getFolderImages(project) {
+  const folder = (project.folder || project.slug || '').trim().replace(/^\/+|\/+$/g, '');
+  if (!folder) return [];
+  try {
+    const { data, error } = await supabase.storage
+      .from(PROJECTS_BUCKET)
+      .list(folder, { limit: 100, sortBy: { column: 'name', order: 'asc' } });
+    if (error || !data) return [];
+    return data
+      .filter(file => IMAGE_FILE.test(file.name) && !file.name.startsWith('.'))
+      .map(file => ({ name: file.name, url: toImageUrl(`${folder}/${file.name}`) }));
+  } catch {
+    return [];
+  }
+}
+
 // Prepara un proyecto: portada + lista de imágenes.
-// Las imágenes salen de image_1 … image_5 (solo las que tengan algo).
+// Las imágenes salen de image_1 … image_5 (las que tengan algo) + la carpeta del proyecto.
 // Portada: cover_url o, si no hay, la primera imagen.
-function prepare(project) {
-  const images = [...new Set(
-    [project.image_1, project.image_2, project.image_3, project.image_4, project.image_5].map(toImageUrl).filter(Boolean)
-  )];
-  const cover = toImageUrl(project.cover_url) || images[0] || null;
+function prepare(project, folderImages = []) {
+  const images = [...new Set([
+    ...[project.image_1, project.image_2, project.image_3, project.image_4, project.image_5].map(toImageUrl),
+    ...folderImages.map(f => f.url),
+  ].filter(Boolean))];
+  // Portada: cover_url → un archivo llamado "portada"/"cover" en la carpeta → la primera imagen
+  const named = folderImages.find(f => /^(portada|cover)\./i.test(f.name))?.url;
+  const cover = toImageUrl(project.cover_url) || named || images[0] || null;
 
   // Galería del detalle (sin repetir la portada). Si son impares, la primera
   // va a todo el ancho y las demás de a dos.
@@ -74,7 +98,7 @@ export async function getProjects() {
   const { data, error } = await supabase
     .from('projects')
     .select(
-      'id, slug, title, tagline, tags, cover_url, card_color, year, role, featured, sort_order, image_1, image_2, image_3, image_4, image_5'
+      '*'
     )
     .eq('published', true)
     .order('sort_order', { ascending: true })
@@ -84,7 +108,8 @@ export async function getProjects() {
     console.error('Error loading projects:', error.message);
     return { projects: [], error: true };
   }
-  return { projects: (data ?? []).map(prepare), error: false };
+  const projects = await Promise.all((data ?? []).map(async p => prepare(p, await getFolderImages(p))));
+  return { projects, error: false };
 }
 
 // Proyectos destacados para el inicio (featured = true; si no hay, los primeros)
@@ -112,7 +137,7 @@ export async function getProjectBySlug(slug) {
   }
   if (!data) return null;
 
-  const project = prepare(data);
+  const project = prepare(data, await getFolderImages(data));
 
   // Siguiente proyecto (vuelve al primero al llegar al final)
   const { projects } = await getProjects();

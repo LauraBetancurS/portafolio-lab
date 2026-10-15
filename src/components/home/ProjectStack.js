@@ -1,10 +1,11 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 // ─── Ajustes ────────────────────────────────────────────────
-const INTERVAL = 3200;   // ms entre cambios automáticos
+const INTERVAL = 2000;   // ms entre cambios automáticos
 const FLY_MS = 520;      // ms que tarda la tarjeta de arriba en salir y pasar al fondo
 const DEPTH = 3;         // tarjetas visibles detrás de la de arriba
 const PALETTE = ['#F6C6E6', '#CDE8F8', '#E4EDB0', '#F9CDBF', '#F8D98C'];
@@ -75,7 +76,7 @@ export default function ProjectStack({ projects }) {
         type="button"
         onClick={next}
         aria-label={`Show next project (now: ${current.title})`}
-        className="group/stack relative mx-auto block aspect-[4/3] w-[min(560px,86vw)] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-black/80 focus-visible:ring-offset-8 focus-visible:ring-offset-transparent rounded-[18px]"
+        className="group/stack relative mx-auto block aspect-[16/9] w-[min(980px,92vw)] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-black/80 focus-visible:ring-offset-8 focus-visible:ring-offset-transparent rounded-[18px]"
       >
         {projects.map((p, i) => {
           const depth = order.indexOf(i);
@@ -106,7 +107,7 @@ export default function ProjectStack({ projects }) {
               ) : (
                 <span className="flex h-full w-full flex-col justify-between p-[7%] text-left text-neutral-900">
                   <span className="font-nav text-base opacity-70">LAB ✦</span>
-                  <span className="font-title text-[clamp(2.25rem,6vw,4rem)] leading-[0.92] tracking-tight">{p.title}</span>
+                  <span className="font-title text-[clamp(2.25rem,7vw,5.5rem)] leading-[0.92] tracking-tight">{p.title}</span>
                 </span>
               )}
               {/* brillo suave */}
@@ -126,20 +127,20 @@ export default function ProjectStack({ projects }) {
         <p className="font-body text-sm tabular-nums text-neutral-500">
           {String(shownIdx + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}
         </p>
-        <p key={current.id} className="stack-caption font-title mt-1 text-3xl tracking-tight text-neutral-900 md:text-4xl">
-          {current.title}
-        </p>
+        {/* El título es el enlace al proyecto */}
+        <Link
+          key={current.id}
+          href={`/work/${current.slug}`}
+          className="stack-caption group font-title mt-1 inline-flex items-center gap-2 text-3xl tracking-tight text-neutral-900 md:text-4xl"
+        >
+          <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 ease-[var(--ease-out)] group-hover:bg-[length:100%_2px]">
+            {current.title}
+          </span>
+          <span aria-hidden="true" className="text-2xl transition-transform duration-200 group-hover:translate-x-1">→</span>
+        </Link>
         {current.tags?.length > 0 && (
           <p className="font-body mt-1.5 text-sm text-neutral-500">{current.tags.slice(0, 3).join(' · ')}</p>
         )}
-        <button
-          type="button"
-          onClick={() => router.push(`/work/${current.slug}`)}
-          className="press font-nav group mt-5 inline-flex items-center gap-2 rounded-full bg-black px-6 py-2.5 text-lg text-white hover:bg-neutral-800"
-        >
-          Open project
-          <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-        </button>
       </div>
     </div>
   );

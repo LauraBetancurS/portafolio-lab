@@ -40,7 +40,7 @@ export default function ProjectCard({ project, index }) {
       )}
 
       {/* Título + flecha */}
-      <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 p-6 md:p-8">
+      <div className="project-copy absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-4 p-6 md:p-8">
         <h2
           className={`font-body text-2xl font-medium tracking-tight md:text-3xl ${
             hasImage ? 'text-white' : 'text-neutral-900'
@@ -62,7 +62,7 @@ export default function ProjectCard({ project, index }) {
 
       {/* Etiquetas */}
       {project.tags?.length > 0 && (
-        <ul className="absolute bottom-0 left-0 z-10 flex flex-wrap gap-1.5 p-6 md:p-8">
+        <ul className="project-copy absolute bottom-0 left-0 z-10 flex flex-wrap gap-1.5 p-6 md:p-8">
           {project.tags.map(tag => (
             <li
               key={tag}

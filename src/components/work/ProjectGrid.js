@@ -14,9 +14,13 @@ const CURSOR_SHIFT = 14;   // px que la imagen se corre hacia el lado contrario 
 const STAR_SPACING = 34;   // px que hay que mover el mouse para que salga otra estrella
 const BURST_STARS = 12;    // estrellas que salen al hacer clic
 const STAR_COLORS = ['#F2A2DC', '#C9DB4B', '#A9D6F5', '#E8603C', '#F8D98C'];
+const REVEAL_ZOOM = 1.18;  // zoom inicial de la imagen mientras la tarjeta se destapa
 // ────────────────────────────────────────────────────────────
 
-// Grilla de proyectos con dos efectos:
+// Grilla de proyectos con tres efectos:
+// 0. Reveal: al hacer scroll cada tarjeta se "destapa" desde abajo como una
+//    ventana que se abre, la imagen se acomoda desde un zoom y luego entra el texto.
+//    Va atado al scroll (si subes, se vuelve a cerrar). La columna derecha va un poco después.
 // 1. Parallax: la imagen se mueve más lento que la tarjeta al hacer scroll.
 // 2. Con el mouse: deja un rastro de estrellitas de colores dentro de la tarjeta,
 //    la imagen se corre un poquito y al hacer clic salen varias estrellas.
@@ -60,8 +64,33 @@ export default function ProjectGrid({ projects }) {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const cleanups = [];
 
-      gsap.utils.toArray('.project-card').forEach(card => {
+      const twoColumns = window.matchMedia('(min-width: 768px)').matches;
+
+      gsap.utils.toArray('.project-card').forEach((card, i) => {
         const media = card.querySelector('.project-media');
+        const copy = card.querySelectorAll('.project-copy');
+
+        // 0. Reveal con el scroll
+        // Las tarjetas que ya se ven al cargar se abren solas (con tiempo);
+        // las demás se abren mientras haces scroll.
+        const visibleOnLoad = card.getBoundingClientRect().top < window.innerHeight * 0.9;
+        const lag = twoColumns && i % 2 === 1 ? 8 : 0; // la columna derecha llega un poco después
+        const reveal = visibleOnLoad
+          ? gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.15 + i * 0.12 })
+          : gsap.timeline({
+              defaults: { ease: 'none' },
+              scrollTrigger: { trigger: card, start: `top ${98 - lag}%`, end: `top ${52 - lag}%`, scrub: 0.6 },
+            });
+        const d = visibleOnLoad ? 1.1 : 1;
+        reveal.fromTo(
+          card,
+          { clipPath: 'inset(32% 7% 0% 7% round 28px)' },
+          // termina un poco afuera de la tarjeta para no cortar el borde de foco del teclado
+          { clipPath: 'inset(-3% -3% -3% -3% round 6px)', duration: d },
+          0
+        );
+        if (media) reveal.fromTo(media, { scale: REVEAL_ZOOM }, { scale: 1, duration: d }, 0);
+        if (copy.length) reveal.fromTo(copy, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.12 }, d * 0.5);
 
         // 1. Parallax con el scroll
         if (media) {

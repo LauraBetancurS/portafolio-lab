@@ -224,3 +224,13 @@ footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
   /* se desvanece en los bordes, donde las tarjetas salen del anillo */
   mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
 }
+
+/* ─── Project stack (home) ─── */
+.stack-caption { animation: stack-caption-in 420ms var(--ease-out) both; }
+@keyframes stack-caption-in {
+  from { opacity: 0; transform: translateY(6px); filter: blur(2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stack-card { transition: none !important; }
+  .stack-caption { animation: none; }
+}

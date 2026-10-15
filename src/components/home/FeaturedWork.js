@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { getProjects } from '@/lib/projects';
-import ProjectFolder from '@/components/home/ProjectFolder';
+import ProjectRail from '@/components/home/ProjectRail';
 import SectionTitle from '@/components/mixed/SectionTitle';
 import Scribble from '@/components/mixed/Scribble';
 import Note from '@/components/mixed/Note';
 
-// "Selected work" del inicio: una carpeta de la que salen tus proyectos publicados
+// "Selected work" del inicio: tus proyectos como discos en abanico
 export default async function FeaturedWork() {
   const { projects } = await getProjects();
   if (projects.length === 0) return null;
@@ -36,7 +36,7 @@ export default async function FeaturedWork() {
           </span>
         </Link>
       </div>
-      <ProjectFolder projects={projects.slice(0, 8)} />
+      <ProjectRail projects={projects.slice(0, 9)} />
       <Scribble variant="arrow-down" color="#C9DB4B" strokeWidth={3} className="mx-auto mt-16 h-24 w-14" />
     </>
   );

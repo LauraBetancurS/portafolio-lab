@@ -181,3 +181,39 @@ footer[data-flash] .contact-card {
 }
 footer[data-flash] .contact-card:nth-child(2) { animation-delay: 90ms; }
 footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
+
+/* ─── Project rail: discos dentro de portadas (home) ─── */
+.rail-disc {
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 17%, rgb(255 255 255 / 0.06) 17.5% 18%, transparent 18.5%),
+    repeating-radial-gradient(circle at 50% 50%, #151318 0 1.5px, #1f1c22 1.5px 3px);
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.04), 0 12px 30px -10px rgb(0 0 0 / 0.6);
+}
+.rail-disc::after {
+  /* reflejo de luz sobre el vinilo */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(from 30deg, transparent 0 20%, rgb(255 255 255 / 0.12) 25%, transparent 32% 70%, rgb(255 255 255 / 0.08) 75%, transparent 82%);
+  pointer-events: none;
+}
+/* el disco del centro se asoma un poquito; más al pasar el mouse */
+.rail-item[data-center] .rail-record { transform: translateX(9%); }
+@media (hover: hover) and (pointer: fine) {
+  .rail-item[data-center]:hover .rail-record { transform: translateX(24%); }
+}
+/* al hacer clic: sale y gira */
+.rail-item[data-center][data-playing] .rail-record { transform: translateX(52%); }
+.rail-item[data-playing] .rail-disc { animation: rail-spin 1.8s linear infinite; }
+@keyframes rail-spin { to { rotate: 360deg; } }
+.rail-sleeve { transition: scale 160ms var(--ease-out); }
+.rail-item[data-center] .rail-sleeve:active { scale: 0.98; }
+.rail-caption { animation: rail-caption-in 420ms var(--ease-out) both; }
+@keyframes rail-caption-in {
+  from { opacity: 0; transform: translateY(6px); filter: blur(2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail-item, .rail-record { transition-duration: 0ms !important; }
+  .rail-item[data-playing] .rail-disc, .rail-caption { animation: none; }
+}

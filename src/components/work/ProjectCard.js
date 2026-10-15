@@ -6,16 +6,29 @@ const PALETTE = ['#F6C6E6', '#CDE8F8', '#E4EDB0', '#F9CDBF', '#F8D98C'];
 // Tarjeta de proyecto: la imagen ocupa toda la tarjeta y encima, abajo a la
 // izquierda, van "año \\ tipo de proyecto" y el nombre (sin franja blanca).
 // Si no hay imagen, se usa su card_color (o uno de la paleta) y el texto va oscuro.
-export default function ProjectCard({ project, index, compact = false }) {
+//
+// A dónde lleva el clic (prop "to"):
+//  - 'prototype' → el prototype_url de Supabase en otra pestaña
+//    (si no tiene, el live_url; si tampoco, la página del proyecto)
+//  - una ruta como '/work' → esa página
+//  - sin "to" → la página del proyecto (/work/slug)
+export default function ProjectCard({ project, index, compact = false, to }) {
   const hasImage = Boolean(project.cover);
   const color = project.card_color || PALETTE[index % PALETTE.length];
   const kind = project.service || project.role || project.tags?.[0];
   const meta = [project.year, kind].filter(Boolean);
   const ink = hasImage ? 'text-white' : 'text-neutral-900';
 
+  const external = to === 'prototype' ? project.prototype_url || project.live_url : null;
+  const href = external || (to && to !== 'prototype' ? to : `/work/${project.slug}`);
+  const linkProps = external
+    ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${project.title}, open the prototype in a new tab` }
+    : {};
+
   return (
     <Link
-      href={`/work/${project.slug}`}
+      href={href}
+      {...linkProps}
       className={`project-card press group relative block overflow-hidden rounded-[18px] ring-1 ring-black/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
         compact ? 'aspect-[4/3]' : 'aspect-[4/3.6]'
       }`}

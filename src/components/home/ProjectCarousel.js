@@ -11,7 +11,7 @@ const GAP = 20;          // px entre tarjetas
 
 // Carrusel horizontal infinito: las tarjetas avanzan solas hacia la izquierda,
 // frenan suave cuando pasas el mouse encima y se pueden arrastrar (o deslizar
-// con el dedo / el trackpad). Clic en una tarjeta → abre el proyecto.
+// con el dedo / el trackpad). Clic en una tarjeta → página Work.
 export default function ProjectCarousel({ projects }) {
   const trackRef = useRef(null);
   const state = useRef({ x: 0, v: 0, speed: SPEED, hover: false, drag: null, moved: false });
@@ -121,7 +121,7 @@ export default function ProjectCarousel({ projects }) {
             aria-hidden={i >= projects.length ? 'true' : undefined}
           >
             <div tabIndex={-1} inert={i >= projects.length ? true : undefined}>
-              <ProjectCard project={p} index={i % projects.length} compact />
+              <ProjectCard project={p} index={i % projects.length} compact to="/work" />
             </div>
           </li>
         ))}

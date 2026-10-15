@@ -124,14 +124,11 @@ export default function ProjectStack({ projects }) {
 
       {/* Info de la de arriba */}
       <div className="mt-10 flex flex-col items-center text-center" aria-live="polite">
-        <p className="font-body text-sm tabular-nums text-neutral-500">
-          {String(shownIdx + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}
-        </p>
         {/* El título es el enlace al proyecto */}
         <Link
           key={current.id}
           href={`/work/${current.slug}`}
-          className="stack-caption group font-title mt-1 inline-flex items-center gap-2 text-3xl tracking-tight text-neutral-900 md:text-4xl"
+          className="stack-caption group font-title inline-flex items-center gap-2 text-3xl tracking-tight text-neutral-900 md:text-4xl"
         >
           <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 ease-[var(--ease-out)] group-hover:bg-[length:100%_2px]">
             {current.title}

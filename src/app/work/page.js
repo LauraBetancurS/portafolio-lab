@@ -2,7 +2,6 @@ import { getProjects } from "@/lib/projects";
 import ProjectGrid from "@/components/work/ProjectGrid";
 import Scribble from "@/components/mixed/Scribble";
 import Reveal from "@/components/mixed/Reveal";
-import Note from "@/components/mixed/Note";
 
 export const metadata = {
   title: "Work — Lau Betancur",
@@ -32,9 +31,6 @@ export default async function WorkPage() {
             </Reveal>
             <span aria-hidden="true" className="work-dot mb-1 h-4 w-4 shrink-0 rounded-full bg-[#F2A2DC] md:h-5 md:w-5" />
           </div>
-          <Note arrow="down-left" rotate={-6} className="absolute bottom-2 right-0 hidden md:flex">
-            {'hover the cards,\nleave a trail of stars'}
-          </Note>
         </header>
       </div>
 

@@ -8,8 +8,6 @@ import { getProjects } from '@/lib/projects';
 // import ProjectScrollStack from '@/components/home/ProjectScrollStack'; // scroll stack
 import ProjectCarousel from '@/components/home/ProjectCarousel';
 import SectionTitle from '@/components/mixed/SectionTitle';
-import Scribble from '@/components/mixed/Scribble';
-import Note from '@/components/mixed/Note';
 
 // "Selected work" del inicio: carrusel horizontal que avanza solo
 export default async function FeaturedWork() {
@@ -20,9 +18,6 @@ export default async function FeaturedWork() {
     <>
       <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
         <div className="relative">
-          <Note arrow="down-left" arrowFirst rotate={-7} className="absolute -top-10 left-[clamp(14rem,40vw,30rem)] hidden md:flex">
-            the ones I’m proudest of
-          </Note>
           <SectionTitle>Selected work</SectionTitle>
           <p className="font-body mt-6 max-w-[48ch] text-lg leading-relaxed text-neutral-600">
             A few projects where research, design and code meet.
@@ -47,7 +42,6 @@ export default async function FeaturedWork() {
       {/* <ProjectStack projects={projects.slice(0, 10)} /> */}
       {/* <ProjectScrollStack projects={projects.slice(0, 6)} /> */}
       <ProjectCarousel projects={projects.slice(0, 10)} />
-      <Scribble variant="arrow-down" color="#C9DB4B" strokeWidth={3} className="mx-auto mt-16 h-24 w-14" />
     </>
   );
 }

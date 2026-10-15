@@ -36,9 +36,6 @@ function spawnStar(layer, x, y, { burst = false } = {}) {
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   path.setAttribute('d', STAR_PATH);
   path.setAttribute('fill', gsap.utils.random(STAR_COLORS));
-  path.setAttribute('stroke', 'white');
-  path.setAttribute('stroke-width', '1.2');
-  path.setAttribute('stroke-linejoin', 'round');
   star.appendChild(path);
   layer.appendChild(star);
 

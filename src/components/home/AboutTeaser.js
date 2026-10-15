@@ -2,7 +2,6 @@ import Link from 'next/link';
 import MeCard from '@/components/home/MeCard';
 import Scribble from '@/components/mixed/Scribble';
 import Reveal from '@/components/mixed/Reveal';
-import Note from '@/components/mixed/Note';
 
 // Bloque corto "sobre mí" en el inicio, con la tarjeta holográfica y un enlace a /about.
 export default function AboutTeaser() {
@@ -10,9 +9,6 @@ export default function AboutTeaser() {
     <div className="grid items-center gap-24 md:gap-20 md:grid-cols-[minmax(0,340px)_1fr]">
       <div className="relative mx-auto w-full max-w-[320px] md:mx-0">
         <MeCard />
-        <Note arrow="up-left" arrowFirst rotate={-6} className="absolute -bottom-14 left-6">
-          probably thinking about fonts
-        </Note>
         <Scribble variant="sparkle" color="#E8603C" strokeWidth={3} className="absolute -right-8 -top-8 h-14 w-14" />
       </div>
 

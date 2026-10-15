@@ -30,7 +30,7 @@ export default function ProjectCard({ project, index, compact = false }) {
             alt={project.coverAlt}
             loading={index < 2 ? 'eager' : 'lazy'}
             draggable={false}
-            className="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.04]"
+            className="h-full w-full object-cover"
           />
         </div>
       )}

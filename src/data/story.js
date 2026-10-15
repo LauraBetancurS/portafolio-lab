@@ -1,21 +1,26 @@
 // ─── Historia horizontal de la página About ─────────────────
-// Edita aquí los textos del recorrido.
+// Va de lo personal a lo profesional. Edita aquí los textos.
 
-// Imágenes de la historia: pega la URL (Supabase) cuando las tengas.
-// Mientras sean null, se muestra un recuadro punteado con el texto que describe la foto.
+// Imágenes: pega la URL (Supabase) cuando las tengas.
+// Mientras sean null, se muestra un recuadro punteado con la descripción.
 export const STORY_IMAGES = {
-  icesi: null,        // tú en Icesi / el campus
-  figma: null,        // ícono o foto de Figma
-  code: null,         // teclas, laptop o algo de código
-  camera: null,       // cámara / video (redes sociales)
+  // personal
+  games: null,        // control / algo de indie games
+  books: null,        // libros (Camus, Pessoa)
+  cinema: null,       // cine latinoamericano
+  dinosaur: null,     // un dinosaurio, obvio
+  sketchbook: null,   // cuaderno de dibujo / diseño gráfico
+  stage: null,        // tú en el escenario (teatro musical)
+  fiction: null,      // anime / fanfics / novelas visuales
+  // profesional
+  research: null,     // sticky notes, entrevistas, investigación
+  ai: null,           // algo que represente IA
   aws: null,          // insignia AWS AI Practitioner
-  brain: null,        // algo que represente IA
-  theater: null,      // tú en teatro musical
-  solar: null,        // algo de Ruta Solar
 };
 
 // Hitos de la línea (de lo más antiguo a lo más reciente)
 export const STORY_MILESTONES = [
+  { year: '2023', title: 'said yes to interactive media.', text: 'started at Icesi with an ICFES excellence scholarship. honor roll four times since.' },
   { year: '2024', title: 'started making things for real.', text: 'social media TA for my program: graphics, print pieces and video.' },
   { year: '2025', title: 'taught the teachers.', text: 'videos, graphics and an interactive timeline about accreditation.' },
   { year: '2026', title: 'led my first research team.', text: 'UX research lead & PM for Ruta Solar, with Gases de Occidente.' },
@@ -23,5 +28,8 @@ export const STORY_MILESTONES = [
   { year: '2026 — now', title: 'joined InnLab.', text: 'foresight & future scenarios with real clients like ACH.' },
 ];
 
-// Lo que más uso (salen flotando en "a jack of all trades")
-export const STORY_TOOLS = ['Figma', 'React', 'After Effects', 'n8n', 'Framer', 'Supabase'];
+// "computer → human": lo que hago, en broma (sale en "turns out, i like people too")
+export const STORY_TRANSLATIONS = [
+  { computer: 'Error: user_flow.step3 is undefined', human: 'people get lost on step three.' },
+  { computer: 'Bounce rate: 78% on /checkout', human: 'the checkout feels scary.' },
+];

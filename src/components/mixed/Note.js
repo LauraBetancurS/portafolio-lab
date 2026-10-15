@@ -19,7 +19,7 @@ export default function Note({ children, arrow = 'none', arrowFirst = false, rot
 
   return (
     <div
-      className={`font-hand pointer-events-none flex items-center gap-1 text-xl leading-tight select-none ${className}`}
+      className={`font-hand pointer-events-none flex items-center gap-1 text-[1.6rem] leading-[1.15] select-none ${className}`}
       style={{ color, transform: `rotate(${rotate}deg)` }}
     >
       {arrowFirst && arrowSvg}

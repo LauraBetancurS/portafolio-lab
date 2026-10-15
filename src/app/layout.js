@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import FigmaCursor from "@/components/layout/FigmaCursor";
 import { LOGO_URL } from "@/lib/assets";
 
-// Letra a mano Minoel (reemplaza a Geist): fuente por defecto y de las etiquetas
+// Letra a mano Minoel: notas y anotaciones (font-hand), fuente por defecto y etiquetas
 const minoel = localFont({
   src: "./fonts/SL_Minoel.woff2",
   variable: "--font-minoel",
@@ -33,12 +33,6 @@ const neulis = localFont({
   display: "swap",
 });
 
-// Letra a mano para notas y anotaciones (Caveat, licencia libre OFL)
-const hand = localFont({
-  src: "./fonts/Caveat-Medium.woff2",
-  variable: "--font-caveat",
-  display: "swap",
-});
 
 export const metadata = {
   title: "Lau Betancur — Portafolio",
@@ -54,7 +48,7 @@ export default function RootLayout({ children }) {
   return (
     <html style={{ scrollBehavior: "smooth" }} data-scroll-behavior="smooth"
       lang="en"
-      className={`${minoel.variable} ${bootzy.variable} ${neulis.variable} ${hand.variable} h-full antialiased`}
+      className={`${minoel.variable} ${bootzy.variable} ${neulis.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <a

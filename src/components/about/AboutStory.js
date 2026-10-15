@@ -153,36 +153,7 @@ const TOOL_SPOTS = [
   [7650, 620, -5], [7880, 760, 6], [7200, 820, -3], [7560, 860, 3],
 ];
 
-// Keycaps regados alrededor de "a jack of all trades" (x, y, giro).
-// Si hay más keycaps que lugares, se repiten los lugares un poco corridos.
-const KEYCAP_SPOTS = [
-  [1280, 160, -9], [1440, 120, 7], [1590, 200, -5],
-  [1250, 610, 6], [1400, 760, -7], [1540, 620, 4], [1650, 790, -4], [1310, 860, 9],
-];
-
-// Un keycap: al pasar el mouse se hunde un poquito, al hacer clic suena "clack"
-function Keycap({ cap, index }) {
-  const [x, y, r] = KEYCAP_SPOTS[index % KEYCAP_SPOTS.length];
-  const lap = Math.floor(index / KEYCAP_SPOTS.length);
-  return (
-    <li
-      className={`story-in story-float h-20 w-20 md:h-[6.5vw] md:w-[6.5vw] ${POS}`}
-      style={{ ...at(x + lap * 70, y + lap * 50), '--float-delay': `${(index * 0.37) % 2}s`, rotate: `${r}deg` }}
-    >
-      <button
-        type="button"
-        onClick={() => playKeySound(0.9 + (index % 5) * 0.08)}
-        aria-label={`keycap ${index + 1}, press it`}
-        className="keycap block h-full w-full cursor-pointer"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={cap.url} alt="" draggable={false} loading="lazy" className="h-full w-full object-contain" />
-      </button>
-    </li>
-  );
-}
-
-export default function AboutStory({ keycaps = [] }) {
+export default function AboutStory() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const pathRef = useRef(null);
@@ -313,13 +284,13 @@ export default function AboutStory({ keycaps = [] }) {
           <Pic src={STORY_IMAGES.cinema} label="img: Latin American cinema" className={`story-in h-40 md:h-[20vh] md:w-[12vw] ${POS}`} rotate={4} float={0.7} pos={at(1060, 690)} />
           <Pic src={STORY_IMAGES.dinosaur} label="img: a dinosaur, obviously" className={`story-in h-40 md:h-[20vh] md:w-[11vw] ${POS}`} rotate={-4} float={1.6} pos={at(1760, 680)} />
         </div>
-        {keycaps.length > 0 && (
-          <ul className="mt-6 flex flex-wrap gap-3 md:contents" aria-label="my keycap collection">
-            {keycaps.map((cap, i) => (
-              <Keycap key={cap.name} cap={cap} index={i} />
-            ))}
-          </ul>
-        )}
+        {/* Teclado: al pasar el mouse se hunde un poquito, al hacer clic suena "clack" */}
+        <div className={`story-in story-float mx-auto mt-6 h-40 w-full max-w-xs md:mx-0 md:mt-0 md:h-[22vh] md:w-[20vw] md:max-w-none ${POS}`} style={{ ...at(1390, 705), '--float-delay': '0.9s', rotate: '-4deg' }}>
+          <button type="button" onClick={() => playKeySound(0.9 + Math.random() * 0.3)} aria-label="my keyboard, press it" className="keycap block h-full w-full cursor-pointer">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={STORY_IMAGES.keyboard} alt="" draggable={false} loading="lazy" className="h-full w-full object-contain" />
+          </button>
+        </div>
 
         {/* 3 · Teatro y canto */}
         <div className={`story-in mt-24 max-w-md md:mt-0 md:w-[24vw] md:max-w-none ${POS}`} style={at(2720, 110)}>

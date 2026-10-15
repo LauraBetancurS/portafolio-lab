@@ -9,6 +9,7 @@ export const STORY_IMAGES = {
   books: null,        // libros (Camus, Pessoa)
   cinema: null,       // cine latinoamericano
   dinosaur: null,     // un dinosaurio, obvio
+  keyboard: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/keyboard.svg', // teclado / keycaps
   sketchbook: null,   // cuaderno de dibujo / diseño gráfico
   stage: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/SING.webp', // tú cantando
   fiction: null,      // anime / fanfics / novelas visuales
@@ -18,11 +19,6 @@ export const STORY_IMAGES = {
   ai: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/546ff57f-6e85-4d91-b158-b69ec8aa88b1.png', // cerebro IA
   aws: null,          // insignia AWS AI Practitioner
 };
-
-// Carpeta del bucket "about" con los keycaps (salen en "a jack of all trades").
-// Todas las imágenes que subas ahí aparecen solas. Si le cambias el nombre
-// a la carpeta en Supabase (ej. "keycaps"), cámbialo aquí también.
-export const STORY_KEYCAPS_FOLDER = 'Untitled folder';
 
 // Hitos de la línea (de lo más antiguo a lo más reciente)
 export const STORY_MILESTONES = [

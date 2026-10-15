@@ -94,10 +94,17 @@ const H2 = 'font-title text-[clamp(2.4rem,4.6vw,4.75rem)] leading-[1] tracking-t
 const SUB = 'font-body mt-3 text-lg leading-relaxed text-neutral-500';
 
 // Imagen real o recuadro punteado con la descripción de la foto que falta
-function Pic({ src, label, className = '', rotate = 0, float = 0, pos }) {
+function Pic({ src, label, className = '', rotate = 0, float = 0, pos, photo = false }) {
   return (
     <div className={`story-float ${className}`} style={{ ...pos, '--float-delay': `${float}s`, rotate: `${rotate}deg` }}>
-      {src ? (
+      {src && photo ? (
+        // foto real: marco blanco tipo polaroid con un pedazo de cinta
+        <figure className="relative h-full w-full bg-white p-2 pb-8 shadow-[0_24px_40px_-18px_rgba(0,0,0,0.45)]">
+          <span aria-hidden="true" className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 -rotate-3 bg-[#F2A2DC]/70" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} alt={label} draggable={false} loading="lazy" className="h-full w-full object-cover" />
+        </figure>
+      ) : src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={src} alt={label} draggable={false} className="h-full w-full object-contain drop-shadow-[0_20px_25px_rgba(0,0,0,0.18)]" />
       ) : (
@@ -283,8 +290,8 @@ export default function AboutStory() {
           <p className={SUB}>musical theater at Icesi, and a lot of vocal practice.</p>
           <p className="font-body mt-2 text-lg text-neutral-500">speaks spanish, english (C1) and javascript.</p>
         </div>
-        <Pic src={MICROPHONE_URL} label="microphone" className={`story-in mt-8 h-36 w-36 md:mt-0 md:h-[22vh] md:w-[10vw] ${POS}`} rotate={20} float={0.5} pos={at(2280, 300)} />
-        <Pic src={STORY_IMAGES.stage} label="photo: you on stage" className={`story-in mt-6 h-56 w-44 md:mt-0 md:h-[30vh] md:w-[12vw] ${POS}`} rotate={-5} float={1.3} pos={at(2420, 600)} />
+        <Pic src={MICROPHONE_URL} label="microphone" className={`story-in mt-8 h-36 w-36 md:mt-0 md:h-[22vh] md:w-[10vw] ${POS}`} rotate={20} float={0.5} pos={at(2230, 290)} />
+        <Pic src={STORY_IMAGES.stage} photo label="Lau singing" className={`story-in mt-6 h-72 w-56 md:mt-0 md:h-[38vh] md:w-[14vw] ${POS}`} rotate={-5} float={1.3} pos={at(2440, 545)} />
         <p className={`story-in font-hand mt-6 text-2xl text-neutral-700 md:mt-0 ${POS}`} style={at(2760, 560)}>
           also known as “rabbit” 🐰
         </p>
@@ -326,7 +333,8 @@ export default function AboutStory() {
         <Pic src={STORY_IMAGES.aws} label="img: AWS badge" className={`story-in hidden md:block md:h-[16vh] md:w-[9vw] ${POS}`} rotate={7} float={1.1} pos={at(4780, 700)} />
 
         {/* 7 · Línea de tiempo */}
-        <div className="mt-24 md:mt-0">
+        <Pic src={STORY_IMAGES.honorRoll} photo label="Lau on the honor roll" className={`story-in mt-24 h-64 w-52 md:mt-0 md:h-[29vh] md:w-[12vw] ${POS}`} rotate={4} float={0.8} pos={at(5040, 125)} />
+        <div className="mt-12 md:mt-0">
           {STORY_MILESTONES.map((m, i) => (
             <Milestone key={i} m={m} index={i} />
           ))}

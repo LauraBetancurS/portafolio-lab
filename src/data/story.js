@@ -10,9 +10,10 @@ export const STORY_IMAGES = {
   cinema: null,       // cine latinoamericano
   dinosaur: null,     // un dinosaurio, obvio
   sketchbook: null,   // cuaderno de dibujo / diseño gráfico
-  stage: null,        // tú en el escenario (teatro musical)
+  stage: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/SING.webp', // tú cantando
   fiction: null,      // anime / fanfics / novelas visuales
   // profesional
+  honorRoll: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/honor_roll.PNG', // cuadro de honor
   research: null,     // sticky notes, entrevistas, investigación
   ai: null,           // algo que represente IA
   aws: null,          // insignia AWS AI Practitioner

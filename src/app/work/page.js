@@ -17,27 +17,31 @@ export default async function WorkPage() {
     <main className="overflow-x-clip px-6 pb-32 pt-36 md:px-12">
       <div className="mx-auto max-w-7xl">
         {/* Encabezado */}
-        <header className="relative mb-14 md:mb-20">
-          <h1 className="font-title text-[clamp(3.5rem,11vw,10rem)] leading-[0.9] tracking-tight text-neutral-900">
-            Selected
-            <br />
-            <span className="inline-flex items-start">
-              work
-              <span className="font-body relative top-[0.6em] ml-4 text-[clamp(1rem,2vw,1.5rem)] font-medium tracking-normal text-neutral-500">
-                ({count})
-                <Scribble variant="circle" color="#E8603C" strokeWidth={2.5} className="absolute -inset-x-4 -inset-y-3 h-[calc(100%+1.5rem)] w-[calc(100%+2rem)]" delay={0.4} />
-              </span>
+        <header className="relative">
+          <h1 className="font-title inline-flex items-start text-[clamp(4rem,14vw,12rem)] leading-[0.85] tracking-tight text-neutral-900">
+            Work
+            <span className="font-body relative top-[0.5em] ml-4 text-[clamp(1rem,2vw,1.5rem)] font-medium tracking-normal text-neutral-500">
+              ({count})
+              <Scribble variant="circle" color="#E8603C" strokeWidth={2.5} className="absolute -inset-x-4 -inset-y-3 h-[calc(100%+1.5rem)] w-[calc(100%+2rem)]" delay={0.4} />
             </span>
           </h1>
-          <Reveal as="p" delay={0.2} className="font-body mt-8 max-w-[48ch] text-lg leading-relaxed text-neutral-600 md:text-xl">
-            Projects where research, design and code meet. Each one started with a real
-            problem and a lot of sticky notes.
-          </Reveal>
-          <Note arrow="down-left" rotate={-6} className="absolute bottom-0 right-0 hidden md:flex">
+          <div className="mt-8 flex items-end gap-6">
+            <Reveal as="p" delay={0.2} className="font-body max-w-[40ch] text-base font-medium uppercase leading-snug tracking-wide text-neutral-500 md:text-lg">
+              A collection of projects where research, design and code meet, each one born
+              from a real problem and a lot of sticky notes.
+            </Reveal>
+            <span aria-hidden="true" className="work-dot mb-1 h-4 w-4 shrink-0 rounded-full bg-[#F2A2DC] md:h-5 md:w-5" />
+          </div>
+          <Note arrow="down-left" rotate={-6} className="absolute bottom-2 right-0 hidden md:flex">
             {'hover the cards,\nleave a trail of stars'}
           </Note>
         </header>
+      </div>
 
+      {/* Línea de lado a lado */}
+      <hr className="-mx-6 mb-16 mt-12 border-0 border-t border-black/10 md:-mx-12 md:mb-24 md:mt-16" />
+
+      <div className="mx-auto max-w-7xl">
         {/* Grilla */}
         {error ? (
           <p className="font-body rounded-2xl bg-white/70 p-8 text-center text-neutral-600">

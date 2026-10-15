@@ -273,3 +273,8 @@ footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
 @media (prefers-reduced-motion: reduce) {
   .me-card { rotate: 0deg; transition: none; }
 }
+
+/* Punto rosado del encabezado de Work: late suave */
+.work-dot { animation: work-dot 2.4s var(--ease-in-out) infinite; }
+@keyframes work-dot { 50% { transform: scale(0.7); opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) { .work-dot { animation: none; } }

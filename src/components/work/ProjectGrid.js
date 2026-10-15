@@ -154,7 +154,7 @@ export default function ProjectGrid({ projects }) {
   );
 
   return (
-    <ul ref={gridRef} className="grid gap-3 md:grid-cols-2">
+    <ul ref={gridRef} className="grid gap-x-8 gap-y-10 md:grid-cols-2 md:gap-y-14">
       {projects.map((project, i) => (
         <li key={project.id}>
           <ProjectCard project={project} index={i} />

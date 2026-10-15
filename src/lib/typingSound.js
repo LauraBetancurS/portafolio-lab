@@ -40,3 +40,10 @@ export function playTypingSound() {
   keyClick(ctx, now, 1);          // ctrl
   keyClick(ctx, now + 0.11, 1.15); // Z
 }
+
+// Un solo "clack" (para los keycaps del About)
+export function playKeySound(pitch = 1) {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+  keyClick(ctx, ctx.currentTime, pitch);
+}

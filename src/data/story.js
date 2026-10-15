@@ -19,6 +19,11 @@ export const STORY_IMAGES = {
   aws: null,          // insignia AWS AI Practitioner
 };
 
+// Carpeta del bucket "about" con los keycaps (salen en "a jack of all trades").
+// Todas las imágenes que subas ahí aparecen solas. Si le cambias el nombre
+// a la carpeta en Supabase (ej. "keycaps"), cámbialo aquí también.
+export const STORY_KEYCAPS_FOLDER = 'Untitled folder';
+
 // Hitos de la línea (de lo más antiguo a lo más reciente)
 export const STORY_MILESTONES = [
   { year: '2023', title: 'said yes to interactive media.', text: 'started at Icesi with an ICFES excellence scholarship. honor roll four times since.' },

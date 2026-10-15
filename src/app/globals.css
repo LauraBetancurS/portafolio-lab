@@ -324,3 +324,14 @@ footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
 @media (prefers-reduced-motion: reduce) {
   .tool-folder__front, .tool-folder__paper { transition: none; }
 }
+
+/* ─── Keycaps del About: se hunden al pasar el mouse y al presionar ─── */
+.keycap img {
+  transition: transform 160ms var(--ease-out), filter 160ms var(--ease-out);
+  filter: drop-shadow(0 10px 10px rgb(0 0 0 / 0.22));
+}
+@media (hover: hover) {
+  .keycap:hover img { transform: translateY(3px); filter: drop-shadow(0 6px 6px rgb(0 0 0 / 0.22)); }
+}
+.keycap:active img { transform: translateY(6px) scale(0.96); filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.25)); }
+.keycap:focus-visible { outline: 2px solid #000; outline-offset: 4px; border-radius: 12px; }

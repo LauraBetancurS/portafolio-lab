@@ -51,7 +51,7 @@ export default function Home() {
         <Marquee />
 
         {/* Proyectos destacados */}
-        <section id="work" className="scroll-mt-24 px-6 pb-12 pt-32 md:px-12">
+        <section id="work" className="scroll-mt-24 px-6 pb-20 pt-36 md:px-12 md:pb-36 md:pt-48">
           <div className="mx-auto max-w-7xl">
             <FeaturedWork />
           </div>
@@ -59,7 +59,7 @@ export default function Home() {
 
 
         {/* Sobre mí (resumen) */}
-        <section className="px-6 pb-32 pt-16 md:px-12">
+        <section className="px-6 pb-36 pt-20 md:px-12 md:pb-48 md:pt-36">
           <div className="mx-auto max-w-6xl">
             <AboutTeaser />
           </div>

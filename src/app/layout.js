@@ -1,4 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -6,14 +5,11 @@ import Footer from "@/components/layout/Footer";
 import FigmaCursor from "@/components/layout/FigmaCursor";
 import { LOGO_URL } from "@/lib/assets";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Letra a mano Minoel (reemplaza a Geist): fuente por defecto y de las etiquetas
+const minoel = localFont({
+  src: "./fonts/SL_Minoel.woff2",
+  variable: "--font-minoel",
+  display: "swap",
 });
 
 // Fuente del navbar (archivo local en src/app/fonts)
@@ -58,7 +54,7 @@ export default function RootLayout({ children }) {
   return (
     <html style={{ scrollBehavior: "smooth" }} data-scroll-behavior="smooth"
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${bootzy.variable} ${neulis.variable} ${hand.variable} h-full antialiased`}
+      className={`${minoel.variable} ${bootzy.variable} ${neulis.variable} ${hand.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <a

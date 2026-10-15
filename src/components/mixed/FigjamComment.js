@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useLang } from '@/i18n/lang';
 
 // Comentario estilo FigJam: un pin con avatar que se abre al pasar el mouse
 // (o al tocarlo en celular) y muestra una nota.
 export default function FigjamComment({ text, author = 'Lau', color = '#F2A2DC', side = 'right', className = '' }) {
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
 
   return (
     <div
@@ -16,7 +18,7 @@ export default function FigjamComment({ text, author = 'Lau', color = '#F2A2DC',
       <button
         type="button"
         aria-expanded={open}
-        aria-label={`Comment from ${author}`}
+        aria-label={t(`Comment from ${author}`, `Comentario de ${author}`)}
         onClick={() => setOpen(o => !o)}
         className="press font-body flex h-9 w-9 items-center justify-center rounded-full rounded-bl-none text-sm font-semibold text-neutral-900 shadow-[0_4px_12px_rgba(0,0,0,0.18)] ring-2 ring-white hover:scale-110"
         style={{ backgroundColor: color }}

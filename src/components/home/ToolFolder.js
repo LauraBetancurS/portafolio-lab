@@ -8,6 +8,7 @@ import { useGSAP } from '@gsap/react';
 import { TOOLS, SKILLS } from '@/data/tools';
 import ToolIcon from '@/components/mixed/ToolIcon';
 import Note from '@/components/mixed/Note';
+import { useLang } from '@/i18n/lang';
 
 gsap.registerPlugin(Draggable, InertiaPlugin, useGSAP);
 
@@ -49,6 +50,7 @@ export default function ToolFolder() {
   const itemRefs = useRef([]);
   const draggables = useRef([]);
   const [open, setOpen] = useState(false);
+  const { t } = useLang();
   const [size, setSize] = useState({ w: 900, h: 560, closedH: FOLDER_H + 40 });
 
   // El área se adapta al ancho: en celular es más alta para que quepan todos
@@ -186,7 +188,7 @@ export default function ToolFolder() {
                 className="flex h-[86px] w-[112px] items-center justify-center p-2 text-center shadow-[0_14px_26px_-14px_rgba(0,0,0,0.4)]"
                 style={{ backgroundColor: item.color }}
               >
-                <span className="font-hand text-[1.35rem] leading-[1.05] text-neutral-900">{item.text}</span>
+                <span className="font-hand text-[1.35rem] leading-[1.05] text-neutral-900">{t(item.text, item.es)}</span>
               </div>
             )}
           </div>
@@ -197,7 +199,7 @@ export default function ToolFolder() {
           type="button"
           onClick={toggle}
           aria-expanded={open}
-          aria-label={open ? 'Close the toolbox' : 'Open the toolbox to see my tools'}
+          aria-label={open ? t('Close the toolbox', 'Cerrar la caja de herramientas') : t('Open the toolbox to see my tools', 'Abrir la caja para ver mis herramientas')}
           className="tool-folder group absolute left-1/2 top-0 z-[3] -translate-x-1/2 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
           data-open={open ? '' : undefined}
           style={{ width: FOLDER_W, height: FOLDER_H + 16 }}
@@ -206,9 +208,11 @@ export default function ToolFolder() {
           <span aria-hidden="true" className="tool-folder__paper tool-folder__paper--1" />
           <span aria-hidden="true" className="tool-folder__paper tool-folder__paper--2" />
           <span aria-hidden="true" className="tool-folder__front">
-            <span className="font-hand text-2xl leading-none text-neutral-900">toolbox</span>
+            <span className="font-hand text-2xl leading-none text-neutral-900">{t('toolbox', 'herramientas')}</span>
             <span className="font-body mt-1 text-xs text-neutral-800/70">
-              {open ? 'click to put them back' : `${TOOLS.length} tools · ${SKILLS.length} skills`}
+              {open
+                ? t('click to put them back', 'clic para guardarlas')
+                : t(`${TOOLS.length} tools · ${SKILLS.length} skills`, `${TOOLS.length} herramientas · ${SKILLS.length} habilidades`)}
             </span>
           </span>
         </button>
@@ -219,7 +223,7 @@ export default function ToolFolder() {
         rotate={-5}
         className="absolute left-[calc(50%-300px)] top-16 hidden md:flex"
       >
-        {open ? 'drag & throw them!' : 'click the folder'}
+        {open ? t('drag & throw them!', '¡arrástralas y lánzalas!') : t('click the folder', 'haz clic en la carpeta')}
       </Note>
     </div>
   );

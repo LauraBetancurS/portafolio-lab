@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLang } from '@/i18n/lang';
 
 // ─── Ajustes ────────────────────────────────────────────────
-const LABEL = 'You';
+const LABEL = { en: 'You', es: 'Tú' };
 const COLOR = '#F2A2DC';      // color de la burbuja (rosa de la paleta)
 const TEXT_COLOR = '#1e1e1e'; // color del texto dentro de la etiqueta
 // ────────────────────────────────────────────────────────────
@@ -13,6 +14,7 @@ const TEXT_COLOR = '#1e1e1e'; // color del texto dentro de la etiqueta
 export default function FigmaCursor() {
   const ref = useRef(null);
   const [enabled, setEnabled] = useState(false);
+  const { tr } = useLang();
 
   // ¿Hay un mouse? (pointer: fine + hover)
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function FigmaCursor() {
           className="font-body absolute left-[14px] top-[20px] whitespace-nowrap rounded-full rounded-tl-[4px] px-3 py-1 text-sm font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] ring-1 ring-white/80"
           style={{ backgroundColor: COLOR, color: TEXT_COLOR }}
         >
-          {LABEL}
+          {tr(LABEL)}
         </span>
       </div>
     </div>

@@ -8,6 +8,7 @@ import Note from '@/components/mixed/Note';
 import { CONTACTS } from '@/data/contact';
 import { ABOUT_PHOTO_URL, LOGO_URL, MICROPHONE_URL } from '@/lib/assets';
 import { makeBadge } from '@/lib/makeBadge';
+import { useLang } from '@/i18n/lang';
 
 gsap.registerPlugin(useGSAP);
 
@@ -17,7 +18,7 @@ const Lanyard = dynamic(() => import('@/components/ui/Lanyard/Lanyard'), { ssr: 
 // Datos impresos en la credencial
 const BADGE = {
   name: 'Laura Betancur',
-  role: 'Product designer & front-end dev',
+  role: { en: 'Product designer & front-end dev', es: 'Diseñadora de producto y dev front-end' },
   place: 'Cali, Colombia ✦',
   website: 'github.com/LauraBetancurS',
 };
@@ -25,17 +26,18 @@ const BADGE = {
 export default function AboutHero() {
   const rootRef = useRef(null);
   const [badge, setBadge] = useState(null);
+  const { lang, t, tr } = useLang();
 
-  // Arma las imágenes de la credencial (frente, reverso y cinta)
+  // Arma las imágenes de la credencial (frente, reverso y cinta), en el idioma actual
   useEffect(() => {
     let active = true;
-    makeBadge({ photoUrl: ABOUT_PHOTO_URL, logoUrl: LOGO_URL, ...BADGE }).then(images => {
+    makeBadge({ photoUrl: ABOUT_PHOTO_URL, logoUrl: LOGO_URL, ...BADGE, role: BADGE.role[lang] }).then(images => {
       if (active) setBadge(images);
     });
     return () => {
       active = false;
     };
-  }, []);
+  }, [lang]);
 
   // Las notas a mano aparecen después de que cae la credencial
   useGSAP(
@@ -55,31 +57,31 @@ export default function AboutHero() {
         {/* Texto */}
         <div className="relative pt-10">
           <Note arrow="down-left" arrowFirst rotate={-8} className="hero-note absolute -left-2 -top-2 md:-left-10">
-            who made this?
+            {t('who made this?', '¿quién hizo esto?')}
           </Note>
 
           <h1 className="font-title w-fit text-[clamp(4rem,11vw,9.5rem)] leading-[0.88] tracking-tight text-neutral-900">
-            oh, hi.
+            {t('oh, hi.', 'ah, hola.')}
             <br />
-            i’m <em className="font-title italic">Lau.</em>
+            {t('i’m', 'soy')} <em className="font-title italic">Lau.</em>
           </h1>
 
           <p className="font-body mt-8 text-xl leading-snug text-neutral-500">
-            still curious.
+            {t('still curious.', 'todavía curiosa.')}
             <br />
-            still designing.
+            {t('still designing.', 'todavía diseñando.')}
             <br />
-            still opening Figma tabs.
+            {t('still opening Figma tabs.', 'todavía abriendo pestañas de Figma.')}
           </p>
 
           <p className="font-title mt-8 max-w-[18ch] text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05] text-neutral-900">
-            let’s build something that feels <em className="italic">human</em>.
+            {t('let’s build something that feels', 'construyamos algo que se sienta')} <em className="italic">{t('human', 'humano')}</em>.
           </p>
 
           <div className="mt-10 flex max-w-xl flex-col gap-3">
             {email && (
               <a
-                href={email.href}
+                href={tr(email.href)}
                 className="press font-body group flex items-center justify-between rounded-lg bg-black px-6 py-4 text-lg text-white hover:-translate-y-0.5 sm:w-fit sm:gap-16"
               >
                 {email.value}
@@ -105,7 +107,7 @@ export default function AboutHero() {
           {/* Sticker con dato curioso */}
           <div className="relative mt-14 flex items-end gap-2 lg:absolute lg:-right-10 lg:bottom-4 lg:mt-0">
             <Note arrow="down-right" rotate={-6} className="hero-note mb-16">
-              {'fun fact:\nI sing in musical theater.'}
+              {t('fun fact:\nI sing in musical theater.', 'dato curioso:\ncanto en teatro musical.')}
             </Note>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -118,7 +120,7 @@ export default function AboutHero() {
 
         {/* Credencial colgante (lanyard 3D) */}
         <div className="relative mt-4 h-[560px] lg:-mt-32 lg:h-[88vh]">
-          <div className="absolute inset-0" aria-label="Laura’s ID badge. Drag it around, or click it to flip it." role="img">
+          <div className="absolute inset-0" aria-label={t('Laura’s ID badge. Drag it around, or click it to flip it.', 'Credencial de Laura. Arrástrala o haz clic para voltearla.')} role="img">
             {badge && (
               <Lanyard
                 frontImage={badge.front}
@@ -136,7 +138,7 @@ export default function AboutHero() {
           </div>
 
           <Note arrow="up-left" arrowFirst rotate={-5} className="hero-note pointer-events-none absolute bottom-[3%] left-1/2 w-max -translate-x-1/2 lg:bottom-[6%]">
-            {'drag me, throw me,\nclick to flip me!'}
+            {t('drag me, throw me,\nclick to flip me!', '¡arrástrame, lánzame,\nhaz clic para voltearme!')}
           </Note>
         </div>
       </div>

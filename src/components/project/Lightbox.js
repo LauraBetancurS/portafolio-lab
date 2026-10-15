@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLang } from '@/i18n/lang';
 
 // Visor de imágenes: al hacer clic en una imagen del caso (los botones con
 // data-lightbox-index) se abre en grande, con contador "1 / 5", flechas,
@@ -8,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 export default function Lightbox({ images, children }) {
   const [index, setIndex] = useState(null);
   const [shown, setShown] = useState(false);
+  const { t } = useLang();
   const closeRef = useRef(null);
   const openerRef = useRef(null);
   const open = index !== null;
@@ -58,7 +60,7 @@ export default function Lightbox({ images, children }) {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Image ${index + 1} of ${total}`}
+          aria-label={t(`Image ${index + 1} of ${total}`, `Imagen ${index + 1} de ${total}`)}
           onClick={e => e.target === e.currentTarget && close()}
           className={`fixed inset-0 z-[90] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm transition-opacity duration-200 ease-[var(--ease-out)] md:p-12 ${
             shown ? 'opacity-100' : 'opacity-0'
@@ -68,7 +70,7 @@ export default function Lightbox({ images, children }) {
           <img
             key={current.url}
             src={current.url}
-            alt={current.alt || ''}
+            alt={t(current.alt, current.alt_es) || ''}
             className={`max-h-[84vh] max-w-full rounded-[6px] object-contain shadow-2xl transition-transform duration-200 ease-[var(--ease-out)] ${
               shown ? 'scale-100' : 'scale-[0.96]'
             }`}
@@ -81,7 +83,7 @@ export default function Lightbox({ images, children }) {
             ref={closeRef}
             type="button"
             onClick={close}
-            aria-label="Close"
+            aria-label={t('Close', 'Cerrar')}
             className="press absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -102,11 +104,12 @@ export default function Lightbox({ images, children }) {
 
 function Arrow({ dir, onClick }) {
   const prev = dir === 'prev';
+  const { t } = useLang();
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={prev ? 'Previous image' : 'Next image'}
+      aria-label={prev ? t('Previous image', 'Imagen anterior') : t('Next image', 'Imagen siguiente')}
       className={`press absolute top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 ${
         prev ? 'left-3 md:left-6' : 'right-3 md:right-6'
       }`}

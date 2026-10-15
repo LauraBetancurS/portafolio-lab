@@ -6,6 +6,7 @@ import Timeline from "@/components/resume/Timeline";
 import {
   RESUME_PDF_URL, INTRO, EXPERIENCE, EDUCATION, CERTIFICATIONS, RECOGNITION, SKILLS, LANGUAGES, OFF_SCREEN,
 } from "@/data/resume";
+import { T } from "@/i18n/lang";
 
 export const metadata = {
   title: "Resume — Lau Betancur",
@@ -26,12 +27,17 @@ function SimpleList({ items }) {
   return (
     <ul className="space-y-6">
       {items.map(item => (
-        <li key={item.title} className="grid gap-1 md:grid-cols-[150px_1fr] md:gap-8">
-          <p className="font-body pt-0.5 text-sm text-neutral-500">{item.period || item.year}</p>
+        <li key={item.title.en} className="grid gap-1 md:grid-cols-[150px_1fr] md:gap-8">
+          <p className="font-body pt-0.5 text-sm text-neutral-500"><T v={item.period || item.year} /></p>
           <div>
-            <p className="font-title text-xl text-neutral-900">{item.title}</p>
+            <p className="font-title text-xl text-neutral-900"><T v={item.title} /></p>
             {(item.place || item.detail) && (
-              <p className="font-body mt-0.5 text-neutral-600">{[item.place, item.detail].filter(Boolean).join(". ")}</p>
+              <p className="font-body mt-0.5 text-neutral-600">
+                <T
+                  en={[item.place?.en, item.detail?.en].filter(Boolean).join(". ")}
+                  es={[item.place?.es, item.detail?.es].filter(Boolean).join(". ")}
+                />
+              </p>
             )}
           </div>
         </li>
@@ -48,7 +54,7 @@ export default function ResumePage() {
         <header className="mb-14 flex flex-col gap-8 px-2 md:flex-row md:items-end md:justify-between">
           <div className="relative">
             <h1 className="font-title text-[clamp(3.5rem,11vw,9rem)] leading-[0.9] tracking-tight text-neutral-900">
-              Resume
+              <T en="Resume" es="Hoja de vida" />
             </h1>
             <Scribble variant="sparkle" color="#C9DB4B" strokeWidth={3} className="absolute -right-12 -top-4 h-12 w-12" />
           </div>
@@ -59,7 +65,7 @@ export default function ResumePage() {
               rel="noopener noreferrer"
               className="press font-nav group inline-flex items-center gap-3 self-start rounded-full bg-black px-7 py-3 text-lg text-white hover:-translate-y-0.5 md:self-auto"
             >
-              Download CV
+              <T en="Download CV" es="Descargar CV" />
               <span className="transition-transform duration-200 group-hover:translate-y-0.5">↓</span>
             </a>
           )}
@@ -73,39 +79,39 @@ export default function ResumePage() {
             className="-right-3 top-24 hidden md:block"
             side="left"
             color="#C9DB4B"
-            text="Looking for an intern or a junior designer who codes? Let’s talk!"
+            text={<T en="Looking for an intern or a junior designer who codes? Let’s talk!" es="¿Buscas practicante o diseñadora junior que programe? ¡Hablemos!" />}
           />
 
-          <p className="font-body mb-12 max-w-[60ch] text-xl leading-relaxed text-neutral-700">{INTRO}</p>
+          <p className="font-body mb-12 max-w-[60ch] text-xl leading-relaxed text-neutral-700"><T v={INTRO} /></p>
 
-          <Block title="Experience">
+          <Block title={<T en="Experience" es="Experiencia" />}>
             <Timeline items={EXPERIENCE} />
           </Block>
 
-          <Block title="Education">
+          <Block title={<T en="Education" es="Educación" />}>
             <SimpleList items={EDUCATION} />
           </Block>
 
-          <Block title="Certifications">
+          <Block title={<T en="Certifications" es="Certificaciones" />}>
             <SimpleList items={CERTIFICATIONS} />
           </Block>
 
-          <Block title="Recognition">
+          <Block title={<T en="Recognition" es="Reconocimientos" />}>
             <SimpleList items={RECOGNITION} />
           </Block>
 
-          <Block title="Skills">
+          <Block title={<T en="Skills" es="Habilidades" />}>
             <div className="grid gap-8 sm:grid-cols-2">
               {SKILLS.map(group => (
-                <div key={group.group}>
-                  <p className="font-body text-sm text-neutral-500">{group.group}</p>
+                <div key={group.group.en}>
+                  <p className="font-body text-sm text-neutral-500"><T v={group.group} /></p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {group.items.map(skill => (
                       <li
-                        key={skill}
+                        key={skill.en || skill}
                         className="font-body rounded-full bg-neutral-100 px-3 py-1.5 text-[15px] text-neutral-800 transition-colors duration-200 hover:bg-[#F6C6E6]"
                       >
-                        {skill}
+                        <T v={skill} />
                       </li>
                     ))}
                   </ul>
@@ -114,13 +120,13 @@ export default function ResumePage() {
             </div>
           </Block>
 
-          <Block title="Languages">
-            <p className="font-body text-lg text-neutral-800">{LANGUAGES.join(", ")}</p>
+          <Block title={<T en="Languages" es="Idiomas" />}>
+            <p className="font-body text-lg text-neutral-800"><T v={LANGUAGES} /></p>
           </Block>
 
-          <Block title="Off screen">
+          <Block title={<T en="Off screen" es="Fuera de la pantalla" />}>
             <p className="font-body text-lg text-neutral-800">
-              {OFF_SCREEN} <span aria-hidden="true">🎭</span>
+              <T v={OFF_SCREEN} /> <span aria-hidden="true">🎭</span>
             </p>
           </Block>
         </Reveal>

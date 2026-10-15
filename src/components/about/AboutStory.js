@@ -11,6 +11,7 @@ import { TOOLS } from '@/data/tools';
 import ToolIcon from '@/components/mixed/ToolIcon';
 import ContactLink from '@/components/layout/ContactLink';
 import { playKeySound } from '@/lib/typingSound';
+import { useLang } from '@/i18n/lang';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -118,6 +119,7 @@ function Pic({ src, label, className = '', rotate = 0, float = 0, pos, photo = f
 }
 
 function Milestone({ m, index }) {
+  const { tr } = useLang();
   const up = index % 2 === 1; // alterna: texto abajo / arriba de la línea
   return (
     <div
@@ -133,9 +135,9 @@ function Milestone({ m, index }) {
           <span className="h-20 w-px bg-neutral-400" />
         </span>
       )}
-      <p className="font-title text-xl leading-snug text-neutral-900">{m.title}</p>
-      <p className="font-body mt-1.5 text-[15px] leading-relaxed text-neutral-600">{m.text}</p>
-      <p className="font-body mt-1.5 text-sm text-neutral-400">{m.year}</p>
+      <p className="font-title text-xl leading-snug text-neutral-900">{tr(m.title)}</p>
+      <p className="font-body mt-1.5 text-[15px] leading-relaxed text-neutral-600">{tr(m.text)}</p>
+      <p className="font-body mt-1.5 text-sm text-neutral-400">{tr(m.year)}</p>
       {up && (
         <span aria-hidden="true" className="mx-auto mt-3 hidden flex-col items-center md:flex">
           <span className="h-20 w-px bg-neutral-400" />
@@ -159,6 +161,7 @@ export default function AboutStory() {
   const pathRef = useRef(null);
   const tipRef = useRef(null);
   const scribbleRef = useRef(null);
+  const { t, tr } = useLang();
 
   useGSAP(
     () => {
@@ -243,7 +246,7 @@ export default function AboutStory() {
   );
 
   return (
-    <section ref={sectionRef} className="relative md:h-screen md:overflow-hidden" aria-label="The anatomy of a curious designer">
+    <section ref={sectionRef} className="relative md:h-screen md:overflow-hidden" aria-label={t('The anatomy of a curious designer', 'La anatomía de una diseñadora curiosa')}>
       <div ref={trackRef} className="relative px-6 pb-16 pt-16 md:h-screen md:w-[900vw] md:p-0 md:will-change-transform">
         {/* La línea (solo computador) */}
         <svg aria-hidden="true" className="pointer-events-none absolute inset-0 hidden h-full w-full md:block" viewBox={`0 0 ${W} 1000`} preserveAspectRatio="none">
@@ -260,33 +263,33 @@ export default function AboutStory() {
           </svg>
         </div>
         <p className={`font-hand mt-2 text-2xl leading-tight text-neutral-600 md:mt-0 md:w-[18vw] ${POS}`} style={at(700, 130)}>
-          ↙ an almost accurate map of everything on my mind.
+          {t('↙ an almost accurate map of everything on my mind.', '↙ un mapa casi exacto de todo lo que tengo en la cabeza.')}
         </p>
         <div className={`mt-10 md:mt-0 md:w-[44vw] ${POS}`} style={at(40, 640)}>
           <h2 className="font-title text-[clamp(2.8rem,5.6vw,6rem)] leading-[0.95] tracking-tight text-neutral-900">
-            the anatomy of a <em className="italic">curious designer.</em>
+            {t('the anatomy of a', 'la anatomía de una')} <em className="italic">{t('curious designer.', 'diseñadora curiosa.')}</em>
           </h2>
-          <p className="font-body mt-4 text-lg text-neutral-500">or should i say, welcome to my head :)</p>
+          <p className="font-body mt-4 text-lg text-neutral-500">{t('or should i say, welcome to my head :)', 'o mejor dicho, bienvenido a mi cabeza :)')}</p>
         </div>
         <p className={`font-hand hidden text-2xl text-neutral-700 md:block ${POS}`} style={at(720, 880)}>
-          keep scrolling → it goes sideways
+          {t('keep scrolling → it goes sideways', 'sigue bajando → esto va de lado')}
         </p>
 
         {/* 2 · Jack of all trades (cosas personales) */}
         <div className={`story-in mt-24 max-w-md md:mt-0 md:w-[32vw] md:max-w-none md:text-center ${POS}`} style={at(1340, 380)}>
-          <p className="font-body text-lg text-neutral-500">i tinker with a lot of stuff.</p>
-          <h2 className={`${H2} mt-2`}>a jack of all trades</h2>
-          <p className={SUB}>a fancy way to say i fall down rabbit holes.</p>
+          <p className="font-body text-lg text-neutral-500">{t('i tinker with a lot of stuff.', 'le meto mano a muchas cosas.')}</p>
+          <h2 className={`${H2} mt-2`}>{t('a jack of all trades', 'una todera')}</h2>
+          <p className={SUB}>{t('a fancy way to say i fall down rabbit holes.', 'una forma elegante de decir que me pierdo en cualquier rabbit hole.')}</p>
         </div>
         <div className="mt-8 grid grid-cols-2 gap-4 md:contents">
-          <Pic src={STORY_IMAGES.games} label="img: indie games (Life is Strange?)" className={`story-in h-40 md:h-[22vh] md:w-[12vw] ${POS}`} rotate={-6} float={0.2} pos={at(1100, 120)} />
-          <Pic src={STORY_IMAGES.books} label="img: Camus & Pessoa" className={`story-in h-40 md:h-[22vh] md:w-[11vw] ${POS}`} rotate={5} float={1.1} pos={at(1720, 110)} />
-          <Pic src={STORY_IMAGES.cinema} label="img: Latin American cinema" className={`story-in h-40 md:h-[20vh] md:w-[12vw] ${POS}`} rotate={4} float={0.7} pos={at(1060, 690)} />
-          <Pic src={STORY_IMAGES.dinosaur} label="img: a dinosaur, obviously" className={`story-in h-40 md:h-[20vh] md:w-[11vw] ${POS}`} rotate={-4} float={1.6} pos={at(1760, 680)} />
+          <Pic src={STORY_IMAGES.games} label={t('img: indie games (Life is Strange?)', 'img: juegos indie (¿Life is Strange?)')} className={`story-in h-40 md:h-[22vh] md:w-[12vw] ${POS}`} rotate={-6} float={0.2} pos={at(1100, 120)} />
+          <Pic src={STORY_IMAGES.books} label={t('img: Camus & Pessoa', 'img: Camus y Pessoa')} className={`story-in h-40 md:h-[22vh] md:w-[11vw] ${POS}`} rotate={5} float={1.1} pos={at(1720, 110)} />
+          <Pic src={STORY_IMAGES.cinema} label={t('img: Latin American cinema', 'img: cine latinoamericano')} className={`story-in h-40 md:h-[20vh] md:w-[12vw] ${POS}`} rotate={4} float={0.7} pos={at(1060, 690)} />
+          <Pic src={STORY_IMAGES.dinosaur} label={t('img: a dinosaur, obviously', 'img: un dinosaurio, obvio')} className={`story-in h-40 md:h-[20vh] md:w-[11vw] ${POS}`} rotate={-4} float={1.6} pos={at(1760, 680)} />
         </div>
         {/* Teclado: al pasar el mouse se hunde un poquito, al hacer clic suena "clack" */}
         <div className={`story-in story-float mx-auto mt-6 h-40 w-full max-w-xs md:mx-0 md:mt-0 md:h-[22vh] md:w-[20vw] md:max-w-none ${POS}`} style={{ ...at(1390, 705), '--float-delay': '0.9s', rotate: '-4deg' }}>
-          <button type="button" onClick={() => playKeySound(0.9 + Math.random() * 0.3)} aria-label="my keyboard, press it" className="keycap block h-full w-full cursor-pointer">
+          <button type="button" onClick={() => playKeySound(0.9 + Math.random() * 0.3)} aria-label={t('my keyboard, press it', 'mi teclado, presiónalo')} className="keycap block h-full w-full cursor-pointer">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={STORY_IMAGES.keyboard} alt="" draggable={false} loading="lazy" className="h-full w-full object-contain" />
           </button>
@@ -294,72 +297,72 @@ export default function AboutStory() {
 
         {/* 3 · Teatro y canto */}
         <div className={`story-in mt-24 max-w-md md:mt-0 md:w-[24vw] md:max-w-none ${POS}`} style={at(2720, 110)}>
-          <h2 className={H2}>but a few things have my heart.</h2>
-          <p className={SUB}>musical theater at Icesi, and a lot of vocal practice.</p>
-          <p className="font-body mt-2 text-lg text-neutral-500">speaks spanish, english (C1) and javascript.</p>
+          <h2 className={H2}>{t('but a few things have my heart.', 'pero hay cosas que tienen mi corazón.')}</h2>
+          <p className={SUB}>{t('musical theater at Icesi, and a lot of vocal practice.', 'teatro musical en Icesi, y mucha práctica vocal.')}</p>
+          <p className="font-body mt-2 text-lg text-neutral-500">{t('speaks spanish, english (C1) and javascript.', 'habla español, inglés (C1) y javascript.')}</p>
         </div>
-        <Pic src={MICROPHONE_URL} label="microphone" className={`story-in mt-8 h-36 w-36 md:mt-0 md:h-[22vh] md:w-[10vw] ${POS}`} rotate={20} float={0.5} pos={at(2230, 290)} />
-        <Pic src={STORY_IMAGES.stage} photo label="Lau singing" className={`story-in mt-6 h-72 w-56 md:mt-0 md:h-[38vh] md:w-[14vw] ${POS}`} rotate={-5} float={1.3} pos={at(2440, 545)} />
+        <Pic src={MICROPHONE_URL} label={t('microphone', 'micrófono')} className={`story-in mt-8 h-36 w-36 md:mt-0 md:h-[22vh] md:w-[10vw] ${POS}`} rotate={20} float={0.5} pos={at(2230, 290)} />
+        <Pic src={STORY_IMAGES.stage} photo label={t('Lau singing', 'Lau cantando')} className={`story-in mt-6 h-72 w-56 md:mt-0 md:h-[38vh] md:w-[14vw] ${POS}`} rotate={-5} float={1.3} pos={at(2440, 545)} />
         <p className={`story-in font-hand mt-6 text-2xl text-neutral-700 md:mt-0 ${POS}`} style={at(2760, 560)}>
-          also known as “rabbit” 🐰
+          {t('also known as “rabbit”', 'también conocida como “rabbit”')} 🐰
         </p>
 
         {/* 4 · La ficción */}
-        <Pic src={STORY_IMAGES.fiction} label="img: anime, fanfics & visual novels" className={`story-in mt-24 h-48 md:mt-0 md:h-[24vh] md:w-[12vw] ${POS}`} rotate={-4} float={0.9} pos={at(3020, 560)} />
+        <Pic src={STORY_IMAGES.fiction} label={t('img: anime, fanfics & visual novels', 'img: anime, fanfics y novelas visuales')} className={`story-in mt-24 h-48 md:mt-0 md:h-[24vh] md:w-[12vw] ${POS}`} rotate={-4} float={0.9} pos={at(3020, 560)} />
         <div className={`story-in mt-8 max-w-md md:mt-0 md:w-[20vw] ${POS}`} style={at(3170, 600)}>
-          <h3 className="font-title text-[clamp(2rem,3vw,3rem)] leading-[1.05] tracking-tight text-neutral-900">fiction came first.</h3>
-          <p className={SUB}>stories raised me. Deku still reminds me not to give up.</p>
+          <h3 className="font-title text-[clamp(2rem,3vw,3rem)] leading-[1.05] tracking-tight text-neutral-900">{t('fiction came first.', 'primero fue la ficción.')}</h3>
+          <p className={SUB}>{t('stories raised me. Deku still reminds me not to give up.', 'las historias me criaron. Deku todavía me recuerda no rendirme.')}</p>
         </div>
 
         {/* ── LO PROFESIONAL ──────────────────────────── */}
 
         {/* 5 · La gente */}
-        <Pic src={STORY_IMAGES.research} label="img: sticky notes from interviews" className={`story-in mt-24 h-48 md:mt-0 md:h-[24vh] md:w-[12vw] ${POS}`} rotate={5} float={0.4} pos={at(3480, 90)} />
+        <Pic src={STORY_IMAGES.research} label={t('img: sticky notes from interviews', 'img: sticky notes de entrevistas')} className={`story-in mt-24 h-48 md:mt-0 md:h-[24vh] md:w-[12vw] ${POS}`} rotate={5} float={0.4} pos={at(3480, 90)} />
         <div className={`story-in mt-8 max-w-md md:mt-0 md:w-[22vw] ${POS}`} style={at(3660, 130)}>
-          <h3 className="font-title text-[clamp(2rem,3vw,3rem)] leading-[1.05] tracking-tight text-neutral-900">turns out, i like people too.</h3>
-          <p className={SUB}>i’m a computer-to-human translator:</p>
+          <h3 className="font-title text-[clamp(2rem,3vw,3rem)] leading-[1.05] tracking-tight text-neutral-900">{t('turns out, i like people too.', 'resulta que también me gusta la gente.')}</h3>
+          <p className={SUB}>{t('i’m a computer-to-human translator:', 'soy traductora de computador a humano:')}</p>
           <ul className="mt-4 space-y-2">
-            {STORY_TRANSLATIONS.map(t => (
-              <li key={t.computer} className="font-body rounded-xl bg-white px-3 py-2 text-[14px] leading-snug ring-1 ring-black/10">
-                <span className="block font-mono text-[13px] text-neutral-400 line-through decoration-[#E8603C]">{t.computer}</span>
-                <span className="text-neutral-900">→ {t.human}</span>
+            {STORY_TRANSLATIONS.map(line => (
+              <li key={line.computer} className="font-body rounded-xl bg-white px-3 py-2 text-[14px] leading-snug ring-1 ring-black/10">
+                <span className="block font-mono text-[13px] text-neutral-400 line-through decoration-[#E8603C]">{line.computer}</span>
+                <span className="text-neutral-900">→ {tr(line.human)}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {/* 6 · IA */}
-        <Pic src={STORY_IMAGES.ai} label="a brain made of circuits, for AI" className={`story-in mt-24 h-48 w-48 md:mt-0 md:h-[26vh] md:w-[13vw] ${POS}`} rotate={-3} float={0.3} pos={at(4180, 470)} />
+        <Pic src={STORY_IMAGES.ai} label={t('a brain made of circuits, for AI', 'un cerebro de circuitos, por la IA')} className={`story-in mt-24 h-48 w-48 md:mt-0 md:h-[26vh] md:w-[13vw] ${POS}`} rotate={-3} float={0.3} pos={at(4180, 470)} />
         <div className={`story-in mt-8 max-w-md md:mt-0 md:w-[22vw] ${POS}`} style={at(4520, 180)}>
-          <h2 className={H2}>and now, AI.</h2>
-          <p className={SUB}>half designer. half “what if?”</p>
+          <h2 className={H2}>{t('and now, AI.', 'y ahora, IA.')}</h2>
+          <p className={SUB}>{t('half designer. half “what if?”', 'mitad diseñadora. mitad “¿y si…?”')}</p>
           <div className="mt-5 inline-flex items-center gap-3 rounded-2xl bg-white px-4 py-3 ring-1 ring-black/10">
             <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-[#C9DB4B]" />
             <span className="font-body text-[15px] text-neutral-800">AWS Certified AI Practitioner · 2026</span>
           </div>
         </div>
-        <Pic src={STORY_IMAGES.aws} label="img: AWS badge" className={`story-in hidden md:block md:h-[16vh] md:w-[9vw] ${POS}`} rotate={7} float={1.1} pos={at(4780, 700)} />
+        <Pic src={STORY_IMAGES.aws} label={t('img: AWS badge', 'img: insignia de AWS')} className={`story-in hidden md:block md:h-[16vh] md:w-[9vw] ${POS}`} rotate={7} float={1.1} pos={at(4780, 700)} />
 
         {/* 7 · Línea de tiempo */}
-        <Pic src={STORY_IMAGES.honorRoll} photo label="Lau on the honor roll" className={`story-in mt-24 h-64 w-52 md:mt-0 md:h-[29vh] md:w-[12vw] ${POS}`} rotate={4} float={0.8} pos={at(5040, 125)} />
+        <Pic src={STORY_IMAGES.honorRoll} photo label={t('Lau on the honor roll', 'Lau en el cuadro de honor')} className={`story-in mt-24 h-64 w-52 md:mt-0 md:h-[29vh] md:w-[12vw] ${POS}`} rotate={4} float={0.8} pos={at(5040, 125)} />
         <div className="mt-12 md:mt-0">
           {STORY_MILESTONES.map((m, i) => (
             <Milestone key={i} m={m} index={i} />
           ))}
         </div>
         <p className={`story-in font-title mt-6 text-[clamp(2rem,3.8vw,4rem)] leading-[1.05] tracking-tight md:mt-0 md:whitespace-nowrap ${POS}`} style={at(5250, 840)}>
-          somehow, <span className="text-neutral-400">i keep ending up…</span>
+          {t('somehow,', 'de alguna forma,')} <span className="text-neutral-400">{t('i keep ending up…', 'siempre termino…')}</span>
         </p>
         <p className={`story-in font-title text-[clamp(2rem,3.8vw,4rem)] leading-[1.05] tracking-tight md:whitespace-nowrap ${POS}`} style={at(6250, 840)}>
-          <span className="text-neutral-400">leading the</span> research.
+          <span className="text-neutral-400">{t('leading the', 'liderando la')}</span> {t('research.', 'investigación.')}
         </p>
 
         {/* 8 · Herramientas */}
         <div className={`story-in mt-24 max-w-lg md:mt-0 md:w-[34vw] ${POS}`} style={at(7080, 90)}>
           <h2 className={H2}>
-            apparently, <span className="text-neutral-400">i don’t know how to leave things alone.</span>
+            {t('apparently,', 'al parecer,')} <span className="text-neutral-400">{t('i don’t know how to leave things alone.', 'no sé dejar las cosas quietas.')}</span>
           </h2>
-          <p className={SUB}>so i learned the tools to build them myself.</p>
+          <p className={SUB}>{t('so i learned the tools to build them myself.', 'así que aprendí las herramientas para construirlas yo misma.')}</p>
         </div>
         <ul className="mt-8 flex flex-wrap gap-2 md:contents">
           {FLOAT_TOOLS.map((name, i) => {
@@ -382,23 +385,23 @@ export default function AboutStory() {
         {/* 9 · Proceso + cierre */}
         <div className="hidden md:block">
           {[
-            ['notice it.', 8210, 175],
-            ['understand it.', 8450, 420],
-            ['build it.', 8040, 470],
-          ].map(([t, x, y]) => (
-            <p key={t} className={`story-in font-body text-lg text-neutral-800 ${POS}`} style={at(x, y)}>{t}</p>
+            [t('notice it.', 'notarlo.'), 8210, 175],
+            [t('understand it.', 'entenderlo.'), 8450, 420],
+            [t('build it.', 'construirlo.'), 8040, 470],
+          ].map(([text, x, y]) => (
+            <p key={x} className={`story-in font-body text-lg text-neutral-800 ${POS}`} style={at(x, y)}>{text}</p>
           ))}
-          <p className={`story-in font-title text-3xl italic text-neutral-900 ${POS}`} style={at(8210, 360)}>repeat.</p>
+          <p className={`story-in font-title text-3xl italic text-neutral-900 ${POS}`} style={at(8210, 360)}>{t('repeat.', 'repetir.')}</p>
         </div>
         <div className={`story-in mt-24 max-w-lg md:mt-0 md:w-[28vw] ${POS}`} style={at(8640, 230)}>
-          <p className="font-body text-lg text-neutral-500">enough autobiography.</p>
-          <h2 className={`${H2} mt-2`}>let’s look at what came out of it.</h2>
+          <p className="font-body text-lg text-neutral-500">{t('enough autobiography.', 'suficiente autobiografía.')}</p>
+          <h2 className={`${H2} mt-2`}>{t('let’s look at what came out of it.', 'veamos lo que salió de todo esto.')}</h2>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link href="/work" className="press font-nav inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-lg text-white hover:bg-neutral-800">
-              see the work →
+              {t('see the work →', 'ver los proyectos →')}
             </Link>
             <ContactLink className="press font-nav inline-flex items-center gap-2 rounded-full px-6 py-3 text-lg text-neutral-900 ring-1 ring-black/20 hover:bg-white">
-              let’s talk
+              {t('let’s talk', 'hablemos')}
             </ContactLink>
           </div>
         </div>

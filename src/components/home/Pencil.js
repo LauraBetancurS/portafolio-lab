@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { PENCIL_1_URL, PENCIL_2_URL } from '@/lib/assets';
 import { playPencilSound } from '@/lib/pencilSound';
+import { useLang } from '@/i18n/lang';
 
 // Lápiz: al hacer clic cambia entre la versión 1 y la 2, con sonido de lápiz.
 export default function Pencil({ className = '' }) {
   const [active, setActive] = useState(false);
   const [wiggle, setWiggle] = useState(0);
+  const { t } = useLang();
 
   const handleClick = () => {
     setActive(a => !a);
@@ -18,7 +20,7 @@ export default function Pencil({ className = '' }) {
   return (
     <button
       type="button"
-      aria-label="Pencil (click to switch)"
+      aria-label={t('Pencil (click to switch)', 'Lápiz (clic para cambiarlo)')}
       aria-pressed={active}
       onClick={handleClick}
       className={`relative block cursor-pointer ${className}`}

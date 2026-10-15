@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FigmaCursor from "@/components/layout/FigmaCursor";
 import { LOGO_URL } from "@/lib/assets";
+import { LangSync, T } from "@/i18n/lang";
 
 // Letra a mano Minoel: notas y anotaciones (font-hand), fuente por defecto y etiquetas
 const minoel = localFont({
@@ -55,8 +56,9 @@ export default function RootLayout({ children }) {
           href="#content"
           className="font-body sr-only z-[100] rounded-full bg-black px-5 py-3 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
-          Skip to content
+          <T en="Skip to content" es="Saltar al contenido" />
         </a>
+        <LangSync />
         <Navbar />
         <div id="content" tabIndex={-1} className="flex-1 outline-none">{children}</div>
         <Footer />

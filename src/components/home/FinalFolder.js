@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useLang } from '@/i18n/lang';
 
 // El Folder calcula sus colores con <canvas>, que solo existe en el navegador.
 // Por eso se carga solo del lado del cliente (evita diferencias servidor/navegador).
@@ -11,19 +12,19 @@ const Folder = dynamic(() => import('@/components/ui/Folder/Folder'), {
 });
 
 // Archivos que salen de la carpeta al hacer hover
-const FILES = [
-  { title: 'UX Research' },
-  { title: 'UI Design' },
-  { title: 'AI Product' },
-];
+const FILES = {
+  en: [{ title: 'UX Research' }, { title: 'UI Design' }, { title: 'AI Product' }],
+  es: [{ title: 'Investigación UX' }, { title: 'Diseño UI' }, { title: 'Producto IA' }],
+};
 
 // Carpeta azul estilo macOS con el nombre "Final_Final_Final" debajo.
 // Cerrada por defecto; se abre al pasar el mouse.
 export default function FinalFolder({ size = 0.48, className = '' }) {
+  const { lang } = useLang();
   return (
     <div className={`flex -rotate-[8deg] flex-col items-center ${className}`}>
       <Folder
-        items={FILES}
+        items={FILES[lang]}
         color="#5AB4F6"
         paperColor="#ffffff"
         theme="light"

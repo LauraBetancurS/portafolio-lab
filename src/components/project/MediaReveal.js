@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useLang } from '@/i18n/lang';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -13,6 +14,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 // zoomIndex: si se pasa, la imagen se puede abrir en grande (ver Lightbox)
 export default function MediaReveal({ item, priority = false, className = '', frameClass = '', zoomIndex }) {
   const ref = useRef(null);
+  const { t } = useLang();
+  const alt = t(item.alt, item.alt_es) || '';
 
   useGSAP(
     () => {
@@ -48,20 +51,20 @@ export default function MediaReveal({ item, priority = false, className = '', fr
             muted
             loop
             playsInline
-            aria-label={item.alt || undefined}
+            aria-label={alt || undefined}
             className={frameClass ? 'block h-full w-full object-cover' : 'block h-auto max-h-[88vh] w-full object-contain'}
           />
         ) : zoomIndex !== undefined ? (
           <button
             type="button"
             data-lightbox-index={zoomIndex}
-            aria-label={`Open image${item.alt ? `: ${item.alt}` : ''}`}
+            aria-label={t('Open image', 'Abrir imagen') + (alt ? `: ${alt}` : '')}
             className={`group/zoom relative block w-full cursor-zoom-in ${frameClass ? 'h-full' : ''}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={item.url}
-              alt={item.alt || ''}
+              alt={alt}
               loading={priority ? 'eager' : 'lazy'}
               className={frameClass ? 'block h-full w-full object-cover' : 'block h-auto max-h-[88vh] w-full object-contain'}
             />
@@ -73,21 +76,21 @@ export default function MediaReveal({ item, priority = false, className = '', fr
                 <circle cx="11" cy="11" r="7" />
                 <path d="M20 20l-3.5-3.5M11 8v6M8 11h6" />
               </svg>
-              View
+              {t('View', 'Ver')}
             </span>
           </button>
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={item.url}
-            alt={item.alt || ''}
+            alt={alt}
             loading={priority ? 'eager' : 'lazy'}
             className={frameClass ? 'block h-full w-full object-cover' : 'block h-auto max-h-[88vh] w-full object-contain'}
           />
         )}
       </div>
       {item.caption && (
-        <figcaption className="font-body mt-3 text-sm text-neutral-500">{item.caption}</figcaption>
+        <figcaption className="font-body mt-3 text-sm text-neutral-500">{t(item.caption, item.caption_es)}</figcaption>
       )}
     </figure>
   );

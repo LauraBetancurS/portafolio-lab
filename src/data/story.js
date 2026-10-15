@@ -1,5 +1,5 @@
 // ─── Historia horizontal de la página About ─────────────────
-// Va de lo personal a lo profesional. Edita aquí los textos.
+// Va de lo personal a lo profesional. Edita aquí los textos (en = inglés, es = español).
 
 // Imágenes: pega la URL (Supabase) cuando las tengas.
 // Mientras sean null, se muestra un recuadro punteado con la descripción.
@@ -22,16 +22,64 @@ export const STORY_IMAGES = {
 
 // Hitos de la línea (de lo más antiguo a lo más reciente)
 export const STORY_MILESTONES = [
-  { year: '2023', title: 'said yes to interactive media.', text: 'started at Icesi with an ICFES excellence scholarship. honor roll four times since.' },
-  { year: '2024', title: 'started making things for real.', text: 'social media TA for my program: graphics, print pieces and video.' },
-  { year: '2025', title: 'taught the teachers.', text: 'videos, graphics and an interactive timeline about accreditation.' },
-  { year: '2026', title: 'led my first research team.', text: 'UX research lead & PM for Ruta Solar, with Gases de Occidente.' },
-  { year: '2026', title: 'went freelance.', text: 'a website and a WhatsApp chatbot for Corrosión y Protección.' },
-  { year: '2026 — now', title: 'joined InnLab.', text: 'foresight & future scenarios with real clients like ACH.' },
+  {
+    year: { en: '2023', es: '2023' },
+    title: { en: 'said yes to interactive media.', es: 'le dije que sí a medios interactivos.' },
+    text: {
+      en: 'started at Icesi with an ICFES excellence scholarship. honor roll four times since.',
+      es: 'entré a Icesi con la beca de excelencia del ICFES. cuadro de honor cuatro veces desde entonces.',
+    },
+  },
+  {
+    year: { en: '2024', es: '2024' },
+    title: { en: 'started making things for real.', es: 'empecé a hacer cosas de verdad.' },
+    text: {
+      en: 'social media TA for my program: graphics, print pieces and video.',
+      es: 'monitora de redes de mi programa: piezas gráficas, impresos y video.',
+    },
+  },
+  {
+    year: { en: '2025', es: '2025' },
+    title: { en: 'taught the teachers.', es: 'les enseñé a los profes.' },
+    text: {
+      en: 'videos, graphics and an interactive timeline about accreditation.',
+      es: 'videos, piezas gráficas y una línea de tiempo interactiva sobre acreditación.',
+    },
+  },
+  {
+    year: { en: '2026', es: '2026' },
+    title: { en: 'led my first research team.', es: 'lideré mi primer equipo de investigación.' },
+    text: {
+      en: 'UX research lead & PM for Ruta Solar, with Gases de Occidente.',
+      es: 'líder de investigación UX y PM de Ruta Solar, con Gases de Occidente.',
+    },
+  },
+  {
+    year: { en: '2026', es: '2026' },
+    title: { en: 'went freelance.', es: 'me lancé como freelance.' },
+    text: {
+      en: 'a website and a WhatsApp chatbot for Corrosión y Protección.',
+      es: 'un sitio web y un chatbot de WhatsApp para Corrosión y Protección.',
+    },
+  },
+  {
+    year: { en: '2026 — now', es: '2026 — hoy' },
+    title: { en: 'joined InnLab.', es: 'llegué a InnLab.' },
+    text: {
+      en: 'foresight & future scenarios with real clients like ACH.',
+      es: 'foresight y escenarios de futuro con clientes reales como ACH.',
+    },
+  },
 ];
 
 // "computer → human": lo que hago, en broma (sale en "turns out, i like people too")
 export const STORY_TRANSLATIONS = [
-  { computer: 'Error: user_flow.step3 is undefined', human: 'people get lost on step three.' },
-  { computer: 'Bounce rate: 78% on /checkout', human: 'the checkout feels scary.' },
+  {
+    computer: 'Error: user_flow.step3 is undefined',
+    human: { en: 'people get lost on step three.', es: 'la gente se pierde en el paso tres.' },
+  },
+  {
+    computer: 'Bounce rate: 78% on /checkout',
+    human: { en: 'the checkout feels scary.', es: 'el pago da miedo.' },
+  },
 ];

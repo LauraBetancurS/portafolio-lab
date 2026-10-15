@@ -5,18 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LOGO_URL } from "@/lib/assets";
 import ContactLink from "./ContactLink";
+import { useLang } from "@/i18n/lang";
 
 // "/#..." lleva a la sección del inicio desde cualquier página
 const LINKS = [
-  { label: "Work", href: "/work" },
-  { label: "About", href: "/about" },
-  { label: "Resume", href: "/resume" },
+  { label: "Work", es: "Proyectos", href: "/work" },
+  { label: "About", es: "Sobre mí", href: "/about" },
+  { label: "Resume", es: "Hoja de vida", href: "/resume" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoFailed, setLogoFailed] = useState(false);
+  const { t } = useLang();
   const logoRef = useRef(null);
 
   // Si la imagen falló antes de que React cargara, onError no se dispara:
@@ -47,7 +49,7 @@ export default function Navbar() {
     >
       <nav className="font-nav flex items-center justify-between px-6 py-4 md:px-12">
         {/* Logo */}
-        <Link href="/" aria-label="Home" className="flex items-center">
+        <Link href="/" aria-label={t("Home", "Inicio")} className="flex items-center">
           {logoFailed ? (
             <span className="text-xl font-bold tracking-tight">LAB</span>
           ) : (
@@ -55,7 +57,7 @@ export default function Navbar() {
             <img
               ref={logoRef}
               src={LOGO_URL}
-              alt="Laura Betancur logo"
+              alt={t("Laura Betancur logo", "Logo de Laura Betancur")}
               className={`h-10 w-auto transition duration-300 ${dark ? "invert" : ""}`}
               onError={() => setLogoFailed(true)}
             />
@@ -71,17 +73,20 @@ export default function Navbar() {
               aria-current={isCurrent(link.href) ? "page" : undefined}
               className={`text-2xl lg:text-3xl tracking-tight transition-opacity hover:opacity-60 ${isCurrent(link.href) ? "nav-current" : ""}`}
             >
-              {link.label}
+              {t(link.label, link.es)}
             </Link>
           ))}
+          <LangToggle dark={dark} />
           <ContactButton dark={dark} />
         </div>
 
-        {/* Botón menú (móvil) */}
+        {/* Idioma + botón menú (móvil) */}
+        <div className="flex items-center gap-3 md:hidden">
+        <LangToggle dark={dark} />
         <button
           type="button"
-          className="md:hidden p-2"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="p-2"
+          aria-label={menuOpen ? t("Close menu", "Cerrar menú") : t("Open menu", "Abrir menú")}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -89,6 +94,7 @@ export default function Navbar() {
           <span className={`my-1.5 block h-0.5 w-6 bg-current transition ${menuOpen ? "opacity-0" : ""}`} />
           <span className={`block h-0.5 w-6 bg-current transition ${menuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
         </button>
+        </div>
       </nav>
 
       {/* Menú desplegable (móvil) */}
@@ -102,7 +108,7 @@ export default function Navbar() {
               aria-current={isCurrent(link.href) ? "page" : undefined}
               className={`text-3xl tracking-tight ${isCurrent(link.href) ? "nav-current" : ""}`}
             >
-              {link.label}
+              {t(link.label, link.es)}
             </Link>
           ))}
           <ContactButton dark onClick={() => setMenuOpen(false)} />
@@ -112,7 +118,49 @@ export default function Navbar() {
   );
 }
 
+// Botón EN / ES: cambia el idioma de todo el sitio (inglés por defecto)
+function LangToggle({ dark }) {
+  const { lang, setLang, t } = useLang();
+  const options = [
+    ["en", "EN", "English"],
+    ["es", "ES", "Español"],
+  ];
+  return (
+    <div
+      role="group"
+      aria-label={t("Language", "Idioma")}
+      className={`font-body relative flex items-center rounded-full p-1 text-sm font-semibold ring-1 transition-colors ${
+        dark ? "ring-white/30" : "ring-black/20"
+      }`}
+    >
+      {/* Fondo que se desliza al idioma elegido */}
+      <span
+        aria-hidden="true"
+        className={`absolute bottom-1 left-1 top-1 w-[calc(50%-4px)] rounded-full transition-transform duration-300 ease-[var(--ease-out)] ${
+          dark ? "bg-white" : "bg-black"
+        } ${lang === "es" ? "translate-x-full" : ""}`}
+      />
+      {options.map(([code, short, name]) => (
+        <button
+          key={code}
+          type="button"
+          lang={code}
+          aria-label={name}
+          aria-pressed={lang === code}
+          onClick={() => setLang(code)}
+          className={`relative z-10 w-10 rounded-full py-1 transition-colors duration-300 ${
+            lang === code ? (dark ? "text-black" : "text-white") : "opacity-70 hover:opacity-100"
+          }`}
+        >
+          {short}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function ContactButton({ dark, onClick }) {
+  const { t } = useLang();
   return (
     <ContactLink
       onClick={onClick}
@@ -120,7 +168,7 @@ function ContactButton({ dark, onClick }) {
         dark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"
       }`}
     >
-      Contact me
+      {t("Contact me", "Escríbeme")}
     </ContactLink>
   );
 }

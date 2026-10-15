@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import SplitText from '@/components/ui/SplitText';
 import { FLOWER_DIVIDER_URL } from '@/lib/assets';
+import { useLang } from '@/i18n/lang';
 
 // Tiempos de la animación (en segundos)
 const LETTER_STAGGER = 40;   // ms entre letra y letra
@@ -15,11 +16,15 @@ const FLOWER_SPIN_TIME = 40; // segundos que gira antes de detenerse
 const TAGLINE_START = 2.0;   // cuándo aparece la frase de abajo
 
 // Frase corta debajo del subtítulo. Cámbiala aquí.
-const TAGLINE = 'I turn complex problems into digital products people actually enjoy using.';
+const TAGLINE = {
+  en: 'I turn complex problems into digital products people actually enjoy using.',
+  es: 'Convierto problemas complejos en productos digitales que la gente de verdad disfruta usar.',
+};
 
 export default function HeroTitle() {
   const flowerRef = useRef(null);
   const taglineRef = useRef(null);
+  const { lang, t, tr } = useLang();
 
   // La flor aparece girando y crece con un pequeño rebote,
   // gira despacio y al final frena suavemente hasta quedar quieta.
@@ -55,10 +60,13 @@ export default function HeroTitle() {
 
   return (
     <div className="flex flex-col items-center gap-2 text-center">
+      {/* key={lang}: al cambiar de idioma la frase se vuelve a escribir letra por letra */}
       <SplitText
+        key={`title-${lang}`}
         tag="h1"
-        text="hi, I’m Laura Betancur"
-        className="font-title text-5xl font-normal md:text-7xl"
+        text={t('hi, I’m Laura Betancur', 'hola, soy Laura Betancur')}
+        // en español la frase es más larga: un poquito más pequeña para que no choque con los stickers
+        className={`font-title text-5xl font-normal ${lang === 'es' ? 'md:text-[4.1rem]' : 'md:text-7xl'}`}
         delay={LETTER_STAGGER}
         duration={LETTER_DURATION}
         ease="power3.out"
@@ -71,8 +79,9 @@ export default function HeroTitle() {
 
       <div className="font-title flex flex-wrap items-center justify-center gap-x-4 text-2xl md:text-4xl">
         <SplitText
+          key={`role-${lang}`}
           tag="span"
-          text="Product designer"
+          text={t('Product designer', 'Diseñadora de producto')}
           delay={LETTER_STAGGER}
           duration={LETTER_DURATION}
           startDelay={SUBTITLE_START}
@@ -89,8 +98,9 @@ export default function HeroTitle() {
           className="h-[1.3em] w-auto opacity-0"
         />
         <SplitText
+          key={`dev-${lang}`}
           tag="span"
-          text="front-end dev"
+          text={t('front-end dev', 'dev front-end')}
           delay={LETTER_STAGGER}
           duration={LETTER_DURATION}
           startDelay={SUBTITLE_START + 0.6}
@@ -104,7 +114,7 @@ export default function HeroTitle() {
         ref={taglineRef}
         className="font-body mt-4 max-w-[66ch] text-balance text-base leading-relaxed text-neutral-600 opacity-0 md:text-lg"
       >
-        {TAGLINE}
+        {tr(TAGLINE)}
       </p>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import ProjectCard from '@/components/work/ProjectCard';
+import { useLang } from '@/i18n/lang';
 
 // ─── Ajustes ────────────────────────────────────────────────
 const SPEED = 45;        // px por segundo que avanza solo
@@ -14,6 +15,7 @@ const GAP = 20;          // px entre tarjetas
 // con el dedo / el trackpad). Clic en una tarjeta → página Work.
 export default function ProjectCarousel({ projects }) {
   const trackRef = useRef(null);
+  const { t } = useLang();
   const state = useRef({ x: 0, v: 0, speed: SPEED, hover: false, drag: null, moved: false });
 
   // Se repiten los proyectos para que la fila nunca se quede vacía
@@ -110,7 +112,7 @@ export default function ProjectCarousel({ projects }) {
       onClickCapture={onClickCapture}
       onWheel={onWheel}
       role="region"
-      aria-label="Selected projects"
+      aria-label={t('Selected projects', 'Proyectos destacados')}
     >
       <ul ref={trackRef} className="flex w-max will-change-transform" style={{ gap: GAP, paddingLeft: GAP }}>
         {loop.map((p, i) => (

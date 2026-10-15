@@ -79,6 +79,7 @@ function prepare(project, folderImages = []) {
     url,
     type: 'image',
     alt: `${project.title}, image ${i + 1}`,
+    alt_es: `${project.title}, imagen ${i + 1}`,
     layout: rest.length % 2 === 1 && i === 0 ? 'full' : 'half',
   }));
 

@@ -30,11 +30,11 @@ export const TOOLS = [
 
 // Cosas que sé hacer (salen como sticky notes de la carpeta del inicio)
 export const SKILLS = [
-  { text: 'UX research', color: '#F6C6E6' },
-  { text: 'UI design', color: '#CDE8F8' },
-  { text: 'prototyping', color: '#E4EDB0' },
-  { text: 'front-end dev', color: '#F8D98C' },
-  { text: 'AI automations', color: '#F9CDBF' },
-  { text: 'motion & video', color: '#CDE8F8' },
-  { text: 'project management', color: '#F6C6E6' },
+  { text: 'UX research', es: 'investigación UX', color: '#F6C6E6' },
+  { text: 'UI design', es: 'diseño UI', color: '#CDE8F8' },
+  { text: 'prototyping', es: 'prototipado', color: '#E4EDB0' },
+  { text: 'front-end dev', es: 'desarrollo front-end', color: '#F8D98C' },
+  { text: 'AI automations', es: 'automatizaciones con IA', color: '#F9CDBF' },
+  { text: 'motion & video', es: 'motion y video', color: '#CDE8F8' },
+  { text: 'project management', es: 'gestión de proyectos', color: '#F6C6E6' },
 ];

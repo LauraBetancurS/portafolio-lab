@@ -2,6 +2,7 @@ import { getProjects } from "@/lib/projects";
 import ProjectGrid from "@/components/work/ProjectGrid";
 import Scribble from "@/components/mixed/Scribble";
 import Reveal from "@/components/mixed/Reveal";
+import { T } from "@/i18n/lang";
 
 export const metadata = {
   title: "Work — Lau Betancur",
@@ -18,7 +19,7 @@ export default async function WorkPage() {
         {/* Encabezado */}
         <header className="relative">
           <h1 className="font-title inline-flex items-start text-[clamp(4rem,14vw,12rem)] leading-[0.85] tracking-tight text-neutral-900">
-            Work
+            <T en="Work" es="Proyectos" />
             <span className="font-body relative top-[0.5em] ml-4 text-[clamp(1rem,2vw,1.5rem)] font-medium tracking-normal text-neutral-500">
               ({count})
               <Scribble variant="circle" color="#E8603C" strokeWidth={2.5} className="absolute -inset-x-4 -inset-y-3 h-[calc(100%+1.5rem)] w-[calc(100%+2rem)]" delay={0.4} />
@@ -26,8 +27,10 @@ export default async function WorkPage() {
           </h1>
           <div className="mt-8 flex items-end gap-6">
             <Reveal as="p" delay={0.2} className="font-body max-w-[40ch] text-base font-medium uppercase leading-snug tracking-wide text-neutral-500 md:text-lg">
-              A collection of projects where research, design and code meet, each one born
-              from a real problem and a lot of sticky notes.
+              <T
+                en="A collection of projects where research, design and code meet, each one born from a real problem and a lot of sticky notes."
+                es="Una colección de proyectos donde se juntan la investigación, el diseño y el código, cada uno nacido de un problema real y de muchos sticky notes."
+              />
             </Reveal>
             <span aria-hidden="true" className="work-dot mb-1 h-4 w-4 shrink-0 rounded-full bg-[#F2A2DC] md:h-5 md:w-5" />
           </div>
@@ -41,12 +44,14 @@ export default async function WorkPage() {
         {/* Grilla */}
         {error ? (
           <p className="font-body rounded-2xl bg-white/70 p-8 text-center text-neutral-600">
-            Projects couldn’t load right now. Refresh the page to try again.
+            <T en="Projects couldn’t load right now. Refresh the page to try again." es="Los proyectos no cargaron. Recarga la página para intentarlo de nuevo." />
           </p>
         ) : projects.length === 0 ? (
           <p className="font-body rounded-2xl bg-white/70 p-8 text-center text-neutral-600">
-            No projects published yet. In Supabase, add a row to the projects table and set
-            published to true.
+            <T
+              en="No projects published yet. In Supabase, add a row to the projects table and set published to true."
+              es="Todavía no hay proyectos publicados. En Supabase, agrega una fila a la tabla projects y pon published en true."
+            />
           </p>
         ) : (
           <ProjectGrid projects={projects} />

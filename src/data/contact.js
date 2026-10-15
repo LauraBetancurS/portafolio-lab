@@ -4,19 +4,31 @@ const EMAIL = 'lau1betancur1@gmail.com';
 
 // Al hacer clic en el correo se abre la app de email con este asunto y mensaje
 // ya escritos (la persona solo tiene que completarlo y enviarlo).
-const EMAIL_SUBJECT = "Hi Lau! Let's work together";
-const EMAIL_BODY = `Hi Lau,
+// Va en el idioma que esté elegido en la página.
+const EMAIL_SUBJECT = { en: "Hi Lau! Let's work together", es: '¡Hola Lau! Trabajemos juntos' };
+const EMAIL_BODY = {
+  en: `Hi Lau,
 
 I just saw your portfolio and I'd love to talk about...
 
 Best,
-`;
+`,
+  es: `Hola Lau,
 
-const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+Acabo de ver tu portafolio y me encantaría hablar sobre...
+
+Saludos,
+`,
+};
+
+const mailtoFor = lang =>
+  `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT[lang])}&body=${encodeURIComponent(EMAIL_BODY[lang])}`;
+const mailto = { en: mailtoFor('en'), es: mailtoFor('es') };
 
 export const CONTACTS = [
   {
     label: 'Email',
+    name: { en: 'Email', es: 'Correo' },
     value: EMAIL,
     copy: EMAIL,
     href: mailto,

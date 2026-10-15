@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useLang } from '@/i18n/lang';
 
 // Colores de la paleta para proyectos que todavía no tienen imagen
 const PALETTE = ['#F6C6E6', '#CDE8F8', '#E4EDB0', '#F9CDBF', '#F8D98C'];
@@ -13,16 +16,19 @@ const PALETTE = ['#F6C6E6', '#CDE8F8', '#E4EDB0', '#F9CDBF', '#F8D98C'];
 //  - una ruta como '/work' → esa página
 //  - sin "to" → la página del proyecto (/work/slug)
 export default function ProjectCard({ project, index, compact = false, to }) {
+  const { t } = useLang();
   const hasImage = Boolean(project.cover);
   const color = project.card_color || PALETTE[index % PALETTE.length];
-  const kind = project.service || project.role || project.tags?.[0];
+  // Textos en español: columnas *_es de Supabase (si están vacías, va el inglés)
+  const kind =
+    t(project.service, project.service_es) || t(project.role, project.role_es) || t(project.tags, project.tags_es)?.[0];
   const meta = [project.year, kind].filter(Boolean);
   const ink = hasImage ? 'text-white' : 'text-neutral-900';
 
   const external = to === 'prototype' ? project.prototype_url || project.live_url : null;
   const href = external || (to && to !== 'prototype' ? to : `/work/${project.slug}`);
   const linkProps = external
-    ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${project.title}, open the prototype in a new tab` }
+    ? { target: '_blank', rel: 'noopener noreferrer', 'aria-label': t(`${project.title}, open the prototype in a new tab`, `${project.title}, abrir el prototipo en otra pestaña`) }
     : {};
 
   return (
@@ -74,7 +80,7 @@ export default function ProjectCard({ project, index, compact = false, to }) {
           <p className="font-body truncate text-[15px] opacity-80">{meta.join('  \\\\  ')}</p>
         )}
         <h2 className={`font-title mt-1.5 leading-[1] tracking-tight ${compact ? 'text-[clamp(1.6rem,2.4vw,2.1rem)]' : 'text-[clamp(2rem,3.4vw,3rem)]'}`}>
-          {project.title}
+          {t(project.title, project.title_es)}
         </h2>
       </div>
     </Link>

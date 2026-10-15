@@ -2,17 +2,19 @@
 
 import { useState } from 'react';
 import { NOTE_DRAWING_1_URL, NOTE_DRAWING_2_URL } from '@/lib/assets';
+import { useLang } from '@/i18n/lang';
 
 // Sticky note con el dibujo.
 // Versión 1 al cargar; al pasar el mouse cambia a la versión 2.
 // En celular (sin hover) cambia al tocarla.
 export default function NoteDrawing({ className = '' }) {
   const [tapped, setTapped] = useState(false);
+  const { t } = useLang();
 
   return (
     <button
       type="button"
-      aria-label="Drawing of Laura on a sticky note"
+      aria-label={t('Drawing of Laura on a sticky note', 'Dibujo de Laura en un sticky note')}
       onClick={() => setTapped(t => !t)}
       className={`group relative block cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-1 hover:rotate-1 ${className}`}
     >

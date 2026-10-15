@@ -1,9 +1,14 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLang } from '@/i18n/lang';
 
 // Palabras que van cambiando mientras el mouse está encima
-const WORDS = ['Create', 'Design', 'Solutions', 'Prototype', 'Research', 'Build'];
+const WORDS = {
+  en: ['Create', 'Design', 'Solutions', 'Prototype', 'Research', 'Build'],
+  es: ['Crear', 'Diseñar', 'Soluciones', 'Prototipar', 'Investigar', 'Construir'],
+};
+const COUNT = WORDS.en.length; // las dos listas tienen la misma cantidad
 const CYCLE_MS = 900; // cada cuánto cambia la palabra durante el hover
 
 // Texto con estilo de "selección de texto" de iOS:
@@ -14,11 +19,13 @@ export default function SelectionWord({ className = '' }) {
   const [hovering, setHovering] = useState(false);
   const boxRef = useRef(null);
   const textRef = useRef(null);
+  const { lang, t } = useLang();
+  const words = WORDS[lang];
 
   // Mientras hay hover: cambia de una vez y luego cada CYCLE_MS
   useEffect(() => {
     if (!hovering) return;
-    const next = () => setIndex(i => (i + 1) % WORDS.length);
+    const next = () => setIndex(i => (i + 1) % COUNT);
     const first = setTimeout(next, 120);
     const interval = setInterval(next, CYCLE_MS);
     return () => {
@@ -32,17 +39,17 @@ export default function SelectionWord({ className = '' }) {
     const box = boxRef.current;
     const text = textRef.current;
     if (box && text) box.style.width = `${text.offsetWidth}px`;
-  }, [index]);
+  }, [index, lang]);
 
-  const word = WORDS[index];
+  const word = words[index % COUNT];
 
   return (
     <button
       type="button"
-      aria-label={`${word}. Hover to see more words`}
+      aria-label={t(`${word}. Hover to see more words`, `${word}. Pasa el mouse para ver más palabras`)}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      onClick={() => setIndex(i => (i + 1) % WORDS.length)}
+      onClick={() => setIndex(i => (i + 1) % COUNT)}
       className={`relative inline-block cursor-default select-none ${className}`}
     >
       {/* Caja de selección (fondo + manijas) */}

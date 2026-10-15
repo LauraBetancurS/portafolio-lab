@@ -1,7 +1,8 @@
 'use client';
 /* eslint-disable */
 // ProfileCard de React Bits (https://reactbits.dev), versión JS + CSS.
-// Cambio propio: el ícono del sobre es un SVG en línea (sin instalar @hugeicons).
+// Cambios propios: el ícono del sobre es un SVG en línea (sin instalar @hugeicons)
+// y frameColor para elegir el color del marco.
 
 import { memo, useEffect, useRef } from 'react';
 
@@ -88,6 +89,7 @@ const ProfileCard = ({
   onContactClick,
   theme = 'dark',
   backdropColor,
+  frameColor,
   radius = 16,
   holo = 0.8,
   glare = 0.5,
@@ -307,6 +309,7 @@ const ProfileCard = ({
       style={{
         ...THEMES[palette],
         ...FOILS[foil],
+        ...(frameColor ? { '--pc-frame': frameColor } : {}),
         '--pc-radius': `${Math.max(0, radius)}px`,
         '--pc-backdrop': backdrop,
         '--pc-holo': clamp(holo, 0, 1),

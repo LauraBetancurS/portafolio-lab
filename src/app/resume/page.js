@@ -3,6 +3,7 @@ import Tape from "@/components/mixed/Tape";
 import Scribble from "@/components/mixed/Scribble";
 import FigjamComment from "@/components/mixed/FigjamComment";
 import Timeline from "@/components/resume/Timeline";
+import ResumeStory from "@/components/resume/ResumeStory";
 import {
   RESUME_PDF_URL, INTRO, EXPERIENCE, EDUCATION, CERTIFICATIONS, RECOGNITION, SKILLS, LANGUAGES, OFF_SCREEN,
 } from "@/data/resume";
@@ -42,14 +43,19 @@ function SimpleList({ items }) {
 
 export default function ResumePage() {
   return (
-    <main className="overflow-x-clip px-4 pb-28 pt-32 md:px-12">
-      <div className="mx-auto max-w-5xl">
+    <main className="overflow-x-clip">
+      {/* La historia, de lado a lado (como un recorrido) */}
+      <ResumeStory />
+
+      {/* La versión larga: la hoja de vida completa */}
+      <div id="full-resume" className="mx-auto max-w-5xl scroll-mt-24 px-4 pb-28 pt-24 md:px-12 md:pt-32">
         {/* Encabezado */}
         <header className="mb-14 flex flex-col gap-8 px-2 md:flex-row md:items-end md:justify-between">
           <div className="relative">
-            <h1 className="font-title text-[clamp(3.5rem,11vw,9rem)] leading-[0.9] tracking-tight text-neutral-900">
-              Resume
-            </h1>
+            <p className="font-body mb-2 text-lg text-neutral-500">the long version, for recruiters.</p>
+            <h2 className="font-title text-[clamp(3rem,8vw,6.5rem)] leading-[0.9] tracking-tight text-neutral-900">
+              Full resume
+            </h2>
             <Scribble variant="sparkle" color="#C9DB4B" strokeWidth={3} className="absolute -right-12 -top-4 h-12 w-12" />
           </div>
           {RESUME_PDF_URL && (

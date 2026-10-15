@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { getProjects } from '@/lib/projects';
 // Versiones anteriores, guardadas por si quieres volver a usarlas:
-// descomenta su import y su línea abajo, y comenta las de ProjectStack.
+// descomenta su import y su línea abajo, y comenta las de ProjectScrollStack.
 // import ProjectRail from '@/components/home/ProjectRail'; // discos en portadas
 // import ProjectRing from '@/components/home/ProjectRing'; // anillo que gira
-import ProjectStack from '@/components/home/ProjectStack';
+// import ProjectStack from '@/components/home/ProjectStack'; // pila que cambia sola
+import ProjectScrollStack from '@/components/home/ProjectScrollStack';
 import SectionTitle from '@/components/mixed/SectionTitle';
 import Scribble from '@/components/mixed/Scribble';
 import Note from '@/components/mixed/Note';
 
-// "Selected work" del inicio: una pila de proyectos que cambia sola o con un clic
+// "Selected work" del inicio: scroll stack, cada proyecto sube encima del anterior
 export default async function FeaturedWork() {
   const { projects } = await getProjects();
   if (projects.length === 0) return null;
@@ -42,7 +43,8 @@ export default async function FeaturedWork() {
       </div>
       {/* <ProjectRail projects={projects.slice(0, 9)} /> */}
       {/* <ProjectRing projects={projects.slice(0, 12)} /> */}
-      <ProjectStack projects={projects.slice(0, 10)} />
+      {/* <ProjectStack projects={projects.slice(0, 10)} /> */}
+      <ProjectScrollStack projects={projects.slice(0, 6)} />
       <Scribble variant="arrow-down" color="#C9DB4B" strokeWidth={3} className="mx-auto mt-16 h-24 w-14" />
     </>
   );

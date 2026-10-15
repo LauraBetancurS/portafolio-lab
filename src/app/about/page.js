@@ -8,6 +8,7 @@ import StickyNotes from "@/components/about/StickyNotes";
 import Dock from "@/components/about/Dock";
 import Toolbox from "@/components/about/Toolbox";
 import Reveal from "@/components/mixed/Reveal";
+import AboutStory from "@/components/about/AboutStory";
 
 export const metadata = {
   title: "About — Lau Betancur",
@@ -21,26 +22,10 @@ export default function AboutPage() {
       {/* Presentación: estilo collage con foto de cuerpo completo */}
       <AboutHero />
 
-      {/* Un poco más sobre mí */}
-      <Reveal as="section" className="mx-auto mt-32 grid max-w-6xl gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-16">
-        <div className="relative">
-          <h2 className="font-title text-4xl leading-tight text-neutral-900">A bit more</h2>
-          <Note arrow="down-right" rotate={-5} className="mt-3">the long version</Note>
-        </div>
-        <div className="font-body max-w-[60ch] space-y-5 text-lg leading-[1.7] text-neutral-700">
-          <p>
-            I’m an Interactive Media Design student at Universidad Icesi, in Cali. I design
-            and build digital products, mostly in the space where UX, front-end code and
-            AI meet.
-          </p>
-          <p>
-            I like to think of myself as a computer-to-human translator. Systems are
-            complicated; using them shouldn’t be. My job is to listen to people, find
-            where things get confusing, and turn that into something clear, warm and a
-            little bit fun.
-          </p>
-        </div>
-      </Reveal>
+      {/* La historia, de lado a lado (como un recorrido). Ocupa todo el ancho. */}
+      <div className="-mx-6 mt-24 md:-mx-12 md:mt-32">
+        <AboutStory />
+      </div>
 
       {/* Ventana Get Info (pieza central) */}
       <Reveal as="section" className="mx-auto mt-32 flex max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:justify-between">

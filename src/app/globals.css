@@ -283,3 +283,8 @@ footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
 .project-carousel {
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
+
+/* Objetos que flotan suave en la historia de About */
+.story-float { animation: story-float 5s ease-in-out infinite; animation-delay: var(--float-delay, 0s); }
+@keyframes story-float { 50% { translate: 0 -10px; } }
+@media (prefers-reduced-motion: reduce) { .story-float { animation: none; } }

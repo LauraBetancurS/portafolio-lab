@@ -278,3 +278,8 @@ footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
 .work-dot { animation: work-dot 2.4s var(--ease-in-out) infinite; }
 @keyframes work-dot { 50% { transform: scale(0.7); opacity: 0.6; } }
 @media (prefers-reduced-motion: reduce) { .work-dot { animation: none; } }
+
+/* Carrusel del inicio: se desvanece en los bordes */
+.project-carousel {
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}

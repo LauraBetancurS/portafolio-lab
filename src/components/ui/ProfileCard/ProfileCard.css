@@ -172,7 +172,7 @@
   width: calc(100% + var(--pc-parallax) * 2);
   height: calc(100% + var(--pc-parallax) * 2);
   object-fit: cover;
-  object-position: center;
+  object-position: center bottom;
   transform: translate3d(var(--pc-shift-x), var(--pc-shift-y), 0);
   pointer-events: none;
   user-select: none;

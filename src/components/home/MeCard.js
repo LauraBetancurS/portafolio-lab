@@ -18,9 +18,8 @@ export default function MeCard() {
       status="Open to new projects"
       statusColor="#C9DB4B"
       contactText="Contact"
-      theme="dark"
-      frameColor="#0b0b0b"
-      backdropColor="#111111"
+      theme="light"
+      backdropColor="#A9D6F5"
       radius={16}
       holo={0.8}
       glare={0.5}

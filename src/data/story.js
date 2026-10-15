@@ -15,7 +15,7 @@ export const STORY_IMAGES = {
   // profesional
   honorRoll: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/honor_roll.PNG', // cuadro de honor
   research: null,     // sticky notes, entrevistas, investigación
-  ai: null,           // algo que represente IA
+  ai: 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public/about/546ff57f-6e85-4d91-b158-b69ec8aa88b1.png', // cerebro IA
   aws: null,          // insignia AWS AI Practitioner
 };
 

@@ -321,7 +321,7 @@ export default function AboutStory() {
         </div>
 
         {/* 6 · IA */}
-        <Pic src={STORY_IMAGES.ai} label="img: something AI" className={`story-in mt-24 h-48 w-48 md:mt-0 md:h-[26vh] md:w-[13vw] ${POS}`} rotate={-3} float={0.3} pos={at(4180, 470)} />
+        <Pic src={STORY_IMAGES.ai} label="a brain made of circuits, for AI" className={`story-in mt-24 h-48 w-48 md:mt-0 md:h-[26vh] md:w-[13vw] ${POS}`} rotate={-3} float={0.3} pos={at(4180, 470)} />
         <div className={`story-in mt-8 max-w-md md:mt-0 md:w-[22vw] ${POS}`} style={at(4520, 180)}>
           <h2 className={H2}>and now, AI.</h2>
           <p className={SUB}>half designer. half “what if?”</p>

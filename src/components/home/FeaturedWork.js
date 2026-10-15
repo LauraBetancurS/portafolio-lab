@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { getProjects } from '@/lib/projects';
-import ProjectRail from '@/components/home/ProjectRail';
+// Versión anterior (discos en portadas). Para volver a usarla, descomenta
+// esta línea y la de <ProjectRail /> abajo, y comenta las de ProjectRing.
+// import ProjectRail from '@/components/home/ProjectRail';
+import ProjectRing from '@/components/home/ProjectRing';
 import SectionTitle from '@/components/mixed/SectionTitle';
 import Scribble from '@/components/mixed/Scribble';
 import Note from '@/components/mixed/Note';
 
-// "Selected work" del inicio: tus proyectos como discos en abanico
+// "Selected work" del inicio: tus proyectos en un anillo 3D que gira
 export default async function FeaturedWork() {
   const { projects } = await getProjects();
   if (projects.length === 0) return null;
@@ -36,7 +39,8 @@ export default async function FeaturedWork() {
           </span>
         </Link>
       </div>
-      <ProjectRail projects={projects.slice(0, 9)} />
+      {/* <ProjectRail projects={projects.slice(0, 9)} /> */}
+      <ProjectRing projects={projects.slice(0, 12)} />
       <Scribble variant="arrow-down" color="#C9DB4B" strokeWidth={3} className="mx-auto mt-16 h-24 w-14" />
     </>
   );

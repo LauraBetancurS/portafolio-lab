@@ -1,10 +1,13 @@
 import Link from 'next/link';
 
+// Colores de la paleta para proyectos que todavía no tienen imagen
+const PALETTE = ['#F6C6E6', '#CDE8F8', '#E4EDB0', '#F9CDBF', '#F8D98C'];
+
 // Tarjeta minimalista: la imagen ocupa toda la tarjeta, el título va encima.
-// Si el proyecto no tiene imagen, se usa su card_color de fondo.
+// Si el proyecto no tiene imagen, se usa su card_color (o uno de la paleta).
 export default function ProjectCard({ project, index }) {
   const hasImage = Boolean(project.cover);
-  const color = project.card_color || '#E5E5E5';
+  const color = project.card_color || PALETTE[index % PALETTE.length];
 
   return (
     <Link

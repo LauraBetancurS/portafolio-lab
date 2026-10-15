@@ -5,16 +5,60 @@ import { supabase } from './supabase';
 // si editas algo en Supabase, la web lo muestra en ~1–5 minutos
 // (o al reiniciar `npm run dev`).
 
-const sortByOrder = (a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0);
+const PROJECTS_BUCKET = 'proyects';
+const STORAGE_BASE = 'https://mjwtcqrzadpsluakzfjg.supabase.co/storage/v1/object/public';
 
-// Portada: cover_url o, si no hay, la primera imagen del proyecto
-function withCover(project) {
-  const firstImage = [...(project.project_media ?? [])].filter(m => m.type === 'image').sort(sortByOrder)[0];
-  return {
-    ...project,
-    cover: project.cover_url || firstImage?.url || null,
-    coverAlt: firstImage?.alt || project.title,
-  };
+// Convierte lo que pegues en Supabase en un link de imagen que funcione:
+//  - link del dashboard (…/storage/files/buckets/proyects?path=solar&preview=portada.webp)
+//    → link público (…/storage/v1/object/public/proyects/solar/portada.webp)
+//  - solo la ruta ("solar/portada.webp") → se busca en el bucket "proyects"
+//  - un link público normal se deja igual
+export function toImageUrl(value) {
+  const raw = typeof value === 'string' ? value.trim() : '';
+  if (!raw) return null;
+
+  if (!/^https?:\/\//.test(raw)) {
+    const path = raw.replace(/^\/+/, '').split('/').map(encodeURIComponent).join('/');
+    return `${STORAGE_BASE}/${PROJECTS_BUCKET}/${path}`;
+  }
+
+  const dashboard = raw.match(/supabase\.com\/dashboard\/project\/([^/]+)\/storage\/files\/buckets\/([^/?#]+)(\?[^#]*)?/);
+  if (dashboard) {
+    const [, ref, bucket, query = ''] = dashboard;
+    const params = new URLSearchParams(query);
+    const parts = [params.get('path'), params.get('preview')]
+      .filter(Boolean)
+      .flatMap(part => part.split('/'))
+      .filter(Boolean)
+      .map(encodeURIComponent);
+    if (!parts.length) return null;
+    return `https://${ref}.supabase.co/storage/v1/object/public/${decodeURIComponent(bucket)}/${parts.join('/')}`;
+  }
+
+  return raw;
+}
+
+// Prepara un proyecto: portada + lista de imágenes.
+// Las imágenes salen de image_1 … image_5 (solo las que tengan algo).
+// Portada: cover_url o, si no hay, la primera imagen.
+function prepare(project) {
+  const images = [...new Set(
+    [project.image_1, project.image_2, project.image_3, project.image_4, project.image_5].map(toImageUrl).filter(Boolean)
+  )];
+  const cover = toImageUrl(project.cover_url) || images[0] || null;
+
+  // Galería del detalle (sin repetir la portada). Si son impares, la primera
+  // va a todo el ancho y las demás de a dos.
+  const rest = images.filter(url => url !== cover);
+  const media = rest.map((url, i) => ({
+    id: url,
+    url,
+    type: 'image',
+    alt: `${project.title}, image ${i + 1}`,
+    layout: rest.length % 2 === 1 && i === 0 ? 'full' : 'half',
+  }));
+
+  return { ...project, cover, coverAlt: project.title, images, media };
 }
 
 // Lista de proyectos publicados (para /work y el inicio)
@@ -25,7 +69,7 @@ export async function getProjects() {
   const { data, error } = await supabase
     .from('projects')
     .select(
-      'id, slug, title, tagline, tags, cover_url, card_color, year, role, featured, sort_order, project_media(url, alt, type, sort_order)'
+      'id, slug, title, tagline, tags, cover_url, card_color, year, role, featured, sort_order, image_1, image_2, image_3, image_4, image_5'
     )
     .eq('published', true)
     .order('sort_order', { ascending: true })
@@ -35,7 +79,7 @@ export async function getProjects() {
     console.error('Error loading projects:', error.message);
     return { projects: [], error: true };
   }
-  return { projects: (data ?? []).map(withCover), error: false };
+  return { projects: (data ?? []).map(prepare), error: false };
 }
 
 // Proyectos destacados para el inicio (featured = true; si no hay, los primeros)
@@ -52,7 +96,7 @@ export async function getProjectBySlug(slug) {
 
   const { data, error } = await supabase
     .from('projects')
-    .select('*, project_media(id, url, type, alt, caption, layout, sort_order)')
+    .select('*')
     .eq('published', true)
     .eq('slug', slug)
     .maybeSingle();
@@ -63,8 +107,7 @@ export async function getProjectBySlug(slug) {
   }
   if (!data) return null;
 
-  const project = withCover(data);
-  project.media = [...(data.project_media ?? [])].sort(sortByOrder);
+  const project = prepare(data);
 
   // Siguiente proyecto (vuelve al primero al llegar al final)
   const { projects } = await getProjects();

@@ -234,3 +234,42 @@ footer[data-flash] .contact-card:nth-child(3) { animation-delay: 180ms; }
   .stack-card { transition: none !important; }
   .stack-caption { animation: none; }
 }
+
+/* ─── Tarjeta holográfica del inicio, con el estilo de la página ─── */
+.me-card .profile-card__body {
+  border-radius: 8px;
+  gap: 12px;
+  padding: 12px 12px 6px;
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(0 0 0 / 0.05);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.me-card .profile-card__name {
+  font-family: var(--font-title), var(--font-body);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.me-card .profile-card__title { font-family: var(--font-body); }
+.me-card .profile-card__handle { font-family: var(--font-body); }
+.me-card .profile-card__status { font-family: var(--font-body); }
+.me-card .profile-card__footer { padding: 4px 6px 8px; }
+/* botón como los demás de la página: píldora negra con la fuente del menú */
+.me-card .profile-card__contact {
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  background: #000;
+  box-shadow: none;
+  color: #fff;
+  font-family: var(--font-nav), var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+.me-card .profile-card__contact:hover { filter: none; background: #262626; }
+.me-card .profile-card__contact:active { filter: none; transform: scale(0.97); }
+.me-card .profile-card__rim { box-shadow: none; }
+@media (prefers-reduced-motion: reduce) {
+  .me-card { rotate: 0deg; transition: none; }
+}

@@ -10,7 +10,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 // Imagen o video que se "destapa" de abajo hacia arriba al aparecer en pantalla,
 // con un zoom suave que se acomoda mientras haces scroll.
 // frameClass: por ejemplo 'aspect-[16/9]' para recortar la imagen a esa forma
-export default function MediaReveal({ item, priority = false, className = '', frameClass = '' }) {
+// zoomIndex: si se pasa, la imagen se puede abrir en grande (ver Lightbox)
+export default function MediaReveal({ item, priority = false, className = '', frameClass = '', zoomIndex }) {
   const ref = useRef(null);
 
   useGSAP(
@@ -48,15 +49,40 @@ export default function MediaReveal({ item, priority = false, className = '', fr
             loop
             playsInline
             aria-label={item.alt || undefined}
-            className={`block w-full ${frameClass ? 'h-full object-cover' : 'h-auto'}`}
+            className={frameClass ? 'block h-full w-full object-cover' : 'block h-auto max-h-[88vh] w-full object-contain'}
           />
+        ) : zoomIndex !== undefined ? (
+          <button
+            type="button"
+            data-lightbox-index={zoomIndex}
+            aria-label={`Open image${item.alt ? `: ${item.alt}` : ''}`}
+            className={`group/zoom relative block w-full cursor-zoom-in ${frameClass ? 'h-full' : ''}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={item.url}
+              alt={item.alt || ''}
+              loading={priority ? 'eager' : 'lazy'}
+              className={frameClass ? 'block h-full w-full object-cover' : 'block h-auto max-h-[88vh] w-full object-contain'}
+            />
+            <span
+              aria-hidden="true"
+              className="font-body pointer-events-none absolute bottom-4 right-4 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-sm text-white opacity-0 backdrop-blur-md transition-[opacity,transform] duration-200 ease-[var(--ease-out)] translate-y-1 group-hover/zoom:translate-y-0 group-hover/zoom:opacity-100"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5M11 8v6M8 11h6" />
+              </svg>
+              View
+            </span>
+          </button>
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={item.url}
             alt={item.alt || ''}
             loading={priority ? 'eager' : 'lazy'}
-            className={`block w-full ${frameClass ? 'h-full object-cover' : 'h-auto'}`}
+            className={frameClass ? 'block h-full w-full object-cover' : 'block h-auto max-h-[88vh] w-full object-contain'}
           />
         )}
       </div>

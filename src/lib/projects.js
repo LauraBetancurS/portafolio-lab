@@ -58,7 +58,12 @@ function prepare(project) {
     layout: rest.length % 2 === 1 && i === 0 ? 'full' : 'half',
   }));
 
-  return { ...project, cover, coverAlt: project.title, images, media };
+  // Cifras clave opcionales (columna stats: [{"value":"72%","label":"…"}])
+  const stats = (Array.isArray(project.stats) ? project.stats : [])
+    .filter(s => s && s.value && s.label)
+    .slice(0, 6);
+
+  return { ...project, cover, coverAlt: project.title, images, media, stats };
 }
 
 // Lista de proyectos publicados (para /work y el inicio)

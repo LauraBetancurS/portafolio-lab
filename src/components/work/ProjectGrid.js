@@ -75,19 +75,20 @@ export default function ProjectGrid({ projects }) {
         const reveal = visibleOnLoad
           ? gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.15 + i * 0.12 })
           : gsap.timeline({
-              defaults: { ease: 'none' },
-              scrollTrigger: { trigger: card, start: `top ${98 - lag}%`, end: `top ${52 - lag}%`, scrub: 0.6 },
+              // ease suave + scrub con retraso: la tarjeta "alcanza" al scroll sin saltos
+              defaults: { ease: 'power2.out' },
+              scrollTrigger: { trigger: card, start: `top ${100 - lag}%`, end: `top ${42 - lag}%`, scrub: 1.2 },
             });
         const d = visibleOnLoad ? 1.1 : 1;
         reveal.fromTo(
           card,
-          { clipPath: 'inset(32% 7% 0% 7% round 28px)' },
+          { clipPath: 'inset(30% 6% 0% 6% round 18px)' },
           // termina un poco afuera de la tarjeta para no cortar el borde de foco del teclado
-          { clipPath: 'inset(-3% -3% -3% -3% round 6px)', duration: d },
+          { clipPath: 'inset(-3% -3% -3% -3% round 18px)', duration: d },
           0
         );
         if (media) reveal.fromTo(media, { scale: REVEAL_ZOOM }, { scale: 1, duration: d }, 0);
-        if (copy.length) reveal.fromTo(copy, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.12 }, d * 0.5);
+        if (copy.length) reveal.fromTo(copy, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: 'power2.out' }, d * 0.45);
 
         // 1. Parallax con el scroll
         if (media) {
@@ -97,7 +98,7 @@ export default function ProjectGrid({ projects }) {
             {
               yPercent: PARALLAX,
               ease: 'none',
-              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true },
+              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 0.8 }, // 0.8 s de suavizado
             }
           );
         }

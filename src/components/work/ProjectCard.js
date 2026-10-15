@@ -23,7 +23,7 @@ export default function ProjectCard({ project, index, compact = false }) {
     >
       {/* Imagen (más alta que la tarjeta para el efecto parallax) */}
       {hasImage && (
-        <div className="project-media absolute inset-x-0 -top-[10%] h-[120%]">
+        <div className="project-media absolute inset-x-0 -top-[10%] h-[120%] will-change-transform">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={project.cover}

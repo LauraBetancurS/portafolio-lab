@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import { getFeaturedProjects } from '@/lib/projects';
-import ProjectGrid from '@/components/work/ProjectGrid';
+import { getProjects } from '@/lib/projects';
+import ProjectFolder from '@/components/home/ProjectFolder';
 import SectionTitle from '@/components/mixed/SectionTitle';
 import Scribble from '@/components/mixed/Scribble';
 import Note from '@/components/mixed/Note';
 
-// Proyectos destacados del inicio (featured = true en Supabase)
+// "Selected work" del inicio: una carpeta de la que salen tus proyectos publicados
 export default async function FeaturedWork() {
-  const { projects } = await getFeaturedProjects(4);
+  const { projects } = await getProjects();
   if (projects.length === 0) return null;
 
   return (
@@ -36,7 +36,7 @@ export default async function FeaturedWork() {
           </span>
         </Link>
       </div>
-      <ProjectGrid projects={projects} />
+      <ProjectFolder projects={projects.slice(0, 8)} />
       <Scribble variant="arrow-down" color="#C9DB4B" strokeWidth={3} className="mx-auto mt-16 h-24 w-14" />
     </>
   );

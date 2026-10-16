@@ -24,9 +24,14 @@ const CELL_H = 104;
 // crece solo cuando está abierta). Todo se puede arrastrar y lanzar.
 // Clic otra vez en la carpeta → todo vuelve adentro.
 
+// Herramientas que NO salen en la carpeta del inicio (siguen en la lista
+// general de src/data/tools.js, que también usa la página About)
+const HIDDEN_HERE = ['Tailwind CSS', 'Python', 'Flask', 'Next.js'];
+const FOLDER_TOOLS = TOOLS.filter(t => !HIDDEN_HERE.includes(t.name));
+
 // Mezcla herramientas y notas en un orden fijo (siempre igual)
 const ITEMS = (() => {
-  const tools = TOOLS.map(t => ({ kind: 'tool', key: t.name, tool: t }));
+  const tools = FOLDER_TOOLS.map(t => ({ kind: 'tool', key: t.name, tool: t }));
   const notes = SKILLS.map(s => ({ kind: 'note', key: s.text, ...s }));
   const out = [];
   let ti = 0;
@@ -212,7 +217,7 @@ export default function ToolFolder() {
             <span className="font-body mt-1 text-xs text-neutral-800/70">
               {open
                 ? t('click to put them back', 'clic para guardarlas')
-                : t(`${TOOLS.length} tools · ${SKILLS.length} skills`, `${TOOLS.length} herramientas · ${SKILLS.length} habilidades`)}
+                : t(`${FOLDER_TOOLS.length} tools · ${SKILLS.length} skills`, `${FOLDER_TOOLS.length} herramientas · ${SKILLS.length} habilidades`)}
             </span>
           </span>
         </button>

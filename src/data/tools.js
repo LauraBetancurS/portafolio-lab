@@ -37,4 +37,5 @@ export const SKILLS = [
   { text: 'AI automations', es: 'automatizaciones con IA', color: '#F9CDBF' },
   { text: 'motion & video', es: 'motion y video', color: '#CDE8F8' },
   { text: 'project management', es: 'gestión de proyectos', color: '#F6C6E6' },
+  { text: 'scrum', es: 'scrum', color: '#E4EDB0' },
 ];

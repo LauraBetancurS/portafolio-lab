@@ -102,8 +102,8 @@ export default function ProjectCarousel({ projects }) {
 
   return (
     <div
-      className="project-carousel relative -mx-6 cursor-grab select-none overflow-hidden py-2 active:cursor-grabbing md:-mx-12"
-      onPointerEnter={() => { state.current.hover = true; }}
+      className="project-carousel relative -mx-6 cursor-grab touch-pan-y select-none overflow-hidden py-2 active:cursor-grabbing md:-mx-12"
+      onPointerEnter={e => { if (e.pointerType === 'mouse') state.current.hover = true; }}
       onPointerLeave={() => { state.current.hover = false; }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

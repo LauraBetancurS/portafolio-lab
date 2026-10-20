@@ -17,6 +17,8 @@ const FOLDER_W = 230;
 const FOLDER_H = 160;
 const CELL_W = 128;   // espacio aproximado de cada ícono/nota
 const CELL_H = 104;
+const SMALL = 520;    // en pantallas más angostas (celular) las celdas son más pequeñas
+const cellSize = w => (w < SMALL ? { cw: 100, chh: 92 } : { cw: CELL_W, chh: CELL_H });
 // ────────────────────────────────────────────────────────────
 
 // Carpeta "toolbox": al hacer clic se abre y salen volando los íconos de las
@@ -63,9 +65,10 @@ export default function ToolFolder() {
     const el = areaRef.current;
     const measure = () => {
       const w = el.offsetWidth;
-      const cols = Math.max(2, Math.floor((w - 20) / CELL_W));
+      const { cw, chh } = cellSize(w);
+      const cols = Math.max(2, Math.floor((w - 20) / cw));
       const rows = Math.ceil(ITEMS.length / cols);
-      setSize({ w, h: rows * CELL_H + FOLDER_H + 70, closedH: FOLDER_H + 40 });
+      setSize({ w, h: rows * chh + FOLDER_H + 70, closedH: FOLDER_H + 40 });
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -76,14 +79,15 @@ export default function ToolFolder() {
   // Dónde cae cada cosa cuando sale de la carpeta
   const targets = () => {
     const { w } = size;
-    const cols = Math.max(2, Math.floor((w - 20) / CELL_W));
+    const { cw, chh } = cellSize(w);
+    const cols = Math.max(2, Math.floor((w - 20) / cw));
     const cellW = (w - 20) / cols;
     return ITEMS.map((_, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
       return {
         x: 10 + col * cellW + cellW / 2 + (seeded(i) - 0.5) * 34,
-        y: FOLDER_H + 50 + row * CELL_H + CELL_H / 2 + (seeded(i + 7) - 0.5) * 26,
+        y: FOLDER_H + 50 + row * chh + chh / 2 + (seeded(i + 7) - 0.5) * 26,
         r: (seeded(i + 3) - 0.5) * 16,
       };
     });
@@ -184,16 +188,16 @@ export default function ToolFolder() {
             aria-hidden={!open}
           >
             {item.kind === 'tool' ? (
-              <div className="flex w-[84px] flex-col items-center gap-1.5 rounded-2xl bg-white px-2 pb-2 pt-3 shadow-[0_14px_30px_-14px_rgba(0,0,0,0.4)] ring-1 ring-black/5">
-                <ToolIcon tool={item.tool} className="h-9 w-9" />
+              <div className="flex w-[76px] flex-col items-center sm:w-[84px] gap-1.5 rounded-2xl bg-white px-2 pb-2 pt-3 shadow-[0_14px_30px_-14px_rgba(0,0,0,0.4)] ring-1 ring-black/5">
+                <ToolIcon tool={item.tool} className="h-8 w-8 sm:h-9 sm:w-9" />
                 <span className="font-body w-full truncate text-center text-[11px] text-neutral-600">{item.tool.name}</span>
               </div>
             ) : (
               <div
-                className="flex h-[86px] w-[112px] items-center justify-center p-2 text-center shadow-[0_14px_26px_-14px_rgba(0,0,0,0.4)]"
+                className="flex h-[76px] w-[96px] items-center justify-center p-2 sm:h-[86px] sm:w-[112px] text-center shadow-[0_14px_26px_-14px_rgba(0,0,0,0.4)]"
                 style={{ backgroundColor: item.color }}
               >
-                <span className="font-hand text-[1.35rem] leading-[1.05] text-neutral-900">{t(item.text, item.es)}</span>
+                <span className="font-hand text-[1.2rem] leading-[1.05] text-neutral-900 sm:text-[1.35rem]">{t(item.text, item.es)}</span>
               </div>
             )}
           </div>
@@ -222,6 +226,11 @@ export default function ToolFolder() {
           </span>
         </button>
       </div>
+
+      {/* En celular y iPad la pista va debajo de la carpeta */}
+      <p className="font-hand mt-2 text-center text-xl text-neutral-600 md:hidden" aria-hidden="true">
+        {open ? t('drag & throw them!', '¡arrástralas y lánzalas!') : t('tap the folder', 'toca la carpeta')}
+      </p>
 
       <Note
         arrow="down-right"

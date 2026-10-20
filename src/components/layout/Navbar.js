@@ -85,7 +85,7 @@ export default function Navbar() {
         <LangToggle dark={dark} />
         <button
           type="button"
-          className="p-2"
+          className="-mr-2 p-3"
           aria-label={menuOpen ? t("Close menu", "Cerrar menú") : t("Open menu", "Abrir menú")}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
@@ -148,7 +148,7 @@ function LangToggle({ dark }) {
           aria-label={name}
           aria-pressed={lang === code}
           onClick={() => setLang(code)}
-          className={`relative z-10 w-10 rounded-full py-1 transition-colors duration-300 ${
+          className={`relative z-10 w-11 rounded-full py-1.5 transition-colors md:w-10 md:py-1 duration-300 ${
             lang === code ? (dark ? "text-black" : "text-white") : "opacity-70 hover:opacity-100"
           }`}
         >

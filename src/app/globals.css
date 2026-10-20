@@ -12,6 +12,19 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+/* La historia de About va de lado (con scroll horizontal) solo en pantallas
+   anchas y acostadas (computador, iPad horizontal). En celular y iPad vertical
+   se lee de arriba hacia abajo. */
+@custom-variant story (@media (min-width: 1024px) and (orientation: landscape));
+@custom-variant flow {
+  @media (max-width: 1023.98px) {
+    @slot;
+  }
+  @media (orientation: portrait) {
+    @slot;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

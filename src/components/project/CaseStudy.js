@@ -176,7 +176,7 @@ export default function CaseStudy({ project }) {
         {/* Datos clave + herramientas + enlaces */}
         {(facts.length > 0 || project.tools?.length > 0 || links.length > 0) && (
           <div className="mt-14 grid gap-10 border-t border-neutral-300/80 pt-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-            <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:gap-x-10 sm:gap-y-8 md:grid-cols-3">
               {facts.map(([label, value]) => (
                 <div key={label}>
                   <p className="font-body text-sm text-neutral-500">{label}</p>
@@ -184,7 +184,7 @@ export default function CaseStudy({ project }) {
                 </div>
               ))}
               {project.tools?.length > 0 && (
-                <div className="sm:col-span-2 md:col-span-3">
+                <div className="col-span-2 md:col-span-3">
                   <p className="font-body text-sm text-neutral-500">{t('Tools', 'Herramientas')}</p>
                   <ul className="mt-2.5 flex flex-wrap gap-1.5">
                     {project.tools.map(tool => (

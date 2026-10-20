@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -23,9 +23,20 @@ const BADGE = {
   website: 'github.com/LauraBetancurS',
 };
 
+// ¿Pantalla de celular? (la credencial se ve un poco más pequeña)
+const PHONE = '(max-width: 639px)';
+const subscribePhone = cb => {
+  const q = window.matchMedia(PHONE);
+  q.addEventListener('change', cb);
+  return () => q.removeEventListener('change', cb);
+};
+const usePhone = () =>
+  useSyncExternalStore(subscribePhone, () => window.matchMedia(PHONE).matches, () => false);
+
 export default function AboutHero() {
   const rootRef = useRef(null);
   const [badge, setBadge] = useState(null);
+  const phone = usePhone();
   const { lang, t, tr } = useLang();
 
   // Arma las imágenes de la credencial (frente, reverso y cinta), en el idioma actual
@@ -119,7 +130,7 @@ export default function AboutHero() {
         </div>
 
         {/* Credencial colgante (lanyard 3D) */}
-        <div className="relative mt-4 h-[560px] lg:-mt-32 lg:h-[88vh]">
+        <div className="relative -mx-6 mt-4 h-[500px] sm:mx-0 sm:h-[560px] lg:-mt-32 lg:h-[88vh]">
           <div className="absolute inset-0" aria-label={t('Laura’s ID badge. Drag it around, or click it to flip it.', 'Credencial de Laura. Arrástrala o haz clic para voltearla.')} role="img">
             {badge && (
               <Lanyard
@@ -130,7 +141,7 @@ export default function AboutHero() {
                 cardColor="#ffffff"
                 finish="glossy"
                 metal="silver"
-                size={0.5}
+                size={phone ? 0.42 : 0.5}
                 strapLength={0.42}
                 breeze={0.4}
               />

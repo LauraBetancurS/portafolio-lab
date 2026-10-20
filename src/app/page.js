@@ -15,18 +15,22 @@ export default function Home() {
 
       <main className="overflow-x-clip">
         {/* Hero */}
-        <section className="relative flex min-h-screen flex-col items-center justify-center gap-4 overflow-hidden px-6 text-center">
+        <section className="relative flex min-h-[100svh] flex-col items-center justify-center gap-4 overflow-hidden px-6 pb-16 pt-28 text-center xl:py-0">
           <StarField />
           <div data-star-avoid className="relative z-10 flex flex-col items-center gap-4">
             <HeroTitle />
           </div>
 
+          {/* Stickers: en pantallas anchas van a los lados del título (posición absoluta).
+              En celular y iPad van debajo del título, los dos grupos lado a lado
+              (xl:contents hace que esta fila "desaparezca" en pantallas anchas). */}
+          <div className="relative z-10 mb-16 mt-12 flex w-full items-start justify-center gap-[9vw] sm:gap-20 xl:contents">
           {/* AirDrop + micrófono + ctrl Z: a la izquierda del título en pantallas anchas
-              (en espejo con la sticky note), debajo del título en las demás */}
+              (en espejo con la sticky note) */}
           <LeftStickers />
 
-          {/* Sticky note + carpeta: a la derecha en pantallas anchas, debajo del título en las demás */}
-          <div className="relative z-10 mt-8 w-48 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
+          {/* Sticky note + carpeta: a la derecha en pantallas anchas */}
+          <div className="relative z-10 w-[30vw] max-w-[220px] shrink-0 xl:absolute xl:left-[calc(50%+400px)] xl:top-[30%] xl:w-[clamp(190px,15vw,300px)] xl:max-w-none">
             <div data-star-avoid>
               <NoteDrawing className="w-full" />
             </div>
@@ -36,15 +40,16 @@ export default function Home() {
             </div>
             {/* Palabra con selección estilo iOS, sobre el borde inferior de la nota */}
             <div data-star-avoid className="absolute left-[58%] top-[91%] z-30">
-              <SelectionWord className="text-base xl:text-lg" />
+              <SelectionWord className="text-xs sm:text-base xl:text-lg" />
             </div>
             {/* Carpeta abajo a la izquierda de la nota, montada sobre su esquina.
                 left = horizontal (más alto → más a la derecha)
                 top  = vertical (más alto → más abajo)
                 Los % son relativos al ancho de la sticky note. */}
-            <div data-star-avoid className="absolute left-[-26%] top-[82%] z-20">
+            <div data-star-avoid className="absolute left-[-26%] top-[82%] z-20 origin-top-left max-sm:scale-[0.7]">
               <FinalFolder />
             </div>
+          </div>
           </div>
         </section>
 

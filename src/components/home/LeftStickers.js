@@ -18,7 +18,7 @@ import { useLang } from '@/i18n/lang';
 export default function LeftStickers() {
   const { t } = useLang();
   return (
-    <div className="relative z-10 mx-auto mb-12 mt-10 aspect-square w-48 xl:absolute xl:right-[min(calc(50%+400px),calc(100%-1.5*clamp(190px,15vw,300px)))] xl:top-[30%] xl:mb-0 xl:mt-0 xl:w-[clamp(190px,15vw,300px)]">
+    <div className="relative z-10 aspect-square w-[30vw] max-w-[220px] shrink-0 xl:absolute xl:right-[min(calc(50%+400px),calc(100%-1.5*clamp(190px,15vw,300px)))] xl:top-[30%] xl:max-w-none xl:w-[clamp(190px,15vw,300px)]">
       {/* AirDrop (atrás) */}
       <div data-star-avoid className="absolute left-[-48%] top-[14%] z-10 w-[106%]">
         <HeroSticker
